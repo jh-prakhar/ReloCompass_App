@@ -1,168 +1,170 @@
-<div align="center">
+# 🧭 ReloCompass
 
-# ReloCompass
+### AI-Powered Global Relocation, Student Success & Employment Platform
 
-### AI-Powered Global Relocation, Student Success & Employment Assistant
-
-<img src="public/icon-512.png" alt="ReloCompass Logo" width="120"/>
-
-Helping people from India & Nepal relocate abroad for education or employment — with AI guidance, verified listings, job matching, and community support.
-
-![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38BDF8?style=flat-square)
-![Prisma](https://img.shields.io/badge/Prisma-6-2D3748?style=flat-square)
-![MySQL](https://img.shields.io/badge/MySQL-8-4479A1?style=flat-square)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
-![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=flat-square)
-
-</div>
+[![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python&logoColor=white)](https://python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING)
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents
 
 - [Overview](#overview)
-- [Problem Statement](#problem-statement)
-- [Solution](#solution)
 - [Features](#features)
-- [AI Capabilities](#ai-capabilities)
-- [Technology Stack](#technology-stack)
-- [Live Demo](#live-demo)
-- [Installation](#installation)
-- [Local Development](#local-development)
+- [Architecture](#architecture)
+- [Tech Stack](#tech-stack)
+- [Repository Structure](#repository-structure)
+- [Prerequisites](#prerequisites)
+- [Installation Guide](#installation-guide)
+  - [Backend Setup (Python / FastAPI)](#backend-setup-python--fastapi)
+  - [Frontend Setup (HTML / CSS / Vanilla JS)](#frontend-setup-html--css--vanilla-js)
 - [Environment Variables](#environment-variables)
-- [Database Setup](#database-setup)
+- [API Endpoints](#api-endpoints)
+- [Authentication Flow](#authentication-flow)
 - [Deployment](#deployment)
-- [Folder Structure](#folder-structure)
-- [User Roles](#user-roles)
-- [Future Roadmap](#future-roadmap)
-- [Contributing](#contributing)
+- [Frontend–Backend Integration](#frontendbackend-integration)
+- [Future Improvements](#future-improvements)
 - [License](#license)
 
 ---
 
 ## Overview
 
-**ReloCompass** is an AI-powered web platform that helps people from India and Nepal relocate abroad for education or employment. It covers the complete relocation journey — from the first decision to move, through preparation, arrival, and settling into a new country.
+**ReloCompass** helps international students, job seekers, and employers navigate the complexities of global relocation. The platform combines an AI assistant, accommodation search, transportation guides, job matching, community resources, and financial planning tools — all in one place.
 
-The platform serves three user roles:
+The project is built with a clear **frontend–backend separation**:
 
-| Role | Description |
-|---|---|
-| **Students** | International students preparing for undergraduate or postgraduate studies abroad |
-| **Job Seekers** | Skilled professionals seeking employment opportunities overseas |
-| **Employers** | Companies hiring talented professionals from India and Nepal |
-
----
-
-## Problem Statement
-
-Every year, hundreds of thousands of students and professionals from India and Nepal move abroad. The process is complex, stressful, and filled with uncertainty:
-
-| Challenge | Impact |
-|---|---|
-| **Fragmented Information** | Relocation requires juggling dozens of sources — visa portals, university sites, housing platforms, and forums. |
-| **Trust & Safety Concerns** | International movers are vulnerable to scams, from fake landlords to fraudulent job offers. |
-| **Language & Cultural Barriers** | Understanding local norms, tenant rights, and professional etiquette in a new country is overwhelming. |
-| **Social Isolation** | Moving abroad means leaving behind support networks and starting from scratch. |
-| **Financial Uncertainty** | Without accurate cost-of-living data, budgeting for a new country is guesswork. |
-
----
-
-## Solution
-
-ReloCompass brings the entire relocation journey into one integrated platform:
-
-- **AI Assistant** — 24/7 personalized guidance on visas, housing, jobs, and cultural tips
-- **Accommodation Hub** — Verified listings with safety ratings and scam-prevention guidance
-- **Job Board & Matching** — Employer-posted jobs with AI-powered candidate matching
-- **Transportation Guide** — Local transit systems, student passes, and travel cards
-- **Budget Planner** — Cost-of-living calculators tailored to each destination city
-- **Relocation Checklist** — Trackable pre-departure, packing, and post-arrival tasks
-- **Community Hub** — Student clubs, cultural groups, mentorship programs, and events
+- **Frontend:** Static HTML5, CSS3, and Vanilla JavaScript (deployed via GitHub Pages)
+- **Backend:** Python REST API using FastAPI, SQLAlchemy, and JWT authentication
 
 ---
 
 ## Features
 
 ### For Students & Job Seekers
-
-- **AI Relocation Assistant** — Chat-based assistant providing personalized guidance on visa requirements, documentation, timelines, and relocation logistics
-- **Accommodation Search** — Filter and save housing listings by country, city, type, budget, and safety rating
-- **Job Discovery & Applications** — Browse employer-posted jobs, filter by visa sponsorship, and apply with cover letters
-- **Budget Planner** — Interactive sliders for estimating monthly costs (rent, food, transport, insurance) per destination city
-- **Relocation Checklist** — Auto-seeded task lists for pre-departure, packing, and post-arrival phases with progress tracking
-- **Transportation Guides** — City-specific public transit information, student pass details, and monthly costs
-- **Community Hub** — Discover student clubs, cultural organizations, professional networks, and upcoming events
-- **Profile & Preferences** — Set destination, budget, accommodation preferences, career goals, and more to personalize AI recommendations
+- **AI Assistant** — Chat-based guidance for relocation questions, visa info, and city recommendations
+- **Accommodation Hub** — Search student housing, dorms, shared apartments by city and budget
+- **Transportation Guide** — Public transit info, airport connections, and travel tips for major destinations
+- **Job Board & Matching** — Browse job listings with visa sponsorship filters
+- **Community Hub** — Connect with other relocators through groups and events
+- **Financial Planning** — Budget estimators for cost of living across cities
+- **Relocation Checklists** — Step-by-step task lists for a smooth move
 
 ### For Employers
+- **Post Jobs** — Create listings with visa sponsorship details
+- **Candidate Matching** — Review applications from relocating professionals
+- **Company Profile** — Showcase your organization to a global talent pool
 
-- **Candidate Search** — Filter candidates by skills, target country, experience level, and visa status
-- **Job Posting** — Create job listings with salary ranges, required skills, and visa sponsorship options
-- **Dashboard Analytics** — Track posted jobs and manage applications
-- **AI-Powered Matching** — Get insights on candidate-job fit
-
----
-
-## AI Capabilities
-
-The AI assistant is powered by an OpenAI-compatible LLM gateway. It uses each user's profile and preferences to provide context-aware guidance:
-
-| Capability | Example |
-|---|---|
-| **Relocation Planning** | "I'm moving to Toronto for my master's. What documents do I need?" |
-| **Accommodation Guidance** | "Can you find me accommodation near U of T?" |
-| **Budget Estimation** | "How much should I budget for monthly expenses in Berlin?" |
-| **Visa & Documentation** | "What's the visa process for skilled workers in Germany?" |
-| **Cultural Tips** | "What should I know about renting an apartment in London?" |
-| **Checklist Generation** | "Create a packing list for my move to Sydney." |
-
-> **Note:** The AI assistant provides guidance only. For visa, immigration, and legal matters, always verify with official government sources.
+### Platform-wide
+- **Secure Authentication** — JWT-based login with bcrypt password hashing
+- **Role-Based Access** — Student, Job Seeker, and Employer accounts
+- **Responsive Design** — Works on desktop, tablet, and mobile
+- **Accessibility** — WCAG 2.1 AA compliant with semantic HTML and ARIA labels
 
 ---
 
-## Technology Stack
+## Architecture
+
+```
+┌─────────────────────────┐         REST API (JSON)         ┌──────────────────────────┐
+│   Frontend (GitHub Pages) │  ◄──────────────────────────►  │   Backend (FastAPI)       │
+│                         │                                │                          │
+│  HTML5 / CSS3 / JS      │   POST /api/auth/register      │  Python 3.11+            │
+│  No build step          │   POST /api/auth/login         │  FastAPI + Uvicorn       │
+│  Served statically      │   GET  /api/jobs/              │  SQLAlchemy ORM          │
+│                         │   POST /api/contact/           │  JWT (python-jose)       │
+│  js/auth.js → JWT       │   ...                          │  bcrypt password hash    │
+│  stored in localStorage │                                │  MySQL / PostgreSQL      │
+└─────────────────────────┘                                └──────────────────────────┘
+```
+
+---
+
+## Tech Stack
 
 | Layer | Technology |
-|---|---|
-| **Framework** | Next.js 16 (App Router, Turbopack) |
-| **Language** | TypeScript 5 |
-| **Styling** | Tailwind CSS v4 |
-| **Database** | MySQL 8 via Prisma ORM |
-| **Authentication** | NextAuth.js (Credentials Provider, bcrypt) |
-| **AI** | OpenAI-compatible LLM gateway |
-| **Animations** | Framer Motion |
-| **Icons** | Lucide React |
-| **Testing** | Jest + tsx |
-| **Package Manager** | npm |
+|-------|-----------|
+| **Frontend** | HTML5, CSS3 (Custom Properties, Flexbox, Grid), Vanilla JavaScript (ES6+) |
+| **Backend** | Python 3.11+, FastAPI, Uvicorn |
+| **Database** | MySQL (production) / SQLite (development fallback) |
+| **ORM** | SQLAlchemy 2.0 |
+| **Authentication** | JWT tokens via `python-jose`, bcrypt password hashing |
+| **API Docs** | Auto-generated Swagger UI at `/docs`, ReDoc at `/redoc` |
 
 ---
 
-## Live Demo
+## Repository Structure
 
-The platform is deployed and accessible at:
-
-**https://relocompass-tpfpaa.drytis.dev/**
-
-- **Student / Job Seeker:** Create a free account to explore all features
-- **Employer:** Register as an employer to access the hiring dashboard
-
-> The mobile apps (Android & iOS) are in development. Download links will be activated upon publication.
+```
+ReloCompass_App/
+│
+├── docs/                       # Frontend (served by GitHub Pages)
+│   ├── index.html              # Landing page
+│   ├── about.html              # About page
+│   ├── jobs.html               # Job board
+│   ├── employers.html          # Employer info page
+│   ├── contact.html            # Contact form
+│   ├── login.html              # Login page
+│   ├── register.html           # Sign-up page
+│   ├── dashboard.html          # User dashboard (protected)
+│   ├── css/
+│   │   ├── style.css           # Main stylesheet (design system)
+│   │   ├── responsive.css       # Media queries
+│   │   └── animations.css       # Keyframe animations
+│   ├── js/
+│   │   ├── main.js             # Navigation, animations, interactions
+│   │   ├── auth.js             # Authentication logic (register, login, JWT)
+│   │   ├── contact.js          # Contact form validation + submission
+│   │   └── config.js           # API base URL configuration
+│   └── assets/
+│       └── icons/              # SVG logos
+│
+├── backend/                    # Python backend
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── main.py             # FastAPI app entry point
+│   │   ├── config.py           # Settings (reads from env vars)
+│   │   ├── deps.py             # Dependencies (get_current_user, etc.)
+│   │   ├── schemas.py          # Pydantic request/response models
+│   │   ├── seed.py             # Database seeding script
+│   │   ├── database/
+│   │   │   └── __init__.py     # SQLAlchemy engine, session, Base
+│   │   ├── models/
+│   │   │   └── __init__.py     # SQLAlchemy ORM models
+│   │   ├── routers/
+│   │   │   ├── __init__.py
+│   │   │   ├── auth.py         # /api/auth/* — register, login, me, logout
+│   │   │   ├── users.py        # /api/users/* — profile management
+│   │   │   ├── jobs.py         # /api/jobs/* — job board CRUD
+│   │   │   ├── accommodations.py # /api/accommodations/* — housing listings
+│   │   │   └── contact.py      # /api/contact/* — contact form
+│   │   └── services/
+│   │       └── auth.py         # Password hashing, JWT token creation
+│   ├── requirements.txt        # Python dependencies
+│   ├── .env.example            # Environment variable template
+│   └── README.md               # Backend-specific docs
+/   │
+├── README.md                   # This file
+├── LICENSE                     # MIT License
+└── .gitignore
+```
 
 ---
 
-## Installation
+## Prerequisites
 
-### Prerequisites
+- **Python** 3.11 or higher
+- **MySQL** 8.0+ (or use SQLite for local development)
+- **Git**
+- A modern web browser
 
-- **Node.js** 18.18+ (or 20+)
-- **npm** 10+
-- **MySQL** 8+ (or a MySQL-compatible database)
-- An OpenAI-compatible LLM API key (for the AI assistant)
+---
 
-### Steps
+## Installation Guide
+
+### Backend Setup (Python / FastAPI)
 
 1. **Clone the repository:**
 
@@ -171,299 +173,287 @@ The platform is deployed and accessible at:
    cd ReloCompass_App
    ```
 
-2. **Install dependencies:**
+2. **Create a virtual environment:**
 
    ```bash
-   npm install
+   python3 -m venv venv
+   source venv/bin/activate   # Linux/macOS
+   # venv\Scripts\activate    # Windows
    ```
 
-3. **Set up environment variables:**
-
-   Create a `.env` file in the project root (see [Environment Variables](#environment-variables) below).
-
-4. **Set up the database:**
+3. **Install Python dependencies:**
 
    ```bash
-   npx prisma generate
-   npx prisma db push
-   npm run seed
+   cd backend
+   pip install -r requirements.txt
    ```
 
-5. **Run the development server:**
+4. **Configure environment variables:**
 
    ```bash
-   npm run dev
+   cp .env.example .env
+   # Edit .env with your database credentials and JWT secret
    ```
 
-6. **Open the app:**
+5. **Run the backend:**
 
-   Navigate to `http://localhost:3000`
+   ```bash
+   # Development (with auto-reload)
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
----
+   # Production
+   uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
+   ```
 
-## Local Development
+6. **Verify the backend is running:**
 
-```bash
-# Install dependencies
-npm install
+   - API root: http://localhost:8000/
+   - Swagger docs: http://localhost:8000/docs
+   - Health check: http://localhost:8000/health
 
-# Generate Prisma client
-npx prisma generate
+### Frontend Setup (HTML / CSS / Vanilla JS)
 
-# Push schema to database
-npx prisma db push
+The frontend is pure static files — no build step required.
 
-# Seed demo data
-npm run seed
+1. **For local development:**
 
-# Start dev server
-npm run dev
+   ```bash
+   # Serve the docs/ folder with any static server
+   cd docs
+   python3 -m http.server 8888
+   # Visit http://localhost:8888
+   ```
 
-# Run tests
-npm test
+2. **Connect to the backend:**
 
-# Build for production
-npm run build
+   Edit `docs/js/config.js` and set `BASE_URL` to your backend URL:
 
-# Start production server
-npm run start
-```
+   ```javascript
+   const API_CONFIG = {
+     BASE_URL: 'http://localhost:8000',  // Your FastAPI backend
+     // ...
+   };
+   ```
 
-### Scripts
+3. **For GitHub Pages deployment:**
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Create production build |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm test` | Run Jest test suite |
-| `npm run seed` | Seed database with demo data |
+   Push to the `main` branch — GitHub Pages serves the `docs/` folder automatically.
+   See [Deployment](#deployment) for details.
 
 ---
 
 ## Environment Variables
 
-Create a `.env` file in the project root with the following variables. **Never commit this file.**
+Create `backend/.env` based on `backend/.env.example`:
 
-```env
-# Database
-DATABASE_URL="mysql://USER:PASSWORD@localhost:3306/DB_NAME"
-
-# Authentication
-NEXTAUTH_URL="http://localhost:3000"
-NEXTAUTH_SECRET="your-secret-key-here"
-
-# AI Assistant (OpenAI-compatible endpoint)
-OPENAI_API_KEY="your-api-key"
-OPENAI_BASE_URL="https://your-llm-endpoint/v1"
-
-# Application
-NODE_ENV="development"
-NEXT_PUBLIC_APP_NAME="ReloCompass"
-```
-
-> **Security:** The `.env` file is included in `.gitignore` and will never be committed. Generate a unique `NEXTAUTH_SECRET` using `openssl rand -base64 32`.
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `APP_NAME` | Application name | `ReloCompass API` |
+| `APP_DEBUG` | Enable debug mode | `true` |
+| `DB_HOST` | Database host | `127.0.0.1` |
+| `DB_PORT` | Database port | `3306` |
+| `DB_NAME` | Database name | `relocompass` |
+| `DB_USER` | Database username | `root` |
+| `DB_PASSWORD` | Database password | *(required)* |
+| `JWT_SECRET` | Secret key for signing JWT tokens | *(required in production)* |
+| `CORS_ORIGINS` | Comma-separated allowed origins | `http://localhost:8888` |
 
 ---
 
-## Database Setup
+## API Endpoints
 
-This project uses **Prisma ORM** with **MySQL**. The schema is defined in `prisma/schema.prisma`.
+### Authentication
 
-### Schema Models
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| `POST` | `/api/auth/register` | Register a new user account | No |
+| `POST` | `/api/auth/login` | Authenticate user, return JWT token | No |
+| `GET` | `/api/auth/me` | Get current authenticated user | Yes |
+| `POST` | `/api/auth/logout` | Logout (client-side token removal) | Yes |
+| `POST` | `/api/auth/password-reset` | Request password reset (placeholder) | No |
 
-| Model | Purpose |
-|---|---|
-| `User` | User accounts with role-based access (STUDENT, JOB_SEEKER, EMPLOYER) |
-| `UserPreference` | Per-user destination, budget, career, and accommodation preferences |
-| `Company` | Employer company profiles |
-| `Job` | Job postings by employers |
-| `Application` | Job applications from users |
-| `Accommodation` | Housing listings with safety ratings |
-| `TransportGuide` | City-specific transit guides |
-| `BudgetEstimate` | Monthly cost estimates per city and category |
-| `CommunityGroup` | Student clubs, cultural groups, mentorship programs |
-| `CommunityEvent` | Community-organized events |
-| `ChatSession` | AI assistant conversation history |
-| `ChecklistItem` | User relocation tasks |
-| `Favorite` | Saved accommodation listings |
+**Register Request:**
+```json
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "password": "SecurePass123!",
+  "role": "student"
+}
+```
 
-### Apply the Schema
+**Login Response:**
+```json
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIs...",
+  "token_type": "bearer",
+  "user": {
+    "id": 1,
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "role": "student"
+  }
+}
+```
 
-```bash
-npx prisma generate   # Generate the Prisma Client
-npx prisma db push    # Create tables in your database
-npm run seed          # Load demo data
+### Jobs
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| `GET` | `/api/jobs/` | List all active job listings | No |
+| `GET` | `/api/jobs/{id}` | Get a specific job by ID | No |
+| `POST` | `/api/jobs/` | Create a new job posting | Employer |
+| `POST` | `/api/jobs/{id}/apply` | Apply to a job | Yes |
+
+### Accommodations
+
+| Method | Endpoint | Description | Auth |
+|### Accommodations
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| `GET` | `/api/accommodations/` | List all active accommodation listings | No |
+| `GET` | `/api/accommodations/{id}` | Get a specific accommodation by ID | No |
+
+### Users
+
+| Method | Endpoint | Description | Auth |
+|### Users
+
+| Updated User Profile | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| `GET` | `/api/users/me` | Get current user profile | Yes |
+| `PUT` | `/api/users/me` | Update profile (name, phone, bio, etc.) | Yes |
+
+### Contact
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| `POST` | `/api/contact/` | Submit a contact message | No |
+
+**Contact Request:**
+```json
+{
+  "name": "John Smith",
+  "email": "john@example.com",
+  " assistant@relocompass.com",
+  "subject": "Partnership Inquiry",
+  "message": "I'd like to discuss a potential partnership with ReloCompass."
+}
+```
+
+---
+
+## Authentication Flow
+
+```
+1. User fills out Register form (register.html)
+   → POST /api/auth/register {name, email, password, role}
+   → Backend hashes password (bcrypt), stores user, returns JWT
+   → Frontend stores token in localStorage, redirects to dashboard
+
+2. User logs in (login.html)
+   → POST /api/auth/login {email, password}
+   → Backend verifies password against hash, returns JWT
+   → Frontend stores token in localStorage, redirects to dashboard
+
+3. Authenticated requests
+   → Frontend sends Authorization: Bearer <token> header
+   → Backend validates JWT, extracts user_id
+   → Returns protected data
+
+4. Logout
+   → Frontend removes token from localStorage
+   → Redirects to login page
 ```
 
 ---
 
 ## Deployment
 
-### Deploying to Vercel / Netlify / Custom Server
+### Frontend (GitHub Pages)
 
-1. **Build the project:**
+The frontend deploys automatically via GitHub Pages:
 
-   ```bash
-   npm run build
-   ```
+1. Push to `main` branch
+2. GitHub Pages settings: **Source = Deploy from branch → `main` → `/docs`**
+3. Site is live at: **https://jh-prakhar.github.io/ReloCompass_App/**
 
-2. **Set environment variables** on your hosting platform (see [Environment Variables](#environment-variables)).
+**Note:** Update `docs/js/config.js` `BASE_URL` to point to your backend's public URL.
 
-3. **Ensure the database** is accessible from the deployment environment.
+### Backend (Production)
 
-4. **Run migrations** on first deploy:
+The backend can be deployed to any Python-friendly host:
 
-   ```bash
-   npx prisma generate
-   npx prisma db push
-   npm run seed
-   ```
-
-### Deploying with Docker
+**Option A: VPS / Docker**
 
 ```bash
-# Build image
-docker build -t relocompass .
+# Build and run with Docker (if Dockerfile is provided)
+docker build -t relocompass-api .
+docker run -p 8000:8000 --env-file backend/.env relocompass-api
 
-# Run container
-docker run -p 3000:3000 --env-file .env relocompass
+# Or run directly with uvicorn
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
 ```
 
----
+**Option B: Platform as a Service (Render, Railway, Fly.io)**
 
-## Folder Structure
-
-```
-ReloCompass_App/
-├── prisma/
-│   ├── schema.prisma          # Database schema (14 models)
-│   ├── seed.ts                # Demo data seeder
-│   └── migrations/            # Database migrations
-├── public/
-│   ├── favicon.svg            # Brand favicon
-│   ├── icon-*.png             # PWA & app icons
-│   └── manifest.json          # PWA manifest
-├── src/
-│   ├── app/
-│   │   ├── (auth)/            # Auth pages (login, register)
-│   │   ├── (dashboard)/       # Protected app pages
-│   │   │   ├── accommodation/ # Accommodation hub
-│   │   │   ├── assistant/     # AI chat assistant
-│   │   │   ├── budget/        # Budget planner
-│   │   │   ├── candidates/    # Employer candidate search
-│   │   │   ├── checklist/     # Relocation checklist
-│     │   │   ├── community/   # Community hub
-│   │   │   ├── dashboard/     # Role-based dashboard home
-│   │   │   ├── jobs/          # Job board + posting
-│   │   │   ├── profile/       # User preferences
-│   │   │   └── transport/     # Transportation guides
-│   │   ├── about/             # About page
-│   │   ├── contact/           # Contact page
-│   │   ├── api/               # API routes
-│   │   │   ├── auth/          # NextAuth endpoints
-│   │   │   ├── chat/          # AI assistant endpoint
-│   │   │   ├── jobs/          # Jobs CRUD
-│   │   │   ├── accommodation/ # Listings API
-│   │   │   └── ...            # Other API routes
-│   │   ├── globals.css        # Global styles + design system
-│   │   └── layout.tsx         # Root layout
-│   ├── components/
-│   │   ├── ui/                # Button, Card, Input, Badge
-│   │   ├── brand/             # Logo & wordmark components
-│   │   └── dashboard/         # Sidebar component
-│   ├── config/
-│   │   ├── constants.ts       # App constants
-│   │   └── destinations.ts    # Countries, cities, types
-│   ├── lib/
-│   │   ├── ai/                # AI prompts & config
-│   │   ├── __tests__/         # Unit tests
-│   │   ├── auth.ts            # NextAuth configuration
-│   │   ├── prisma.ts          # Prisma client singleton
-│   │   └── validators.ts      # Zod validation schemas
-│   └── types/
-│       └── index.ts           # TypeScript type definitions
-├── jest.config.ts             # Jest configuration
-├── jest.setup.ts              # Jest setup
-├── next.config.ts             # Next.js config
-├── package.json
-├── tsconfig.json
-└── .env                       # Environment (never committed)
-```
+1. Create a new service pointing to this repository
+2. Set the root directory to `backend/`
+3. Build command: `pip install -r requirements.txt`
+4. Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+5. Add environment variables (see [Environment Variables](#environment-variables))
 
 ---
 
-## User Roles
+## Frontend–Backend Integration
 
-The platform supports three roles with distinct dashboards and permissions:
+The frontend communicates with the backend exclusively through REST API calls.
 
-### Student & Job Seeker
-- Access AI assistant, accommodation search, job board, budget planner, checklist, transport guides, and community
-- Set personal preferences for personalized AI recommendations
-- Save favorite accommodations and track job applications
+### How it works
 
-### Employer
-- Post and manage job listings
-- Search and filter candidates by skills, experience, and visa status
-- View and manage applications through the dashboard
+1. `docs/js/config.js` defines the API base URL for each environment
+2. `docs/js/auth.js` handles all authentication API calls and stores the JWT
+3. `docs/js/contact.js` submits the contact form to the backend
+4. All API responses are JSON — no server-side rendering
 
----
+### CORS Configuration
 
-## Future Roadmap
+The backend allows cross-origin requests from:
+- `https://jh-prakhar.github.io` (GitHub Pages frontend)
+- `http://localhost:8888` (local development)
 
-- [ ] **Mobile Apps** — Native Android (Kotlin) and iOS (Swift) applications
-- [ ] **Verified Partnerships** — Direct integration with verified landlords and employers
-- [ ] **Mentorship Network** — Connect experienced expatriates with newcomers
-- [ ] **Visa Processing API** — Real-time visa status updates from government APIs
-- [ ] **AI Document Review** — Automated CV, rental application, and visa form review
-- [ ] **Multi-language Support** — Interface localization for Hindi, Nepali, and more
-- [ ] **In-Platform Messaging** — Direct communication between employers and candidates
-- [ ] **Payment Integration** — Subscription plans for premium employer features
-- [ ] **Analytics Dashboard** — Advanced hiring and relocation analytics
+Update `CORS_ORIGINS` in `backend/.env` if deploying to a different domain.
 
 ---
 
-## Contributing
+## Future Improvements
 
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
-
-### Guidelines
-
-- Follow the existing code style and naming conventions
-- Add tests for new features
-- Ensure all tests pass (`npm test`) before submitting
-- Keep PRs focused — one feature per PR
-- Write clear commit messages
+- [ ] Real AI assistant integration (OpenAI / LLM-powered chat)
+- [ ] Email notification system (password reset, application updates)
+- [ ] Advanced job matching algorithm (skills + location + preferences)
+- [ ] Multi-language support (Hindi, Nepali, Spanish, French)
+- [ ] Progressive Web App (PWA) with offline support
+- [ ] Admin dashboard for content management
+- [ ] Real-time chat between community members
+- [ ] Visa & immigration document checklist generator
+- [ ] Integration with university APIs for housing availability
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
-```
-MIT License
-
-Copyright (c) 2025 ReloCompass
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, restriction...
-```
+This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
 
 ---
 
-<div align="center">
+### 🔗 Links
 
-**ReloCompass** — Made with care for India & Nepal.
+- **Live Website:** https://jh-prakhar.github.io/ReloCompass_App/
+- **GitHub Repository:** https://github.com/jh-prakhar/ReloCompass_App
 
-[Report Bug](https://github.com/jh-prakhar/ReloCompass_App/issues) · [Request Feature](https://github.com/jh-prakhar/ReloCompass_App/issues) · [Live Demo](https://relocompass-tpfpaa.drytis.dev/)
+---
 
-</div>
+### Contact
+
+**Prakhar Jha** — [prakharnpp@gmail.com](mailto:prakharnpp@gmail.com)

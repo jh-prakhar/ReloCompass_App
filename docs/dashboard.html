@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — ReloCompass</title>
+  <meta name="theme-color" content="#0F172A">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar scrolled" id="navbar">
+    <nav class="container navbar-inner">
+      <a href="index.html" class="nav-brand">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#1E2A45"/><g transform="translate(34,24) scale(0.94)"><path d="M 60 6 C 32 6 10 28 10 56 C 10 85 36 108 60 137 C 84 108 110 85 110 56 C 110 28 88 6 60 6 Z" fill="none" stroke="#F6EFE2" stroke-width="6" stroke-linejoin="round"/><circle cx="60" cy="58" r="34" fill="none" stroke="#F6EFE2" stroke-width="3.5"/><polygon points="53,58 60,21 67,58" fill="#F6EFE2"/><polygon points="53,58 60,123 67,58" fill="#C1552C"/><circle cx="60" cy="58" r="7" fill="#1E2A45" stroke="#F6EFE2" stroke-width="2.5"/></g></svg>
+        <span class="brand-text">Relo<span>Compass</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#students">Students</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="employers.html">Employers</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-actions"></div>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="employers.html">Employers</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <div class="mobile-actions"></div>
+    </div>
+  </header>
+
+  <!-- ===== DASHBOARD ===== -->
+  <section class="page-hero" style="padding-bottom:2rem">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="container">
+      <div class="animate-fadeIn" id="welcome-section">
+        <span class="badge badge-electric">Dashboard</span>
+        <h1 id="welcome-heading" style="margin-top:1rem">Welcome to ReloCompass</h1>
+        <p id="welcome-text" style="margin-top:0.5rem;color:var(--text-secondary)">Loading your dashboard...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DASHBOARD CARDS ===== -->
+  <section class="section" style="padding-top:2rem">
+    <div class="container">
+      <div class="features-grid" id="dash-grid">
+        <!-- Cards filled by JS -->
+      </div>
+
+      <!-- Profile section -->
+      <div id="profile-section" style="margin-top:3rem;max-width:48rem;margin-left:auto;margin-right:auto;display:none">
+        <div class="contact-form-card" style="padding:2rem">
+          <h2 style="margin-bottom:1.5rem">Your Profile</h2>
+          <div class="form-group">
+            <label for="profile-name">Full Name</label>
+            <input type="text" id="profile-name" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="profile-phone">Phone</label>
+            <input type="text" id="profile-phone" placeholder="Your phone number">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div class="form-group">
+              <label for="profile-country">Country</label>
+              <input type="text" id="profile-country" placeholder="Your country">
+            </div>
+            <div class="form-group">
+              <label for="profile-city">City</label>
+              <input type="text" id="profile-city" placeholder="Your city">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="profile-bio">Bio</label>
+            <textarea id="profile-bio" rows="3" placeholder="Tell us about yourself..."></textarea>
+          </div>
+          <button class="btn btn-gradient" id="save-profile-btn" style="margin-top:0.5rem">Save Profile</button>
+          <span id="profile-saved-msg" style="display:none;margin-left:1rem;font-size:0.875rem;color:var(--emerald)">✓ Saved</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (async function () {
+      // Redirect to login if not authenticated
+      if (!Auth.isLoggedIn()) {
+        window.location.href = Auth.getPagePath('login.html');
+        return;
+      }
+
+      const user = Auth.getUser();
+      const heading = document.getElementById('welcome-heading');
+      const welcomeText = document.getElementById('welcome-text');
+      const grid = document.getElementById('dash-grid');
+      const profileSection = document.getElementById('profile-section');
+
+      // Set welcome message
+      heading.textContent = `Welcome, ${user.name.split(' ')[0]}!`;
+      const roleLabel = user.role === 'employer' ? 'Employer' : user.role === 'job_seeker' ? 'Job Seeker' : 'Student';
+      welcomeText.innerHTML = `You're signed in as <strong>${roleLabel}</strong>. Here's your dashboard.`;
+
+      // Role-based dashboard cards
+      const studentCards = [
+        { title: 'Browse Jobs', desc: 'Find job opportunities abroad with visa sponsorship.', icon: '<path d="M21 13.255A23.93 23.93 0 0 1 12 15c-3.18 0-6.22-.62-9-1.745M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2m4 6h.01M5 20h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/>', url: 'jobs.html', color: 'blue' },
+        { title: 'Profile Settings', desc: 'Update your personal information and preferences.', icon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>', url: '#profile', color: 'cyan', action: 'toggleProfile' },
+        { title: 'About ReloCompass', desc: 'Learn how our platform can help you relocate.', icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>', url: 'about.html', color: 'violet' },
+      ];
+
+      const employerCards = [
+        { title: 'Post a Job', desc: 'Create a job listing to find talent from India & Nepal.', icon: '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>', url: '#post-job', color: 'blue', action: 'comingSoon' },
+        { title: 'Browse Candidates', desc: 'Search and connect with qualified candidates.', icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>', url: '#', color: 'cyan', action: 'comingSoon' },
+        { title: 'Profile Settings', desc: 'Update your employer profile and company info.', icon: '<path d="M3 21h18M5 21V7l8-4v18"/>', url: '#profile', color: 'violet', action: 'toggleProfile' },
+      ];
+
+      const cards = user.role === 'employer' ? employerCards : studentCards;
+
+      grid.innerHTML = cards.map(card => `
+        <div class="feature-card" style="cursor:pointer" ${card.action ? `onclick="${card.action}()"` : `onclick="window.location.href='${card.url}'"`}>
+          <div class="feature-icon ${card.color}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${card.icon}</svg></div>
+          <h3>${card.title}</h3>
+          <p>${card.desc}</p>
+        </div>
+      `).join('');
+
+      // Profile toggle
+      window.toggleProfile = function () {
+        if (profileSection.style.display === 'none') {
+          profileSection.style.display = 'block';
+          profileSection.scrollIntoView({ behavior: 'smooth' });
+          // Fill in current data
+          document.getElementById('profile-name').value = user.name || '';
+          document.getElementById('profile-phone').value = user.phone || '';
+          document.getElementById('profile-country').value = user.country || '';
+          document.getElementById('profile-city').value = user.city || '';
+          document.getElementById('profile-bio').value = user.bio || '';
+        } else {
+          profileSection.style.display = 'none';
+        }
+      };
+
+      window.comingSoon = function () {
+        alert('This feature is coming soon!');
+      };
+
+      // Save profile
+      document.getElementById('save-profile-btn').addEventListener('click', async function () {
+        const btn = this;
+        const payload = {
+          name: document.getElementById('profile-name').value.trim() || null,
+          phone: document.getElementById('profile-phone').value.trim() || null,
+          country: document.getElementById('profile-country').value.trim() || null,
+          city: document.getElementById('profile-city').value.trim() || null,
+          bio: document.getElementById('profile-bio').value.trim() || null,
+        };
+        btn.disabled = true;
+        btn.textContent = 'Saving...';
+        try {
+          const res = await Auth.apiRequest('/users/me', {
+            method: 'PUT',
+            body: JSON.stringify(payload),
+          });
+          if (res.ok) {
+            const updated = await res.json();
+            localStorage.setItem('relocompass_user', JSON.stringify(updated));
+            document.getElementById('profile-saved-msg').style.display = 'inline';
+            setTimeout(() => document.getElementById('profile-saved-msg').style.display = 'none', 2000);
+          }
+        } catch (err) {
+          alert('Failed to save profile. Is the backend running?');
+        }
+        btn.disabled = false;
+        btn.textContent = 'Save Profile';
+      });
+    })();
+  </script>
+</body>
+</html>

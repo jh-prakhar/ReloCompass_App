@@ -1,71 +1,78 @@
-# Dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# ── Python ──
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+pip-log.txt
+pip-delete-this-directory.txt
+.venv/
+venv/
+env/
+ENV/
 
-# Testing
-/coverage
-
-# Next.js
-/.next/
-/out/
-
-# Production
-/build
-
-# Misc
-.DS_Store
-*.pem
-
-# Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# Environment files (NEVER commit secrets)
+# ── Environment Variables ──
 .env
 .env.local
-.env.development
-.env.production
-.env*.local
+.env.*.local
+backend/.env
+backend/.env.local
 
-# Vercel
-.vercel
+# ── Node.js (legacy / not used for frontend) ──
+node_modules/
+.next/
+out/
+.npm
+.pnp.*
 
-# TypeScript
-*.tsbuildinfo
-next-env.d.ts
-
-# IDE
-.idea
-.vscode
+# ── IDE / Editor ──
+.vscode/
+.idea/
 *.swp
 *.swo
-
-# OS
-Thumbs.db
+*~
 .DS_Store
 
-# Prisma generated client (regenerated on install)
-/prisma/generated
+# ── OS ──
+Thumbs.db
+desktop.ini
 
-# Drytis workspace internal
-/.drytis
+# ── Testing / Coverage ──
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+coverage/
+*.cover
+.hypothesis/
 
-# Playwright MCP test artifacts
-/.playwright-mcp
-
-# AI agent config
+# ─── Drytis / Agent workspace (never commit) ───
+.drytis/
+.playwright-mcp/
 AGENTS.md
 CLAUDE.md
+userDocs/
+screenshots/
 
-# Screenshots (not needed in repo)
+# ── Screenshots / temp images ──
 *.png
-!public/*.png
-portfolio_original.html
+!docs/assets/**/*.png
+!docs/assets/*.png
+
+# ── Logs ──
+*.log
+logs/
+
+# ── DB ──
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Misc temp ──
+tmp/
+*.tmp
+*.bak

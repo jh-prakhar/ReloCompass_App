@@ -64,7 +64,7 @@
     }
   });
 
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     let hasErrors = false;
@@ -89,19 +89,48 @@
 
     if (hasErrors) return;
 
-    // Show loading state
+    // Submit to backend API
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span>Sending...</span>';
     }
 
-    // Simulate submission (static site — no backend to call)
-    // In production, this would POST to the backend API
-    setTimeout(function () {
+    try {
+      const res = await fetch(API_CONFIG.API_URL + '/contact/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: nameInput.value.trim(),
+          email: emailInput.value.trim(),
+          subject: subjectInput.value.trim(),
+          message: messageInput.value.trim(),
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.detail || 'Failed to send message');
+      }
+
+      // Success
       if (formContainer) formContainer.style.display = 'none';
       if (successContainer) successContainer.style.display = 'flex';
       if (successEmail && emailInput) successEmail.textContent = emailInput.value;
-    }, 1000);
+    } catch (err) {
+      // Show error
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
+      }
+      var msgEl = document.getElementById('message-error');
+      if (msgEl) {
+        msgEl.textContent = err.message || 'Network error. Please try again.';
+        msgEl.style.display = 'block';
+      } else {
+        alert(err.message || 'Network error. Please try again.');
+      }
+    }
   });
 
   // "Send another" button
