@@ -16,6 +16,7 @@ class UserRole(str, enum.Enum):
     student = "student"
     job_seeker = "job_seeker"
     employer = "employer"
+    admin = "admin"
 
 
 class User(Base):
@@ -48,6 +49,10 @@ class User(Base):
     contact_messages = relationship(
         "ContactMessage", back_populates="user", cascade="all, delete-orphan"
     )
+
+    @property
+    def is_admin(self) -> bool:
+        return self.role == UserRole.admin
 
 
 class Job(Base):
@@ -120,3 +125,48 @@ class ContactMessage(Base):
 
     user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
     user = relationship("User", back_populates="contact_messages")
+
+
+class KnowledgeDocument(Base):
+    """Tracks uploaded knowledge base documents for the RAG system."""
+    __tablename__ = "knowledge_documents"
+
+    id = Column(Integer, primary_key=True, index=True)
+    filename = Column(String(255), nullable=False)
+    file_type = Column(String(20), nullable=False)     # pdf, docx, txt, md, csv, json
+    file_size = Column(Integer, nullable=True)
+    category = Column(String(100), nullable=True)       # student, transport, employment, employer
+    num_chunks = Column(Integer, default=0)
+    is_indexed = Column(Boolean, default=False)
+    uploaded_by = Column(Integer, ForeignKey("users.id"), nullable=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class ChatSession(Base):
+    """AI chat conversation sessions for multi-turn context."""
+    __tablename__ = "chat_sessions"
+
+    id = Column(Integer, primary_key=True, index=True)
+    session_id = Column(String(64), unique=True, nullable=False, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    messages = Column(Text, nullable=False)  # JSON: [{role, content, timestamp}, ...]
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(
+        DateTime,
+        default=lambda: datetime.now(timezone.utc),
+        onupdate=lambda: datetime.now(timezone.utc),
+    )
+
+
+class AIUsageLog(Base):
+    """Logs AI usage for monitoring and analytics."""
+    __tablename__ = "ai_usage_logs"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    endpoint = Column(String(50), nullable=False)       # chat, upload, rebuild
+    model_used = Column(String(100), nullable=True)
+    tokens_used = Column(Integer, nullable=True)
+    latency_ms = Column(Integer, nullable=True)
+    success = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))

@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="stats">
+  <div class="stat-card">
+    <div class="label">Total Users</div>
+    <div class="value">{{ total_users }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Knowledge Documents</div>
+    <div class="value">{{ total_documents }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">AI API Calls</div>
+    <div class="value">{{ total_ai_calls }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Unread Messages</div>
+    <div class="value">{{ unread_messages }}</div>
+  </div>
+</div>
+<div class="ai-status">
+  <h2>🤖 AI System Status</h2>
+  <div class="ai-row"><span class="key">LLM Configured</span><span class="val">{% if llm_configured %}<span class="pill pill-green">ACTIVE</span>{% else %}<span class="pill pill-red">NOT CONFIGURED</span>{% endif %}</span></div>
+  <div class="ai-row"><span class="key">LLM Model</span><span class="val">{{ llm_model }}</span></div>
+  <div class="ai-row"><span class="key">FAISS Index Size</span><span class="val">{{ faiss_size }} vectors</span></div>
+</div>
+<p style="color:#64748B;font-size:0.75rem;margin-top:1rem">⚠️ Development admin account active. Remove before production deployment.</p>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+{% block title %}AI Usage Logs{% endblock %}
+{% block content %}
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>User ID</th>
+        <th>Endpoint</th>
+        <th>Model</th>
+        <th>Tokens</th>
+        <th>Latency</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for log in logs %}
+      <tr>
+        <td>{{ log.created_at.strftime("%Y-%m-%d %H:%M") if log.created_at else "—" }}</td>
+        <td>{{ log.user_id or "anonymous" }}</td>
+        <td>{{ log.endpoint }}</td>
+        <td>{{ log.model_used or "—" }}</td>
+        <td>{{ log.tokens_used or "—" }}</td>
+        <td>{{ log.latency_ms }}ms</td>
+        <td>{% if log.success %}<span class="pill pill-green">OK</span>{% else %}<span class="pill pill-red">ERROR</span>{% endif %}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="7" style="text-align:center;color:#64748B;padding:2rem">No AI usage logged yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<p style="color:#64748B;font-size:0.75rem;margin-top:1rem">Showing last 100 entries.</p>
+{% endblock %}

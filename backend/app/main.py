@@ -2,6 +2,7 @@
 ReloCompass Backend - FastAPI Application Entry Point
 Run: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 """
+import logging
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -12,19 +13,52 @@ from fastapi.staticfiles import StaticFiles
 from app.config import settings
 from app.database import engine, Base
 from app.routers import auth, jobs, accommodations, contact, users
+from app.routers import chat, documents, ai_status, admin
+
+logger = logging.getLogger(__name__)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Create tables on startup."""
+    """Startup: create tables, seed admin, load FAISS index."""
+    logging.basicConfig(level=logging.INFO)
+
+    # Create database tables
     Base.metadata.create_all(bind=engine)
+    logger.info("Database tables created")
+
+    # Seed development admin account + sample data
+    try:
+        from app.seed import seed_admin, seed_sample_data
+        from app.database import SessionLocal
+        db = SessionLocal()
+        try:
+            seed_admin(db)
+            seed_sample_data(db)
+        finally:
+            db.close()
+    except Exception as e:
+        logger.error(f"Seeding failed: {e}")
+
+    # Load FAISS index if it exists
+    try:
+        from app.ai.vector_store import vector_store
+        if vector_store.load():
+            logger.info(f"FAISS index loaded: {vector_store.size} vectors")
+        else:
+            logger.info("No FAISS index found. Run the ingestion pipeline to build one.")
+    except Exception as e:
+        logger.error(f"FAISS index load failed: {e}")
+
     yield
+
+    logger.info("Shutting down...")
 
 
 app = FastAPI(
     title=settings.APP_NAME,
     description="AI-powered Global Relocation Platform API",
-    version="1.0.0",
+    version="2.0.0",
     lifespan=lifespan,
 )
 
@@ -37,17 +71,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Register API routers
+# ── Register API routers ──
 app.include_router(auth.router, prefix=settings.API_V1_PREFIX)
 app.include_router(users.router, prefix=settings.API_V1_PREFIX)
 app.include_router(jobs.router, prefix=settings.API_V1_PREFIX)
 app.include_router(accommodations.router, prefix=settings.API_V1_PREFIX)
 app.include_router(contact.router, prefix=settings.API_V1_PREFIX)
 
+# AI routers
+app.include_router(chat.router, prefix=settings.API_V1_PREFIX)
+app.include_router(documents.router, prefix=settings.API_V1_PREFIX)
+app.include_router(ai_status.router, prefix=settings.API_V1_PREFIX)
+app.include_router(admin.router, prefix=settings.API_V1_PREFIX)
+
 
 @app.get("/health")
 def health():
-    return {"status": "healthy"}
+    return {"status": "healthy", "version": "2.0.0"}
 
 
 @app.get("/api")
@@ -55,9 +95,19 @@ def api_info():
     """API metadata endpoint."""
     return {
         "name": settings.APP_NAME,
-        "version": "1.0.0",
+        "version": "2.0.0",
         "status": "running",
         "docs": "/docs",
+        "endpoints": {
+            "auth": "/api/auth",
+            "jobs": "/api/jobs",
+            "accommodations": "/api/accommodations",
+            "contact": "/api/contact",
+            "chat": "/api/chat",
+            "documents": "/api/documents",
+            "ai_status": "/api/ai/status",
+            "admin": "/api/admin",
+        },
     }
 
 

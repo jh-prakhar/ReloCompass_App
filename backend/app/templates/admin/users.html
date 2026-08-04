@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+{% block title %}Users{% endblock %}
+{% block content %}
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Active</th>
+        <th>Joined</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td><span class="pill {% if user.role.value == 'admin' %}pill-red{% else %}pill-green{% endif %}">{{ user.role.value }}</span></td>
+        <td>{% if user.is_active %}<span class="pill pill-green">✓</span>{% else %}<span class="pill pill-red">✗</span>{% endif %}</td>
+        <td>{{ user.created_at.strftime("%Y-%m-%d") if user.created_at else "—" }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6" style="text-align:center;color:#64748B;padding:2rem">No users registered yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

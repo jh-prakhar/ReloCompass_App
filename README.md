@@ -4,6 +4,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python&logoColor=white)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![FAISS](https://img.shields.io/badge/FAISS-Vector%20DB-orange?logo=facebook&logoColor=white)](https://github.com/facebookresearch/faiss)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING)
 
@@ -13,6 +14,7 @@
 
 - [Overview](#overview)
 - [Features](#features)
+- [AI Assistant Architecture](#ai-assistant-architecture)
 - [Architecture](#architecture)
 - [Tech Stack](#tech-stack)
 - [Repository Structure](#repository-structure)
@@ -59,9 +61,94 @@ The project is built with a clear **frontend–backend separation**:
 
 ### Platform-wide
 - **Secure Authentication** — JWT-based login with bcrypt password hashing
-- **Role-Based Access** — Student, Job Seeker, and Employer accounts
+- **Role-Based Access** — Student, Job Seeker, Employer, and Admin accounts
 - **Responsive Design** — Works on desktop, tablet, and mobile
 - **Accessibility** — WCAG 2.1 AA compliant with semantic HTML and ARIA labels
+
+### AI-Powered Features
+- **Conversational Chat Assistant** — RAG-powered AI that answers relocation questions grounded in a curated knowledge base
+- **Document Ingestion Pipeline** — Upload PDF, DOCX, TXT, MD, CSV, JSON documents; automatic text extraction, chunking, embedding, and FAISS indexing
+- **FAISS Vector Search** — Retrieves the most relevant knowledge base passages to ground AI responses
+- **Session Memory** — Multi-turn conversations with context retention
+- **Source Citations** — AI cites which knowledge base document each answer came from
+- **Honest Fallbacks** — The AI says "I don't know" rather than inventing information
+- **Admin Panel** — Upload documents, rebuild the index, manage users, and monitor AI usage
+- **Personalized Recommendations** — Responses tailored to user role (student, job seeker, employer) and profile
+
+---
+
+## AI Assistant Architecture
+
+ReloCompass uses a **Retrieval-Augmented Generation (RAG)** pipeline to ensure AI responses are accurate, grounded, and cite their sources.
+
+### How It Works
+
+```
+User Question
+     │
+     ▼
+┌─────────────────────┐     ┌──────────────────────────┐
+│  Embedding (local)  │     │   Knowledge Base         │
+│  BAAI/bge-small-en  │     │   6 curated markdown     │
+│  384-dim vectors    │     │   documents              │
+└────────┬────────────┘     └──────────────────────────┘
+         │                               │
+         ▼                               ▼
+┌─────────────────────────────────────────────────────────┐
+│              FAISS Vector Index (FAISS)                  │
+│    Cosine similarity search → top-K relevant chunks      │
+└────────────────────────┬────────────────────────────────┘
+                         │
+                         ▼
+┌─────────────────────────────────────────────────────────┐
+│              LLM (OpenAI-compatible)                    │
+│  System prompt + retrieved context + user question      │
+│  → Grounded answer with source citations                │
+│  → Honest "I don't know" when context is insufficient   │
+└────────────────────────┬────────────────────────────────┘
+                         │
+                         ▼
+                   Response + Sources
+```
+
+### Knowledge Base
+
+The knowledge base covers four domains critical to relocation:
+
+| Domain | Document(s) | Coverage |
+|--------|-------------|----------|
+| **Student Relocation** | `student_accommodation.md`, `student_banking_insurance.md`, `student_packing_onboarding.md` | Housing types, rental tips, scam awareness, banking setup, health insurance, packing checklists, university onboarding |
+| **Transportation** | `transportation_guide.md` | Metro systems, buses, trains, airport transfers, student travel cards, ride-sharing |
+| **Employment** | `employment_guide.md` | Resume/CV guidance, interview preparation, part-time/full-time jobs, visa-aware recommendations |
+| **Employers** | `employer_guide.md` | Candidate matching, hiring international talent, job posting best practices |
+
+### Document Ingestion Pipeline
+
+```
+Upload (PDF/DOCX/TXT/MD/CSV/JSON)
+    │
+    ├──► Text Extraction (pypdf, python-docx, built-in readers)
+    ├──► Text Cleaning (whitespace normalization, null removal)
+    ├──► Chunking (800 chars, 150 overlap, sentence-boundary aware)
+    ├──► Embedding (BAAI/bge-small-en-v1.5 via fastembed — local ONNX)
+    └──► FAISS Indexing (normalized L2 + inner-product = cosine similarity)
+```
+
+**Supported file types:** `.pdf`, `.docx`, `.doc`, `.txt`, `.md`, `.csv`, `.json`
+
+### Admin Panel
+
+Authenticated administrators can:
+- Upload new knowledge base documents via the API or admin dashboard
+- Rebuild the FAISS index from scratch (re-processes all documents)
+- View AI usage logs (tokens used, latency, success/failure)
+- Manage user accounts
+- Monitor system health (LLM status, vector index size, document count)
+
+**Dev Admin Account** (auto-seeded, development only):
+- Email: `admin@relocompass.org`
+- Password: `Admin@12345`
+- **⚠️ Remove or change before any production deployment.**
 
 ---
 
@@ -90,6 +177,10 @@ The project is built with a clear **frontend–backend separation**:
 | **Backend** | Python 3.11+, FastAPI, Uvicorn |
 | **Database** | MySQL (production) / SQLite (development fallback) |
 | **ORM** | SQLAlchemy 2.0 |
+| **AI / LLM** | OpenAI-compatible API (configurable model, gateway-agnostic) |
+| **Embeddings** | BAAI/bge-small-en-v1.5 via fastembed (local ONNX — no external API) |
+| **Vector Search** | FAISS (faiss-cpu) with cosine similarity |
+| **Document Processing** | pypdf (PDF), python-docx (DOCX), built-in readers (TXT, MD, CSV, JSON) |
 | **Authentication** | JWT tokens via `python-jose`, bcrypt password hashing |
 | **API Docs** | Auto-generated Swagger UI at `/docs`, ReDoc at `/redoc` |
 
@@ -126,22 +217,37 @@ ReloCompass_App/
 │   │   ├── __init__.py
 │   │   ├── main.py             # FastAPI app entry point
 │   │   ├── config.py           # Settings (reads from env vars)
-│   │   ├── deps.py             # Dependencies (get_current_user, etc.)
+│   │   ├── deps.py             # Dependencies (get_current_user, get_admin_user)
 │   │   ├── schemas.py          # Pydantic request/response models
 │   │   ├── seed.py             # Database seeding script
-│   │   ├── database/
-│   │   │   └── __init__.py     # SQLAlchemy engine, session, Base
-│   │   ├── models/
-│   │   │   └── __init__.py     # SQLAlchemy ORM models
+│   │   ├── database/           # SQLAlchemy engine, session, Base
+│   │   ├── models/             # SQLAlchemy ORM models (User, Job, ChatSession, etc.)
 │   │   ├── routers/
-│   │   │   ├── __init__.py
-│   │   │   ├── auth.py         # /api/auth/* — register, login, me, logout
+│   │   │   ├── auth.py         # /api/auth/* — register, login, me
 │   │   │   ├── users.py        # /api/users/* — profile management
 │   │   │   ├── jobs.py         # /api/jobs/* — job board CRUD
 │   │   │   ├── accommodations.py # /api/accommodations/* — housing listings
-│   │   │   └── contact.py      # /api/contact/* — contact form
+│   │   │   ├── contact.py      # /api/contact/* — contact form
+│   │   │   ├── chat.py         # /api/chat/* — AI conversational chat
+│   │   │   ├── documents.py    # /api/documents/* — upload + index management
+│   │   │   ├── ai_status.py    # /api/ai/status — AI subsystem health
+│   │   │   └── admin.py        # /api/admin/* — admin dashboard
+│   │   ├── ai/                 # AI subsystem
+│   │   │   ├── llm_service.py  # OpenAI-compatible LLM client + local embeddings
+│   │   │   ├── vector_store.py # FAISS vector index management
+│   │   │   ├── rag_service.py  # RAG pipeline (retrieval + generation)
+│   │   │   └── ingestion.py    # Document processing pipeline
+│   │   ├── templates/          # Jinja2 admin dashboard templates
 │   │   └── services/
 │   │       └── auth.py         # Password hashing, JWT token creation
+│   ├── knowledge_base/         # Curated markdown knowledge documents
+│   │   ├── student_accommodation.md
+│   │   ├── student_banking_insurance.md
+│   │   ├── student_packing_onboarding.md
+│   │   ├── transportation_guide.md
+│   │   ├── employment_guide.md
+│   │   └── employer_guide.md
+│   ├── tests/                  # Pytest test suite (46 tests)
 │   ├── requirements.txt        # Python dependencies
 │   ├── .env.example            # Environment variable template
 │   └── README.md               # Backend-specific docs
@@ -257,6 +363,17 @@ Create `backend/.env` based on `backend/.env.example`:
 | `DB_PASSWORD` | Database password | *(required)* |
 | `JWT_SECRET` | Secret key for signing JWT tokens | *(required in production)* |
 | `CORS_ORIGINS` | Comma-separated allowed origins | `http://localhost:8888` |
+| `LLM_API_KEY` | OpenAI-compatible API key for LLM chat | *(required for AI)* |
+| `LLM_BASE_URL` | LLM API base URL | `https://api.openai.com/v1` |
+| `LLM_MODEL` | Chat completion model name | `z-ai/glm-5` |
+| `LLM_EMBEDDING_MODEL` | Embedding model (local fastembed) | `text-embedding-3-small` |
+| `LLM_MAX_TOKENS` | Max tokens per AI response | `2000` |
+| `LLM_TEMPERATURE` | LLM creativity (0=deterministic, 1=creative) | `0.7` |
+| `CHUNK_SIZE` | Text chunk size for ingestion | `800` |
+| `CHUNK_OVERLAP` | Overlap between chunks | `150` |
+| `RAG_TOP_K` | Number of chunks retrieved per query | `5` |
+| `DEV_ADMIN_EMAIL` | Dev admin email (auto-seeded) | `admin@relocompass.org` |
+| `DEV_ADMIN_PASSWORD` | Dev admin password (auto-seeded) | `Admin@12345` |
 
 ---
 
@@ -336,9 +453,69 @@ Create `backend/.env` based on `backend/.env.example`:
 {
   "name": "John Smith",
   "email": "john@example.com",
-  " assistant@relocompass.com",
   "subject": "Partnership Inquiry",
   "message": "I'd like to discuss a potential partnership with ReloCompass."
+}
+```
+
+### AI Chat
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| `POST` | `/api/chat/` | Send a message to the AI assistant | Optional |
+| `GET` | `/api/chat/history/{session_id}` | Get conversation history | No |
+| `DELETE` | `/api/chat/history/{session_id}` | Clear a conversation | No |
+
+**Chat Request:**
+```json
+{
+  "message": "What types of accommodation are available for students?",
+  "session_id": "optional-existing-session-uuid",
+  "user_context": "optional-context-string"
+}
+```
+
+**Chat Response:**
+```json
+{
+  "reply": "Based on the knowledge base, students can choose from dormitories, shared apartments...",
+  "session_id": "uuid-for-conversation-continuity",
+  "sources": [
+    {
+      "source": "student_accommodation.md",
+      "category": "student_relocation",
+      "score": 0.846
+    }
+  ],
+  "model_used": "z-ai/glm-5"
+}
+```
+
+### AI Documents (Admin Only)
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| `GET` | `/api/documents/` | List all uploaded documents | Admin |
+| `POST` | `/api/documents/upload` | Upload + ingest document(s) | Admin |
+| `DELETE` | `/api/documents/{id}` | Delete a document | Admin |
+| `POST` | `/api/documents/rebuild-index` | Rebuild the FAISS index from all KB docs | Admin |
+
+### AI Status & Health
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| `GET` | `/health` | Basic health check | No |
+| `GET` | `/api/ai/status` | AI subsystem status (LLM, FAISS, docs) | No |
+
+**AI Status Response:**
+```json
+{
+  "llm_configured": true,
+  "llm_model": "z-ai/glm-5",
+  "embedding_model": "BAAI/bge-small-en-v1.5 (local)",
+  "faiss_index_size": 38,
+  "total_documents": 6,
+  "total_chunks": 38
 }
 ```
 
@@ -429,15 +606,17 @@ Update `CORS_ORIGINS` in `backend/.env` if deploying to a different domain.
 
 ## Future Improvements
 
-- [ ] Real AI assistant integration (OpenAI / LLM-powered chat)
+- [x] ~~Real AI assistant integration (OpenAI / LLM-powered chat)~~ — **Done!**
+- [x] ~~Admin dashboard for content management~~ — **Done!**
 - [ ] Email notification system (password reset, application updates)
 - [ ] Advanced job matching algorithm (skills + location + preferences)
 - [ ] Multi-language support (Hindi, Nepali, Spanish, French)
 - [ ] Progressive Web App (PWA) with offline support
-- [ ] Admin dashboard for content management
 - [ ] Real-time chat between community members
 - [ ] Visa & immigration document checklist generator
 - [ ] Integration with university APIs for housing availability
+- [ ] Streaming AI responses (SSE) for real-time chat experience
+- [ ] Multi-modal document ingestion (images, scanned PDFs via OCR)
 
 ---
 

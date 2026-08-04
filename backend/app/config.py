@@ -1,5 +1,6 @@
 """
 ReloCompass Backend - Configuration Settings
+All settings are loaded from environment variables with sensible dev defaults.
 """
 import os
 from pathlib import Path
@@ -10,7 +11,8 @@ try:
     env_path = Path(__file__).resolve().parent.parent / ".env"
     load_dotenv(env_path)
 except ImportError:
-    pass  # python-dotenv not installed in production
+    pass
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -54,6 +56,31 @@ class Settings:
         "http://127.0.0.1:8888",
         "null",  # file:// protocol
     ]
+
+    # ── AI / LLM Configuration ──
+    # OpenAI-compatible endpoint. Point to any LLM gateway by changing these.
+    LLM_API_KEY: str = os.getenv("LLM_API_KEY", os.getenv("OPENAI_API_KEY", ""))
+    LLM_BASE_URL: str = os.getenv("LLM_BASE_URL", os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1"))
+    LLM_MODEL: str = os.getenv("LLM_MODEL", "z-ai/glm-5")
+    LLM_EMBEDDING_MODEL: str = os.getenv("LLM_EMBEDDING_MODEL", "text-embedding-3-small")
+    LLM_MAX_TOKENS: int = int(os.getenv("LLM_MAX_TOKENS", "2000"))
+    LLM_TEMPERATURE: float = float(os.getenv("LLM_TEMPERATURE", "0.7"))
+
+    # ── RAG / Vector Search ──
+    FAISS_INDEX_DIR: str = str(BASE_DIR / "embeddings")
+    KNOWLEDGE_BASE_DIR: str = str(BASE_DIR / "knowledge_base")
+    UPLOAD_DIR: str = str(BASE_DIR / "uploads")
+    CHUNK_SIZE: int = int(os.getenv("CHUNK_SIZE", "800"))
+    CHUNK_OVERLAP: int = int(os.getenv("CHUNK_OVERLAP", "150"))
+    RAG_TOP_K: int = int(os.getenv("RAG_TOP_K", "5"))
+
+    # ── Dev Admin Account (development only!) ──
+    DEV_ADMIN_EMAIL: str = os.getenv("DEV_ADMIN_EMAIL", "admin@relocompass.org")
+    DEV_ADMIN_PASSWORD: str = os.getenv("DEV_ADMIN_PASSWORD", "Admin@12345")
+
+    @property
+    def IS_LLM_CONFIGURED(self) -> bool:
+        return bool(self.LLM_API_KEY and self.LLM_BASE_URL)
 
 
 settings = Settings()
