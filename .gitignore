@@ -57,3 +57,14 @@ Thumbs.db
 
 # Drytis workspace internal
 /.drytis
+
+# Playwright MCP test artifacts
+/.playwright-mcp
+
+# AI agent config
+AGENTS.md
+CLAUDE.md
+
+# Screenshots (not needed in repo)
+*.png
+!public/*.png
