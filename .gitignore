@@ -68,3 +68,4 @@ CLAUDE.md
 # Screenshots (not needed in repo)
 *.png
 !public/*.png
+portfolio_original.html
