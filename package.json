@@ -1,7 +1,10 @@
 {
   "name": "relocompass",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "AI-Powered Global Relocation, Student Success & Employment Assistant",
+  "author": "Prakhar Jha <prakharnpp@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
