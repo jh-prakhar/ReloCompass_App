@@ -1,0 +1,108 @@
+/* ==========================================================================
+   ReloCompass — Responsive Stylesheet
+   ========================================================================== */
+
+/* ── Large desktops ── */
+@media (min-width: 1280px) {
+  .container { max-width: 1280px; }
+}
+
+/* ── Tablets and small desktops ── */
+@media (max-width: 1023px) {
+  .section { padding: 4rem 0; }
+  .hero { padding-top: 7rem; padding-bottom: 3rem; }
+  .hero h1 { font-size: 2.25rem; }
+  .ai-preview { padding: 1.5rem; }
+  .download-card { padding: 2rem; }
+  .backend-card { padding: 2rem; }
+  .ai-section { padding: 2rem; }
+  .cta-card { padding: 2rem; }
+  .sample-listing { padding: 1.5rem; }
+}
+
+/* ── Mobile devices ── */
+@media (max-width: 767px) {
+  .section { padding: 3rem 0; }
+  .hero { padding-top: 6rem; padding-bottom: 2.5rem; }
+  .hero h1 { font-size: 2rem; }
+  .hero-subtitle { font-size: 1rem; }
+  .section-header h2 { font-size: 1.75rem; }
+  .section-header p { font-size: 1rem; }
+  .section-header { margin-bottom: 2.5rem; }
+
+  /* Feature cards stack */
+  .features-grid { gap: 1rem; }
+  .feature-card { padding: 1.25rem; }
+
+  /* Destination cards stack */
+  .destinations-grid { gap: 1rem; }
+
+  /* Employer section stacks */
+  .employer-grid { gap: 2rem; }
+
+  /* Download section stacks */
+  .download-grid { gap: 2rem; }
+  .phone-mockup { width: 14rem; }
+
+  /* FAQ full width */
+  .faq-list { gap: 0.5rem; }
+  .faq-question { padding: 1rem; font-size: 0.875rem; }
+
+  /* CTA */
+  .cta-card { padding: 2rem; }
+  .cta-card h2 { font-size: 1.5rem; }
+  .cta-card p { font-size: 1rem; }
+
+  /* Footer */
+  .footer { padding: 2.5rem 0 1.5rem; }
+
+  /* About page */
+  .page-hero { padding-top: 7rem; padding-bottom: 3rem; }
+  .page-hero h1 { font-size: 2rem; }
+  .page-content h2 { font-size: 1.5rem; }
+  .page-content p { font-size: 0.95rem; }
+
+  /* Backend */
+  .backend-card { padding: 1.5rem; }
+
+  /* Contact form */
+  .contact-form-card { padding: 1.5rem; }
+  .contact-info-card { padding: 1.25rem; }
+
+  /* Jobs */
+  .job-card { padding: 1.25rem; }
+
+  /* Buttons */
+  .btn { padding: 0.5rem 1rem; }
+  .btn-lg { padding: 0.75rem 1.5rem; }
+}
+
+/* ── Small phones ── */
+@media (max-width: 380px) {
+  .hero h1 { font-size: 1.75rem; }
+  .section-header h2 { font-size: 1.5rem; }
+  .hero-actions .btn { width: 100%; }
+  .hero-trust { gap: 1rem; }
+  .hero-trust-item { font-size: 0.75rem; }
+
+  .container { padding: 0 1rem; }
+  .btn-app { padding: 0.5rem 0.875rem; }
+  .btn-app svg { width: 24px; height: 24px; }
+}
+
+/* ── Print styles ── */
+@media print {
+  .navbar, .mobile-toggle, .mobile-menu, .footer { display: none; }
+  .section { padding: 1rem 0; }
+  body { color: #000; background: #fff; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

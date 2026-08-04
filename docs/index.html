@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReloCompass — AI-Powered Global Relocation, Student & Employment Platform</title>
+  <meta name="description" content="AI-powered relocation guidance, accommodation search, job matching, and community support for students and professionals from India and Nepal moving abroad.">
+  <meta name="keywords" content="relocation, study abroad, international students, jobs abroad, AI relocation assistant, India, Nepal">
+  <meta property="og:title" content="ReloCompass — Your Compass to a New Life Abroad">
+  <meta property="og:description" content="AI-powered relocation guidance for students and professionals from India and Nepal.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0F172A">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+  <link rel="apple-touch-icon" href="assets/icons/logo.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <nav class="container navbar-inner">
+      <a href="index.html" class="nav-brand">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#1E2A45"/><g transform="translate(34,24) scale(0.94)"><path d="M 60 6 C 32 6 10 28 10 56 C 10 85 36 108 60 137 C 84 108 110 85 110 56 C 110 28 88 6 60 6 Z" fill="none" stroke="#F6EFE2" stroke-width="6" stroke-linejoin="round"/><circle cx="60" cy="58" r="34" fill="none" stroke="#F6EFE2" stroke-width="3.5"/><line x1="60" y1="24" x2="60" y2="15" stroke="#F6EFE2" stroke-width="3.5" stroke-linecap="round"/><line x1="60" y1="92" x2="60" y2="101" stroke="#F6EFE2" stroke-width="3.5" stroke-linecap="round"/><line x1="94" y1="58" x2="103" y2="58" stroke="#F6EFE2" stroke-width="3.5" stroke-linecap="round"/><line x1="26" y1="58" x2="17" y2="58" stroke="#F6EFE2" stroke-width="3.5" stroke-linecap="round"/><polygon points="53,58 60,21 67,58" fill="#F6EFE2"/><polygon points="53,58 60,123 67,58" fill="#C1552C"/><circle cx="60" cy="58" r="7" fill="#1E2A45" stroke="#F6EFE2" stroke-width="2.5"/></g></svg>
+        <span class="brand-text">Relo<span>Compass</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="#features">Features</a>
+        <a href="#destinations">Destinations</a>
+        <a href="employers.html">Employers</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#" class="btn btn-ghost btn-sm">Login</a>
+        <a href="#" class="btn btn-primary btn-sm">Sign Up Free</a>
+        <a href="#download" class="btn btn-gradient btn-sm">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download App
+        </a>
+      </div>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="#features">Features</a>
+      <a href="#destinations">Destinations</a>
+      <a href="employers.html">Employers</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <div class="mobile-actions">
+        <a href="#" class="btn btn-outline btn-sm" style="width:100%">Login</a>
+        <a href="#" class="btn btn-primary btn-sm" style="width:100%">Sign Up Free</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="container hero-grid">
+      <div class="animate-fadeIn">
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          For students &amp; professionals from India &amp; Nepal
+        </div>
+        <h1>Your compass to a <span class="text-gradient">new life abroad</span></h1>
+        <p class="hero-subtitle">AI-powered relocation guidance, accommodation search, job matching, and a supportive community — everything you need to relocate with confidence.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-gradient btn-lg">
+            Get Started Free
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 5 19"/></svg>
+          </a>
+          <a href="#download" class="btn btn-outline btn-lg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download App
+          </a>
+        </div>
+        <div class="hero-trust">
+          <div class="hero-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Verified listings &amp; employers</span>
+          </div>
+          <div class="hero-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"/></svg>
+            <span>AI-powered guidance</span>
+          </div>
+        </div>
+      </div>
+      <div class="animate-fadeIn" style="animation-delay:0.2s">
+        <div class="ai-preview">
+          <div class="ai-preview-header">
+            <div class="ai-preview-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"/></svg>
+            </div>
+            <div>
+              <p class="ai-preview-title">AI Assistant</p>
+              <p class="ai-preview-sub">Relocation Expert</p>
+            </div>
+          </div>
+          <div class="chat-msg chat-msg-user">&ldquo;I'm moving to Toronto for my master's. What documents do I need?&rdquo;</div>
+          <div class="chat-msg chat-msg-ai">&ldquo;Great choice! You'll need: 1) Study permit, 2) Acceptance letter, 3) Proof of funds, 4) Medical exam, 5) Passport valid beyond stay. I can create a personalized checklist for you!&rdquo;</div>
+          <div class="chat-msg chat-msg-user">&ldquo;Can you find me accommodation near U of T?&rdquo;</div>
+          <div class="chat-msg chat-msg-ai">&ldquo;I found several verified listings near U of T within a student budget. The safest option is a student dorm at $750/mo. Want to see the full list?&rdquo;</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge badge-electric">Platform Features</span>
+        <h2>Everything you need to relocate</h2>
+        <p>One platform, all the tools to make your international move successful.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+          <h3>AI Relocation Assistant</h3>
+          <p>Get personalized guidance on every step of your move, from visas to finding a flat.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <h3>Accommodation Hub</h3>
+          <p>Browse student dorms, shared apartments, and homestays with safety ratings.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <h3>Job Matching</h3>
+          <p>Connect with employers offering visa sponsorship and career opportunities abroad.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-4">
+          <div class="feature-icon violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Community Support</h3>
+          <p>Find student clubs, cultural groups, and mentorship from your home community.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-5">
+          <div class="feature-icon sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div>
+          <h3>Transportation Guide</h3>
+          <p>Navigate your new city with local transit guides and student discount passes.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-6">
+          <div class="feature-icon emerald"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg></div>
+          <h3>Budget Planner</h3>
+          <p>Plan your finances with cost-of-living calculators tailored to your destination.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DESTINATIONS ===== -->
+  <section class="section section-white" id="destinations">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge badge-electric">Supported Destinations</span>
+        <h2>Where would you like to go?</h2>
+        <p>Explore guides and listings for these relocation destinations.</p>
+      </div>
+      <div class="destinations-grid">
+        <div class="destination-card reveal reveal-delay-1"><div class="destination-flag"><span>CA</span></div><div class="destination-info"><h3>Toronto, Canada</h3><p>Popular destination for students &amp; tech workers</p></div></div>
+        <div class="destination-card reveal reveal-delay-2"><div class="destination-flag"><span>DE</span></div><div class="destination-info"><h3>Berlin, Germany</h3><p>Affordable education &amp; growing tech sector</p></div></div>
+        <div class="destination-card reveal reveal-delay-3"><div class="destination-flag"><span>GB</span></div><div class="destination-info"><h3>London, UK</h3><p>World-class universities &amp; finance hub</p></div></div>
+        <div class="destination-card reveal reveal-delay-4"><div class="destination-flag"><span>AU</span></div><div class="destination-info"><h3>Sydney, Australia</h3><p>High quality of life &amp; post-study work visas</p></div></div>
+        <div class="destination-card reveal reveal-delay-5"><div class="destination-flag"><span>US</span></div><div class="destination-info"><h3>New York, USA</h3><p>Global hub for tech, finance &amp; innovation</p></div></div>
+        <div class="destination-card reveal reveal-delay-6"><div class="destination-flag"><span>NL</span></div><div class="destination-info"><h3>Amsterdam, Netherlands</h3><p>English-friendly &amp; startup-friendly</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EMPLOYERS ===== -->
+  <section class="section" id="employers">
+    <div class="container">
+      <div class="employer-grid">
+        <div class="reveal">
+          <span class="badge badge-electric">For Employers</span>
+          <h2 style="font-size:2rem;font-weight:800;color:var(--midnight);margin-top:1rem">Hire talent from India &amp; Nepal</h2>
+          <p style="margin-top:1rem;font-size:1.125rem;color:var(--text-secondary)">Post jobs, get AI-matched candidates, and manage applications all in one place.</p>
+          <ul class="employer-list">
+            <li class="employer-list-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> AI-powered candidate matching based on skills and preferences</li>
+            <li class="employer-list-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Verified employer badge to build trust with applicants</li>
+            <li class="employer-list-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Direct application management dashboard</li>
+            <li class="employer-list-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Reach students and professionals from India &amp; Nepal</li>
+          </ul>
+          <a href="employers.html" class="btn btn-primary btn-lg" style="margin-top:2rem">
+            Post Your First Job
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 5 19"/></svg>
+          </a>
+        </div>
+        <div class="sample-listing reveal reveal-delay-2">
+          <div class="sample-listing-header">
+            <h3 style="font-size:1.05rem;font-weight:600;color:var(--midnight)">Example Job Listing</h3>
+            <span class="badge badge-sample">SAMPLE</span>
+          </div>
+          <div class="sample-listing-card">
+            <div class="company-row">
+              <div class="company-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><rect x="9" y="9" width="2" height="2"/><rect x="9" y="13" width="2" height="2"/><rect x="9" y="17" width="2" height="2"/></svg></div>
+              <div style="flex:1">
+                <h4>Software Engineer</h4>
+                <p class="company-name">Example Tech Solutions (Sample)</p>
+                <div class="sample-listing-meta">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> Full-Time</span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Toronto, Canada</span>
+                </div>
+                <p class="sample-listing-desc">This is a demonstration listing showing how employers can post job opportunities on the platform. Salary information available upon application.</p>
+              </div>
+            </div>
+          </div>
+          <p class="sample-disclaimer">This is a sample listing for demonstration purposes. Real job postings will appear once employers join the platform.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMMUNITY MESSAGE ===== -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="community-message reveal">
+        <div class="community-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h2>A growing community</h2>
+        <p>ReloCompass is a new platform. Statistics, user reviews, and success stories will appear here as our community grows.</p>
+        <p style="margin-top:0.75rem;color:var(--text-muted)">Be among the first to join and shape the future of global relocation support.</p>
+        <a href="#" class="btn btn-gradient btn-lg" style="margin-top:2rem">
+          Join the Community
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 5 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DOWNLOAD APP ===== -->
+  <section class="section" id="download">
+    <div class="container">
+      <div class="download-card reveal">
+        <div class="download-grid">
+          <div>
+            <span class="badge badge-electric" style="margin-bottom:1rem">Coming Soon</span>
+            <h2 style="font-size:2rem;font-weight:800;color:#fff">Take ReloCompass with you</h2>
+            <p style="margin-top:1rem;font-size:1.125rem;color:#CBD5E1">The ReloCompass mobile app for Android and iOS is in development. Join the waitlist to be notified when it launches.</p>
+            <ul class="download-list">
+              <li class="download-list-item"><svg viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Instant job alerts &amp; application updates</li>
+              <li class="download-list-item"><svg viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> AI assistant in your pocket 24/7</li>
+              <li class="download-list-item"><svg viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Community messaging &amp; local events</li>
+              <li class="download-list-item"><svg viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Offline checklist access</li>
+            </ul>
+            <div class="download-buttons">
+              <a href="https://apps.apple.com/app/relocompass" target="_blank" rel="noopener noreferrer" class="btn-app" aria-label="Download on the App Store (coming soon)">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-3.1 2.53-4.59 2.64-4.66-1.44-2.11-3.68-2.4-4.47-2.43-1.9-.19-3.72 1.12-4.68 1.12-.97 0-2.46-1.09-4.04-1.06-2.08.03-4 1.21-5.07 3.07-2.16 3.75-.55 9.31 1.55 12.37 1.03 1.5 2.24 3.18 3.83 3.12 1.53-.06 2.11-.99 3.96-.99 1.84 0 2.37.99 3.99.96 1.65-.03 2.69-1.52 3.69-3.03 1.16-1.72 1.64-3.38 1.67-3.47-.04-.02-3.2-1.23-3.23-4.87zM14.08 3.28c.85-1.03 1.42-2.46 1.26-3.88-1.22.05-2.7.81-3.57 1.84-.78.91-1.47 2.37-1.28 3.76 1.36.1 2.74-.69 3.59-1.72z"/></svg>
+                <div><p class="app-label">Download on the</p><p class="app-name">App Store</p></div>
+              </a>
+              <a href="https://play.google.com/store/apps/details=ai.relocompass.app" target="_blank" rel="noopener noreferrer" class="btn-app" aria-label="Get it on Google Play (coming soon)">
+                <svg viewBox="0 0 24 24"><path fill="#00D7FE" d="M3.61 1.81C3.23 2.2 3 2.8 3 3.6v16.8c0 .8.23 1.4.61 1.79L3.7 22.3l9.3-9.3v-.2L3.7 3.3z"/><path fill="#00C800" d="M16.8 14.93l-3.1-3.1v-.2l3.1-3.1.07.04 3.67 2.08c1.05.6 1.05 1.58 0 2.18l-3.67 2.08z"/><path fill="#FFCE00" d="M16.87 14.89L13.7 11.7 3.61 21.79c.35.37.92.41 1.56.05l11.7-6.65"/><path fill="#FF0033" d="M16.87 8.51L5.17 1.86c-.64-.36-1.21-.32-1.56.05L13.7 11.7z"/></svg>
+                <div><p class="app-label">GET IT ON</p><p class="app-name">Google Play</p></div>
+              </a>
+            </div>
+            <p class="download-note">Apps are in development. Links will be activated when published.</p>
+          </div>
+          <div class="download-phone">
+            <div class="phone-mockup">
+              <div class="phone-screen">
+                <div class="phone-notch"></div>
+                <div class="phone-app-header">
+                  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="none"/><g transform="translate(34,24) scale(0.94)"><path d="M 60 6 C 32 6 10 28 10 56 C 10 85 36 108 60 137 C 84 108 110 85 110 56 C 110 28 88 6 60 6 Z" fill="none" stroke="#F6EFE2" stroke-width="6" stroke-linejoin="round"/><circle cx="60" cy="58" r="34" fill="none" stroke="#F6EFE2" stroke-width="3.5"/><polygon points="53,58 60,21 67,58" fill="#F6EFE2"/><polygon points="53,58 60,123 67,58" fill="#C1552C"/><circle cx="60" cy="58" r="7" fill="#F6EFE2"/></g></svg>
+                  <span>ReloCompass</span>
+                </div>
+                <div class="phone-ai-card">
+                  <div class="phone-ai-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"/></svg>
+                    <span>AI Assistant</span>
+                  </div>
+                  <div class="phone-ai-msg">Your relocation checklist is ready!</div>
+                </div>
+                <div class="phone-grid">
+                  <div class="phone-grid-item"><svg viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Housing</span></div>
+                  <div class="phone-grid-item"><svg viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span>Jobs</span></div>
+                  <div class="phone-grid-item"><svg viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span>Community</span></div>
+                  <div class="phone-grid-item"><svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/></svg><span>Budget</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge badge-electric">FAQ</span>
+        <h2>Frequently asked questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question">Is ReloCompass free to use? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-answer"><p>Yes. Core features like the AI assistant, accommodation search, community access, and budget tools are free for students and job seekers. Employers can post jobs at no cost during our launch period.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">Which countries are supported? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-answer"><p>The platform currently includes destination guides for Canada, Germany, the United Kingdom, Australia, the United States, and the Netherlands. More destinations are being added regularly.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">How does the AI assistant work? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-answer"><p>Our AI assistant uses your profile and destination preferences to provide personalized guidance on visas, accommodation, jobs, cultural tips, and relocation logistics — available whenever you need it.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">Are the employers and listings verified? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-answer"><p>Employer profiles carry a verified badge after manual review. Accommodation listings include safety ratings, and we provide scam-prevention guidance throughout the platform.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">Can employers post jobs directly? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-answer"><p>Yes. Employers can create an account, post job opportunities, and use AI-powered candidate matching to find the best talent from India and Nepal.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">Is the mobile app available? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-answer"><p>The mobile apps for Android and iOS are in development. You can join the waitlist to be notified when they launch. In the meantime, all features are fully accessible via the web platform.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BACKEND TECHNOLOGY ===== -->
+  <section class="section" id="backend">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge badge-electric">Backend Technology</span>
+        <h2>Powered by a robust Python backend</h2>
+        <p>ReloCompass uses a modern frontend-backend architecture for secure, scalable performance.</p>
+      </div>
+      <div class="backend-card reveal">
+        <div class="backend-grid">
+          <div class="backend-item">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> Python Backend</h4>
+            <p>The backend is powered by Python (FastAPI), handling all AI-powered relocation assistance, business logic, and data processing.</p>
+          </div>
+          <div class="backend-item">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4"/><polyline points="12 3 12 15"/></svg> REST API</h4>
+            <p>The frontend communicates securely with the backend through REST APIs, ensuring clean separation of concerns and maintainable code.</p>
+          </div>
+          <div class="backend-item">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"/></svg> AI Integration</h4>
+            <p>The backend processes AI recommendations, personalized relocation guidance, and intelligent job matching through LLM-powered APIs.</p>
+          </div>
+          <div class="backend-item">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Secure Authentication</h4>
+            <p>User authentication, session management, and data protection are handled server-side with industry-standard security practices.</p>
+          </div>
+        </div>
+        <div class="backend-stack">
+          <span>Python</span><span>FastAPI</span><span>REST API</span><span>AI/LLM</span><span>MySQL</span><span>JWT Auth</span><span>Docker</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-card reveal">
+        <h2>Ready to start your journey?</h2>
+        <p>Create your free account and get personalized relocation guidance today.</p>
+        <a href="#" class="btn btn-gradient btn-lg" style="margin-top:2rem">
+          Create Your Free Account
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 5 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="none"/><g transform="translate(34,24) scale(0.94)"><path d="M 60 6 C 32 6 10 28 10 56 C 10 85 36 108 60 137 C 84 108 110 85 110 56 C 110 28 88 6 60 6 Z" fill="none" stroke="#F6EFE2" stroke-width="6" stroke-linejoin="round"/><circle cx="60" cy="58" r="34" fill="none" stroke="#F6EFE2" stroke-width="3.5"/><polygon points="53,58 60,21 67,58" fill="#F6EFE2"/><polygon points="53,58 60,123 67,58" fill="#C1552C"/><circle cx="60" cy="58" r="7" fill="#F6EFE2"/></g></svg>
+            <span class="brand-text">Relo<span>Compass</span></span>
+          </div>
+          <p>Your AI-powered guide to relocating abroad for education and employment.</p>
+        </div>
+        <div>
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="employers.html">Employers</a></li>
+            <li><a href="jobs.html">Jobs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get the App</h4>
+          <a href="#download" class="footer-contact">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Coming Soon
+          </a>
+          <p style="margin-top:1rem;display:flex;align-items:center;gap:0.5rem">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:prakharnpp@gmail.com" style="color:#CBD5E1">prakharnpp@gmail.com</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; <span id="current-year">2026</span> ReloCompass. All rights reserved. Made with care for India &amp; Nepal.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
