@@ -1,28 +1,59 @@
 """
 ReloCompass Backend - Database Seed Script
-Inserts sample job and accommodation data.
+Creates tables, seeds sample data, and creates the development admin account.
+
+DEVELOPMENT ONLY — the admin account created here must be removed
+or changed before any production deployment.
+
 Run: python -m app.seed
 """
+import logging
+
 from app.database import SessionLocal, engine, Base
-from app.models import Job, Accommodation
+from app.models import User, UserRole, Job, Accommodation
+from app.services.auth import hash_password
+from app.config import settings
+
+logger = logging.getLogger(__name__)
 
 
 def init_db():
-    """Create tables if they don't exist."""
+    """Create all tables if they don't exist."""
     Base.metadata.create_all(bind=engine)
 
 
-def seed():
-    init_db()
-    db = SessionLocal()
-
-    # Check if already seeded
-    if db.query(Job).count() > 0:
-        print("Jobs already exist, skipping seed.")
-        db.close()
+def seed_admin(db):
+    """
+    Seed a development administrator account.
+    DEVELOPMENT ONLY — remove or replace before production deployment.
+    """
+    existing = db.query(User).filter(User.email == settings.DEV_ADMIN_EMAIL).first()
+    if existing:
+        logger.info(f"Admin account already exists: {settings.DEV_ADMIN_EMAIL}")
         return
 
-    # ── Sample Jobs ──
+    admin = User(
+        name="Admin (Development)",
+        email=settings.DEV_ADMIN_EMAIL,
+        hashed_password=hash_password(settings.DEV_ADMIN_PASSWORD),
+        role=UserRole.admin,
+        is_active=True,
+    )
+    db.add(admin)
+    db.commit()
+    logger.info(
+        f"✅ Created development admin account: {settings.DEV_ADMIN_EMAIL} "
+        f"(password: {settings.DEV_ADMIN_PASSWORD}) — "
+        f"REMOVE BEFORE PRODUCTION DEPLOYMENT"
+    )
+
+
+def seed_sample_data(db):
+    """Seed sample jobs and accommodations if none exist."""
+    if db.query(Job).count() > 0:
+        logger.info("Sample jobs already exist, skipping.")
+        return
+
     jobs = [
         Job(
             title="Software Engineer",
@@ -46,7 +77,6 @@ def seed():
         ),
     ]
 
-    # ── Sample Accommodations ──
     accommodations = [
         Accommodation(
             title="Student Dormitory Near U of T (Sample)",
@@ -61,7 +91,7 @@ def seed():
         ),
         Accommodation(
             title="Shared Apartment in Berlin Mitte (Sample)",
-           description="This is a demonstration listing. Shared 2-bedroom apartment near public transit, furnished, utilities included.",
+            description="This is a demonstration listing. Shared 2-bedroom apartment near public transit, furnished, utilities included.",
             acc_type="shared",
             price=550.0,
             currency="EUR",
@@ -86,9 +116,28 @@ def seed():
     db.add_all(jobs)
     db.add_all(accommodations)
     db.commit()
-    print(f"Seeded {len(jobs)} sample jobs and {len(accommodations)} sample accommodations.")
-    db.close()
+    logger.info(f"Seeded {len(jobs)} sample jobs and {len(accommodations)} sample accommodations.")
+
+
+def seed():
+    """Full seed: create tables, admin account, and sample data."""
+    init_db()
+    db = SessionLocal()
+
+    try:
+        seed_admin(db)
+        seed_sample_data(db)
+    finally:
+        db.close()
+
+    print("\n" + "=" * 60)
+    print("  Database seeding complete!")
+    print(f"  Admin login: {settings.DEV_ADMIN_EMAIL}")
+    print(f"  Admin password: {settings.DEV_ADMIN_PASSWORD}")
+    print("  ⚠️  DEVELOPMENT ONLY — remove before production!")
+    print("=" * 60)
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     seed()

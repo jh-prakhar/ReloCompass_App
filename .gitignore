@@ -76,3 +76,13 @@ logs/
 tmp/
 *.tmp
 *.bak
+
+# ── AI / FAISS index + embeddings cache ──
+backend/embeddings/
+backend/uploads/
+*.index
+*_meta.json
+
+# ── fastembed model cache ──
+.local_cache/
+fastembed_cache/

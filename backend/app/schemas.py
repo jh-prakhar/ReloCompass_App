@@ -14,7 +14,6 @@ class UserRegister(BaseModel):
     password: str = Field(..., min_length=6, max_length=128)
     role: str = Field("student", pattern="^(student|job_seeker|employer)$")
 
-
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
@@ -32,6 +31,7 @@ class UserOut(BaseModel):
     email: str
     role: str
     is_active: bool
+    is_admin: bool = False
     created_at: Optional[datetime] = None
     phone: Optional[str] = None
     country: Optional[str] = None
@@ -133,3 +133,51 @@ class ContactOut(BaseModel):
 class MessageResponse(BaseModel):
     message: str
     detail: Optional[str] = None
+
+
+# ── AI / Chat ──
+class ChatMessage(BaseModel):
+    role: str = Field(..., pattern="^(user|assistant|system)$")
+    content: str = Field(..., min_length=1)
+
+
+class ChatRequest(BaseModel):
+    message: str = Field(..., min_length=1, max_length=4000)
+    session_id: Optional[str] = None
+    user_context: Optional[str] = None   # e.g. "I'm a student moving to Toronto"
+
+
+class ChatResponse(BaseModel):
+    reply: str
+    session_id: str
+    sources: list[dict] = []              # citations from knowledge base
+    model_used: Optional[str] = None
+
+
+class ChatHistoryResponse(BaseModel):
+    session_id: str
+    messages: list[ChatMessage] = []
+
+
+# ── AI Document Management ──
+class DocumentOut(BaseModel):
+    id: int
+    filename: str
+    file_type: str
+    file_size: Optional[int] = None
+    category: Optional[str] = None
+    num_chunks: int = 0
+    is_indexed: bool = False
+    created_at: Optional[datetime] = None
+
+    class Config:
+        from_attributes = True
+
+
+class AIStatus(BaseModel):
+    llm_configured: bool
+    llm_model: str
+    embedding_model: str
+    faiss_index_size: int
+    total_documents: int
+    total_chunks: int

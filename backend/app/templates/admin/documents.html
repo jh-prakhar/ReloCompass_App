@@ -1,0 +1,50 @@
+{% extends "admin/base.html" %}
+{% block title %}Knowledge Documents{% endblock %}
+{% block content %}
+<div class="upload-card">
+  <h2>📤 Upload New Document</h2>
+  <p style="color:#64748B;font-size:0.875rem;margin-bottom:1rem">Supported types: {{ supported_types }}</p>
+  <form action="/api/documents/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="files" multiple accept=".pdf,.docx,.txt,.md,.csv,.json" required>
+    <input type="text" name="category" placeholder="Category (optional): student_relocation, transportation, employment, employer, general">
+    <button type="submit" class="btn btn-primary">Upload &amp; Index</button>
+  </form>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Filename</th>
+        <th>Type</th>
+        <th>Category</th>
+        <th>Chunks</th>
+        <th>Indexed</th>
+        <th>Size</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for doc in documents %}
+      <tr>
+        <td>{{ doc.filename }}</td>
+        <td><span class="pill pill-green">{{ doc.file_type }}</span></td>
+        <td>{{ doc.category or "—" }}</td>
+        <td>{{ doc.num_chunks }}</td>
+        <td>{% if doc.is_indexed %}<span class="pill pill-green">✓</span>{% else %}<span class="pill pill-red">✗</span>{% endif %}</td>
+        <td>{{ "%.1f"|format((doc.file_size or 0) / 1024) }} KB</td>
+        <td><a href="/api/documents/{{ doc.id }}" class="btn btn-danger" onclick="return confirm('Delete {{ doc.filename }}?')">Delete</a></td>
+      </tr>
+      {% else %}
+      <tr><td colspan="7" style="text-align:center;color:#64748B;padding:2rem">No documents uploaded yet. Upload a document above.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<form action="/api/documents/rebuild-index" method="POST" style="margin-top:1rem">
+  <button type="submit" class="btn btn-primary" onclick="return confirm('Rebuild the entire FAISS index from all knowledge base files?')">
+    🔄 Rebuild Index
+  </button>
+</form>
+{% endblock %}
