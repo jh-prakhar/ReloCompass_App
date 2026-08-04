@@ -1,0 +1,116 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e85]
+  - generic [ref=e104]:
+    - complementary [ref=e105]:
+      - generic [ref=e106]:
+        - img "ReloCompass" [ref=e107]
+        - generic [ref=e115]: ReloCompass
+      - navigation [ref=e116]:
+        - paragraph [ref=e117]: Menu
+        - link "Dashboard" [ref=e118] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e120]
+          - generic [ref=e123]: Dashboard
+        - link "AI Assistant" [ref=e124] [cursor=pointer]:
+          - /url: /assistant
+          - img [ref=e125]
+          - generic [ref=e127]: AI Assistant
+        - link "Accommodation" [ref=e128] [cursor=pointer]:
+          - /url: /accommodation
+          - img [ref=e129]
+          - generic [ref=e132]: Accommodation
+        - link "Transport" [ref=e133] [cursor=pointer]:
+          - /url: /transport
+          - img [ref=e134]
+          - generic [ref=e136]: Transport
+        - link "Jobs" [ref=e137] [cursor=pointer]:
+          - /url: /jobs
+          - img [ref=e138]
+          - generic [ref=e141]: Jobs
+        - link "Community" [ref=e142] [cursor=pointer]:
+          - /url: /community
+          - img [ref=e143]
+          - generic [ref=e148]: Community
+        - link "Budget Planner" [ref=e149] [cursor=pointer]:
+          - /url: /budget
+          - img [ref=e150]
+          - generic [ref=e153]: Budget Planner
+        - link "Relocation Checklist" [ref=e154] [cursor=pointer]:
+          - /url: /checklist
+          - img [ref=e155]
+          - generic [ref=e158]: Relocation Checklist
+      - generic [ref=e159]:
+        - link "Settings & Profile" [ref=e160] [cursor=pointer]:
+          - /url: /profile
+          - img [ref=e161]
+          - generic [ref=e164]: Settings & Profile
+        - button "Sign Out" [ref=e165]:
+          - img [ref=e166]
+          - generic [ref=e169]: Sign Out
+    - generic [ref=e170]:
+      - banner [ref=e171]:
+        - generic [ref=e172]:
+          - button [ref=e173]:
+            - img [ref=e174]
+          - generic [ref=e178]:
+            - generic [ref=e179]: T
+            - generic [ref=e180]:
+              - paragraph [ref=e181]: Test User
+              - paragraph [ref=e182]: student
+      - main [ref=e183]:
+        - generic [ref=e185]:
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - heading "Welcome back, Test User" [level=1] [ref=e188]
+              - generic [ref=e189]: International Student
+            - paragraph [ref=e190]: Here's what's happening with your relocation journey.
+          - generic [ref=e192]:
+            - generic [ref=e193]:
+              - img [ref=e195]
+              - generic [ref=e198]:
+                - paragraph [ref=e199]: Complete your profile
+                - paragraph [ref=e200]: Tell us about your destination to get personalized recommendations.
+            - link "Set up" [ref=e201] [cursor=pointer]:
+              - /url: /profile
+              - generic [ref=e202]:
+                - text: Set up
+                - img [ref=e203]
+          - generic [ref=e205]:
+            - heading "Quick Access" [level=2] [ref=e206]
+            - generic [ref=e207]:
+              - link "Ask AI Assistant Get personalized relocation guidance" [ref=e208] [cursor=pointer]:
+                - /url: /assistant
+                - generic [ref=e210]:
+                  - img [ref=e212]
+                  - heading "Ask AI Assistant" [level=3] [ref=e214]
+                  - paragraph [ref=e215]: Get personalized relocation guidance
+              - link "Find Accommodation Browse dorms, shared apartments & homestays" [ref=e216] [cursor=pointer]:
+                - /url: /accommodation
+                - generic [ref=e218]:
+                  - img [ref=e220]
+                  - heading "Find Accommodation" [level=3] [ref=e223]
+                  - paragraph [ref=e224]: Browse dorms, shared apartments & homestays
+              - link "Explore Jobs Jobs matched to your skills & visa eligibility" [ref=e225] [cursor=pointer]:
+                - /url: /jobs
+                - generic [ref=e227]:
+                  - img [ref=e229]
+                  - heading "Explore Jobs" [level=3] [ref=e232]
+                  - paragraph [ref=e233]: Jobs matched to your skills & visa eligibility
+              - link "Budget Planner Estimate monthly living costs abroad" [ref=e234] [cursor=pointer]:
+                - /url: /budget
+                - generic [ref=e236]:
+                  - img [ref=e238]
+                  - heading "Budget Planner" [level=3] [ref=e241]
+                  - paragraph [ref=e242]: Estimate monthly living costs abroad
+              - link "Relocation Checklist Track pre-departure & post-arrival tasks" [ref=e243] [cursor=pointer]:
+                - /url: /checklist
+                - generic [ref=e245]:
+                  - img [ref=e247]
+                  - heading "Relocation Checklist" [level=3] [ref=e250]
+                  - paragraph [ref=e251]: Track pre-departure & post-arrival tasks
+              - link "Community Connect with student clubs & groups" [ref=e252] [cursor=pointer]:
+                - /url: /community
+                - generic [ref=e254]:
+                  - img [ref=e256]
+                  - heading "Community" [level=3] [ref=e261]
+                  - paragraph [ref=e262]: Connect with student clubs & groups

@@ -1,0 +1,177 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - navigation [ref=e4]:
+        - link "ReloCompass ReloCompass" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "ReloCompass" [ref=e6]
+          - generic [ref=e14]: ReloCompass
+        - generic [ref=e15]:
+          - link "Home" [ref=e16] [cursor=pointer]:
+            - /url: /
+          - link "Features" [ref=e17] [cursor=pointer]:
+            - /url: /#features
+          - link "About" [ref=e18] [cursor=pointer]:
+            - /url: /about
+          - link "Contact" [ref=e19] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=e20]:
+          - link "Login" [ref=e21] [cursor=pointer]:
+            - /url: /login
+            - button "Login" [ref=e22]
+          - link "Sign Up" [ref=e23] [cursor=pointer]:
+            - /url: /register
+            - button "Sign Up" [ref=e24]
+    - generic [ref=e28]:
+      - generic [ref=e29]: About ReloCompass
+      - heading "Built to make global relocation accessible and safe" [level=1] [ref=e30]
+      - paragraph [ref=e31]: ReloCompass is an AI-powered platform that helps people from India and Nepal relocate abroad for education or employment. We combine AI guidance, verified listings, job matching, and community support into one integrated platform.
+    - generic [ref=e34]:
+      - heading "What is ReloCompass?" [level=2] [ref=e35]
+      - generic [ref=e36]:
+        - paragraph [ref=e37]: "ReloCompass is a web platform designed to support the complete relocation journey — from the first decision to move abroad, through preparation, arrival, and settling into a new country. It serves three roles: students pursuing education, skilled workers seeking jobs, and employers looking to hire international talent."
+        - paragraph [ref=e38]: The platform offers an AI-powered assistant that answers relocation questions 24/7, an accommodation hub with safety-rated listings, a job board with employer-posted opportunities, transportation guides for major cities, a budget planner for cost-of-living estimation, relocation checklists, and a community hub for cultural and professional support groups.
+    - generic [ref=e41]:
+      - generic [ref=e42]: The Problem We Solve
+      - heading "Why was ReloCompass created?" [level=2] [ref=e43]
+      - paragraph [ref=e44]: "Every year, hundreds of thousands of students and professionals from India and Nepal move abroad. The process is complex, stressful, and filled with uncertainty. Here are the key challenges we address:"
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - img [ref=e48]
+          - heading "Fragmented Information" [level=3] [ref=e53]
+          - paragraph [ref=e54]: Relocation requires juggling dozens of sources — visa portals, university sites, housing platforms, and forums. We bring it all together in one place.
+        - generic [ref=e55]:
+          - img [ref=e57]
+          - heading "Trust & Safety Concerns" [level=3] [ref=e59]
+          - paragraph [ref=e60]: International movers are vulnerable to scams, from fake landlords to fraudulent job offers. ReloCompass includes verification tools and scam-prevention guidance.
+        - generic [ref=e61]:
+          - img [ref=e63]
+          - heading "Language & Cultural Barriers" [level=3] [ref=e65]
+          - paragraph [ref=e66]: Understanding local norms, tenant rights, and professional etiquette in a new country can be overwhelming. The AI assistant provides culturally-aware guidance.
+        - generic [ref=e67]:
+          - img [ref=e69]
+          - heading "Social Isolation" [level=3] [ref=e74]
+          - paragraph [ref=e75]: Moving abroad means leaving behind support networks. The community hub helps you connect with people from your home country who understand the journey.
+    - generic [ref=e78]:
+      - generic [ref=e79]: Who We Help
+      - heading "Designed for three audiences" [level=2] [ref=e80]
+      - generic [ref=e81]:
+        - generic [ref=e82]:
+          - img [ref=e84]
+          - heading "Students" [level=3] [ref=e87]
+          - paragraph [ref=e88]: International students preparing for undergraduate or postgraduate studies abroad — from visa applications to finding campus housing.
+          - text: (this is an exact text rendering)
+        - generic [ref=e89]:
+          - img [ref=e91]
+          - heading "Job Seekers" [level=3] [ref=e94]
+          - paragraph [ref=e95]: Skilled professionals seeking employment opportunities overseas, including those requiring visa sponsorship and career transition support.
+          - text: (this is an exact text rendering)
+        - generic [ref=e96]:
+          - img [ref=e98]
+          - heading "Employers" [level=3] [ref=e102]
+          - paragraph [ref=e103]: Companies looking to hire talented professionals from India and Nepal, with tools to post jobs and manage applications.
+          - text: (this is an exact text rendering)
+    - generic [ref=e107]:
+      - generic [ref=e108]:
+        - img [ref=e110]
+        - generic [ref=e113]: AI Assistance
+      - heading "How AI assists users" [level=2] [ref=e114]
+      - paragraph [ref=e115]: The AI assistant is at the heart of ReloCompass. It uses each user’s profile — their destination, budget, timeline, career goals, and accommodation preferences — to provide personalized, context-aware guidance.
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - img [ref=e118]
+          - generic [ref=e120]: Answers relocation questions in plain language — from visa requirements to housing searches
+        - generic [ref=e121]:
+          - img [ref=e122]
+          - generic [ref=e124]: Creates personalized checklists based on the user's destination and timeline
+        - generic [ref=e125]:
+          - img [ref=e126]
+          - generic [ref=e128]: Suggests accommodation options that match the user's budget and preferences
+        - generic [ref=e129]:
+          - img [ref=e130]
+          - generic [ref=e132]: Helps employers write effective job descriptions and provides candidate matching insights
+        - generic [ref=e133]:
+          - img [ref=e134]
+          - generic [ref=e136]: Offers cultural tips and practical advice for settling into a new country
+        - generic [ref=e137]:
+          - img [ref=e138]
+          - generic [ref=e140]: Available 24/7, reducing reliance on expensive immigration consultants
+      - paragraph [ref=e141]: The AI assistant provides guidance only. For visa, immigration, and legal matters, always verify with official government sources.
+    - generic [ref=e144]:
+      - generic [ref=e145]:
+        - img [ref=e147]
+        - generic [ref=e152]: Our Vision
+      - heading "Where we're headed" [level=2] [ref=e153]
+      - generic [ref=e154]:
+        - paragraph [ref=e155]: "ReloCompass started with a focus on India and Nepal, but our vision is to become the global standard for relocation support. Our roadmap includes:"
+        - list [ref=e156]:
+          - listitem [ref=e157]:
+            - img [ref=e158]
+            - generic [ref=e160]: Expanding to support more source countries and destinations worldwide
+          - listitem [ref=e161]:
+            - img [ref=e162]
+            - generic [ref=e164]: Launching mobile apps for Android and iOS with offline access
+          - listitem [ref=e165]:
+            - img [ref=e166]
+            - generic [ref=e168]: Adding verified landlord and employer partnerships with direct integration
+          - listitem [ref=e169]:
+            - img [ref=e170]
+            - generic [ref=e172]: Building a mentorship network connecting experienced expatriates with newcomers
+          - listitem [ref=e173]:
+            - img [ref=e174]
+            - generic [ref=e176]: Integrating real-time visa processing updates and government API connections
+          - listitem [ref=e177]:
+            - img [ref=e178]
+            - generic [ref=e180]: Developing AI-powered document review (CVs, rental applications, visa forms)
+        - paragraph [ref=e181]: We believe that everyone deserves access to clear, honest, and reliable guidance when building a new life abroad.
+    - generic [ref=e184]:
+      - heading "Have questions?" [level=2] [ref=e185]
+      - paragraph [ref=e186]: We're happy to help. Reach out to us anytime.
+      - generic [ref=e187]:
+        - link "Contact Us" [ref=e188] [cursor=pointer]:
+          - /url: /contact
+          - button "Contact Us" [ref=e189]:
+            - img [ref=e190]
+            - text: Contact Us
+        - link "Get Started" [ref=e193] [cursor=pointer]:
+          - /url: /register
+          - button "Get Started" [ref=e194]:
+            - text: Get Started
+            - img [ref=e195]
+    - contentinfo [ref=e197]:
+      - generic [ref=e198]:
+        - generic [ref=e199]:
+          - generic [ref=e200]:
+            - generic [ref=e201]:
+              - img "ReloCompass" [ref=e202]
+              - generic [ref=e210]: ReloCompass
+            - paragraph [ref=e211]: Your AI-powered guide to relocating abroad.
+          - generic [ref=e212]:
+            - heading "Platform" [level=4] [ref=e213]
+            - list [ref=e214]:
+              - listitem [ref=e215]:
+                - link "AI Assistant" [ref=e216] [cursor=pointer]:
+                  - /url: /register
+              - listitem [ref=e217]:
+                - link "Accommodation" [ref=e218] [cursor=pointer]:
+                  - /url: /register
+              - listitem [ref=e219]:
+                - link "Jobs" [ref=e220] [cursor=pointer]:
+                  - /url: /register
+          - generic [ref=e221]:
+            - heading "Company" [level=4] [ref=e222]
+            - list [ref=e223]:
+              - listitem [ref=e224]:
+                - link "About Us" [ref=e225] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e226]:
+                - link "Contact" [ref=e227] [cursor=pointer]:
+                  - /url: /contact
+          - generic [ref=e228]:
+            - heading "Contact" [level=4] [ref=e229]
+            - paragraph [ref=e230]:
+              - img [ref=e231]
+              - link "prakharnpp@gmail.com" [ref=e234] [cursor=pointer]:
+                - /url: mailto:prakharnpp@gmail.com
+        - generic [ref=e235]: © 2026 ReloCompass. All rights reserved.
+  - alert [ref=e236]

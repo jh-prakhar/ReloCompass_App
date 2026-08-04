@@ -1,0 +1,88 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - img "ReloCompass" [ref=e5]
+        - generic [ref=e13]: ReloCompass
+      - navigation [ref=e14]:
+        - paragraph [ref=e15]: Menu
+        - link "Dashboard" [ref=e16] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e17]
+          - generic [ref=e20]: Dashboard
+        - link "AI Assistant" [ref=e21] [cursor=pointer]:
+          - /url: /assistant
+          - img [ref=e23]
+          - generic [ref=e25]: AI Assistant
+        - link "Accommodation" [ref=e26] [cursor=pointer]:
+          - /url: /accommodation
+          - img [ref=e27]
+          - generic [ref=e30]: Accommodation
+        - link "Transport" [ref=e31] [cursor=pointer]:
+          - /url: /transport
+          - img [ref=e32]
+          - generic [ref=e34]: Transport
+        - link "Jobs" [ref=e35] [cursor=pointer]:
+          - /url: /jobs
+          - img [ref=e36]
+          - generic [ref=e39]: Jobs
+        - link "Community" [ref=e40] [cursor=pointer]:
+          - /url: /community
+          - img [ref=e41]
+          - generic [ref=e46]: Community
+        - link "Budget Planner" [ref=e47] [cursor=pointer]:
+          - /url: /budget
+          - img [ref=e48]
+          - generic [ref=e51]: Budget Planner
+        - link "Relocation Checklist" [ref=e52] [cursor=pointer]:
+          - /url: /checklist
+          - img [ref=e53]
+          - generic [ref=e56]: Relocation Checklist
+      - generic [ref=e57]:
+        - link "Settings & Profile" [ref=e58] [cursor=pointer]:
+          - /url: /profile
+          - img [ref=e59]
+          - generic [ref=e62]: Settings & Profile
+        - button "Sign Out" [ref=e63]:
+          - img [ref=e64]
+          - generic [ref=e67]: Sign Out
+    - generic [ref=e68]:
+      - banner [ref=e69]:
+        - generic [ref=e70]:
+          - button [ref=e71]:
+            - img [ref=e72]
+          - generic [ref=e76]:
+            - generic [ref=e77]: U
+            - generic [ref=e78]:
+              - paragraph
+              - paragraph [ref=e79]: student
+      - main [ref=e80]:
+        - generic [ref=e82]:
+          - generic [ref=e83]:
+            - generic [ref=e84]:
+              - img [ref=e86]
+              - generic [ref=e89]:
+                - heading "AI Relocation Assistant" [level=1] [ref=e90]
+                - paragraph [ref=e91]: Personalized guidance for your relocation journey
+            - button "New Chat" [ref=e93]:
+              - img [ref=e94]
+              - text: New Chat
+          - generic [ref=e96]:
+            - img "ReloCompass" [ref=e97]
+            - heading "How can I help you today?" [level=2] [ref=e105]
+            - paragraph [ref=e106]: Ask me anything about relocation, accommodation, jobs, visas, transportation, or settling into your new country.
+            - generic [ref=e107]:
+              - button "I'm moving to a new country for studies. Where do I start?" [ref=e108]
+              - button "How do I find affordable student accommodation?" [ref=e109]
+              - button "What should I pack for my move abroad?" [ref=e110]
+              - button "How do I set up a bank account as an international student?" [ref=e111]
+          - generic [ref=e112]:
+            - generic [ref=e113]:
+              - textbox "Ask me anything about your relocation..." [ref=e114]
+              - button "Send" [disabled] [ref=e115]:
+                - img [ref=e116]
+                - text: Send
+            - paragraph [ref=e119]:
+              - img [ref=e120]
+              - text: AI guidance only. Always verify with official sources for visa, immigration, and legal matters.
+  - alert [ref=e122]

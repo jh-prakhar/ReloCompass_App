@@ -1,0 +1,30 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - link "🧭 ReloCompass" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: 🧭
+        - generic [ref=e6]: ReloCompass
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - heading "Create your account" [level=1] [ref=e11]
+        - paragraph [ref=e12]: Tell us about yourself
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - generic [ref=e44]: Full Name
+          - textbox "Your full name" [ref=e45]
+        - generic [ref=e46]:
+          - generic [ref=e47]: Email
+          - textbox "you@example.com" [ref=e48]
+        - generic [ref=e49]:
+          - generic [ref=e50]: Password
+          - textbox "••••••••" [ref=e51]
+          - paragraph [ref=e52]: At least 8 characters
+        - generic [ref=e53]:
+          - button "← Back" [ref=e54]
+          - button "Create account" [ref=e55]
+      - paragraph [ref=e37]:
+        - text: Already have an account?
+        - link "Log in" [ref=e38] [cursor=pointer]:
+          - /url: /login
+  - alert [ref=e39]

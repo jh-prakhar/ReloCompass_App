@@ -1,0 +1,108 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e68]
+  - generic [ref=e90]:
+    - complementary [ref=e91]:
+      - link "🧭 ReloCompass" [ref=e93] [cursor=pointer]:
+        - /url: /dashboard
+        - generic [ref=e94]: 🧭
+        - generic [ref=e95]: ReloCompass
+      - navigation [ref=e96]:
+        - generic [ref=e97]:
+          - paragraph [ref=e98]: Main
+          - generic [ref=e99]:
+            - link "📊 Dashboard" [ref=e100] [cursor=pointer]:
+              - /url: /dashboard
+              - generic [ref=e101]: 📊
+              - text: Dashboard
+            - link "🤖 AI Assistant" [ref=e102] [cursor=pointer]:
+              - /url: /assistant
+              - generic [ref=e103]: 🤖
+              - text: AI Assistant
+            - link "🏠 Accommodation" [ref=e104] [cursor=pointer]:
+              - /url: /accommodation
+              - generic [ref=e105]: 🏠
+              - text: Accommodation
+            - link "🚌 Transport" [ref=e106] [cursor=pointer]:
+              - /url: /transport
+              - generic [ref=e107]: 🚌
+              - text: Transport
+            - link "💰 Budget Planner" [ref=e108] [cursor=pointer]:
+              - /url: /budget
+              - generic [ref=e109]: 💰
+              - text: Budget Planner
+            - link "👥 Community" [ref=e110] [cursor=pointer]:
+              - /url: /community
+              - generic [ref=e111]: 👥
+              - text: Community
+            - link "✅ Checklist" [ref=e112] [cursor=pointer]:
+              - /url: /checklist
+              - generic [ref=e113]: ✅
+              - text: Checklist
+        - generic [ref=e114]:
+          - paragraph [ref=e115]: Student
+          - link "💼 Jobs" [ref=e117] [cursor=pointer]:
+            - /url: /jobs
+            - generic [ref=e118]: 💼
+            - text: Jobs
+      - generic [ref=e119]:
+        - link "⚙️ Profile & Preferences" [ref=e120] [cursor=pointer]:
+          - /url: /profile
+          - generic [ref=e121]: ⚙️
+          - text: Profile & Preferences
+        - button "🚪 Log out" [ref=e122]:
+          - generic [ref=e123]: 🚪
+          - text: Log out
+    - generic [ref=e124]:
+      - banner [ref=e125]:
+        - generic [ref=e126]:
+          - generic [ref=e127]: student@test.com
+          - generic [ref=e128]: T
+      - main [ref=e129]:
+        - generic [ref=e130]:
+          - generic [ref=e131]:
+            - heading "Welcome back, Test Student 👋" [level=1] [ref=e132]
+            - paragraph [ref=e133]:
+              - generic [ref=e134]: International Student
+          - generic [ref=e136]:
+            - generic [ref=e137]:
+              - paragraph [ref=e138]: Complete your profile
+              - paragraph [ref=e139]: Tell us about your destination and preferences to get personalized recommendations.
+            - link "Set up →" [ref=e140] [cursor=pointer]:
+              - /url: /profile
+          - generic [ref=e141]:
+            - link "🤖 Ask the AI Assistant Get personalized guidance on visas, accommodation, jobs, and more." [ref=e142] [cursor=pointer]:
+              - /url: /assistant
+              - generic [ref=e144]:
+                - generic [ref=e145]: 🤖
+                - heading "Ask the AI Assistant" [level=3] [ref=e146]
+                - paragraph [ref=e147]: Get personalized guidance on visas, accommodation, jobs, and more.
+            - link "🏠 Find Accommodation Browse dorms, shared apartments, and homestays." [ref=e148] [cursor=pointer]:
+              - /url: /accommodation
+              - generic [ref=e150]:
+                - generic [ref=e151]: 🏠
+                - heading "Find Accommodation" [level=3] [ref=e152]
+                - paragraph [ref=e153]: Browse dorms, shared apartments, and homestays.
+            - link "💼 Explore Jobs Find jobs matched to your skills and visa eligibility." [ref=e154] [cursor=pointer]:
+              - /url: /jobs
+              - generic [ref=e156]:
+                - generic [ref=e157]: 💼
+                - heading "Explore Jobs" [level=3] [ref=e158]
+                - paragraph [ref=e159]: Find jobs matched to your skills and visa eligibility.
+            - link "💰 Budget Planner Estimate your monthly living costs in your destination city." [ref=e160] [cursor=pointer]:
+              - /url: /budget
+              - generic [ref=e162]:
+                - generic [ref=e163]: 💰
+                - heading "Budget Planner" [level=3] [ref=e164]
+                - paragraph [ref=e165]: Estimate your monthly living costs in your destination city.
+            - link "✅ Relocation Checklist Track your pre-departure and post-arrival tasks." [ref=e166] [cursor=pointer]:
+              - /url: /checklist
+              - generic [ref=e168]:
+                - generic [ref=e169]: ✅
+                - heading "Relocation Checklist" [level=3] [ref=e170]
+                - paragraph [ref=e171]: Track your pre-departure and post-arrival tasks.
+            - link "👥 Community Connect with student clubs and cultural groups." [ref=e172] [cursor=pointer]:
+              - /url: /community
+              - generic [ref=e174]:
+                - generic [ref=e175]: 👥
+                - heading "Community" [level=3] [ref=e176]
+                - paragraph [ref=e177]: Connect with student clubs and cultural groups.

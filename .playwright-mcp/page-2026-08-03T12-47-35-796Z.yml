@@ -1,0 +1,61 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - img "ReloCompass" [ref=e5]
+        - generic [ref=e13]: ReloCompass
+      - navigation [ref=e14]:
+        - paragraph [ref=e15]: Menu
+        - link "Dashboard" [ref=e16] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e17]
+          - generic [ref=e20]: Dashboard
+        - link "AI Assistant" [ref=e21] [cursor=pointer]:
+          - /url: /assistant
+          - img [ref=e22]
+          - generic [ref=e24]: AI Assistant
+        - link "Accommodation" [ref=e25] [cursor=pointer]:
+          - /url: /accommodation
+          - img [ref=e26]
+          - generic [ref=e29]: Accommodation
+        - link "Transport" [ref=e30] [cursor=pointer]:
+          - /url: /transport
+          - img [ref=e31]
+          - generic [ref=e33]: Transport
+        - link "Jobs" [ref=e34] [cursor=pointer]:
+          - /url: /jobs
+          - img [ref=e35]
+          - generic [ref=e38]: Jobs
+        - link "Community" [ref=e39] [cursor=pointer]:
+          - /url: /community
+          - img [ref=e40]
+          - generic [ref=e45]: Community
+        - link "Budget Planner" [ref=e46] [cursor=pointer]:
+          - /url: /budget
+          - img [ref=e47]
+          - generic [ref=e50]: Budget Planner
+        - link "Relocation Checklist" [ref=e51] [cursor=pointer]:
+          - /url: /checklist
+          - img [ref=e52]
+          - generic [ref=e55]: Relocation Checklist
+      - generic [ref=e56]:
+        - link "Settings & Profile" [ref=e57] [cursor=pointer]:
+          - /url: /profile
+          - img [ref=e58]
+          - generic [ref=e61]: Settings & Profile
+        - button "Sign Out" [ref=e62]:
+          - img [ref=e63]
+          - generic [ref=e66]: Sign Out
+    - generic [ref=e67]:
+      - banner [ref=e68]:
+        - generic [ref=e69]:
+          - button [ref=e70]:
+            - img [ref=e71]
+          - generic [ref=e75]:
+            - generic [ref=e76]: U
+            - generic [ref=e77]:
+              - paragraph
+              - paragraph [ref=e78]: student
+      - main [ref=e79]:
+        - generic [ref=e81]: Loading...
+  - alert [ref=e82]

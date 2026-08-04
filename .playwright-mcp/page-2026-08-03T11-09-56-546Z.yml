@@ -1,0 +1,34 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - link "🧭 ReloCompass" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: 🧭
+        - generic [ref=e6]: ReloCompass
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - heading "Create your account" [level=1] [ref=e11]
+        - paragraph [ref=e12]: Choose your account type
+      - generic [ref=e17]:
+        - button "🎓 International Student Moving abroad for higher education" [active] [ref=e18]:
+          - generic [ref=e19]: 🎓
+          - generic [ref=e20]:
+            - paragraph [ref=e21]: International Student
+            - paragraph [ref=e22]: Moving abroad for higher education
+          - img [ref=e40]
+        - button "💼 Skilled Worker / Job Seeker Relocating for employment opportunities" [ref=e24]:
+          - generic [ref=e25]: 💼
+          - generic [ref=e26]:
+            - paragraph [ref=e27]: Skilled Worker / Job Seeker
+            - paragraph [ref=e28]: Relocating for employment opportunities
+        - button "🏢 Employer / Business Hire international talent" [ref=e30]:
+          - generic [ref=e31]: 🏢
+          - generic [ref=e32]:
+            - paragraph [ref=e33]: Employer / Business
+            - paragraph [ref=e34]: Hire international talent
+        - button "Continue →" [ref=e36]
+      - paragraph [ref=e37]:
+        - text: Already have an account?
+        - link "Log in" [ref=e38] [cursor=pointer]:
+          - /url: /login
+  - alert [ref=e39]

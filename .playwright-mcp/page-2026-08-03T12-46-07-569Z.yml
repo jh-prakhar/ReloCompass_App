@@ -1,0 +1,83 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e57]
+  - generic [ref=e58]:
+    - complementary [ref=e59]:
+      - generic [ref=e60]:
+        - img "ReloCompass" [ref=e61]
+        - generic [ref=e69]: ReloCompass
+      - navigation [ref=e70]:
+        - paragraph [ref=e71]: Menu
+        - link "Dashboard" [ref=e72] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e74]
+          - generic [ref=e77]: Dashboard
+        - link "Candidates" [ref=e78] [cursor=pointer]:
+          - /url: /candidates
+          - img [ref=e79]
+          - generic [ref=e84]: Candidates
+        - link "Post a Job" [ref=e85] [cursor=pointer]:
+          - /url: /jobs/post
+          - img [ref=e86]
+          - generic [ref=e89]: Post a Job
+        - link "AI Assistant" [ref=e90] [cursor=pointer]:
+          - /url: /assistant
+          - img [ref=e91]
+          - generic [ref=e93]: AI Assistant
+      - generic [ref=e94]:
+        - link "Settings & Profile" [ref=e95] [cursor=pointer]:
+          - /url: /profile
+          - img [ref=e96]
+          - generic [ref=e99]: Settings & Profile
+        - button "Sign Out" [ref=e100]:
+          - img [ref=e101]
+          - generic [ref=e104]: Sign Out
+    - generic [ref=e105]:
+      - banner [ref=e106]:
+        - generic [ref=e107]:
+          - button [ref=e108]:
+            - img [ref=e109]
+          - generic [ref=e113]:
+            - generic [ref=e114]: T
+            - generic [ref=e115]:
+              - paragraph [ref=e116]: Test Employer
+              - paragraph [ref=e117]: employer
+      - main [ref=e118]:
+        - generic [ref=e120]:
+          - generic [ref=e121]:
+            - generic [ref=e122]:
+              - heading "Welcome back, Test Employer" [level=1] [ref=e123]
+              - generic [ref=e124]: Employer / Business
+            - paragraph [ref=e125]: Manage your hiring pipeline and find top international talent.
+          - generic [ref=e126]:
+            - heading "Quick Access" [level=2] [ref=e127]
+            - generic [ref=e128]:
+              - link "AI Assistant Get AI-powered candidate matching insights" [ref=e129] [cursor=pointer]:
+                - /url: /assistant
+                - generic [ref=e131]:
+                  - img [ref=e133]
+                  - heading "AI Assistant" [level=3] [ref=e135]
+                  - paragraph [ref=e136]: Get AI-powered candidate matching insights
+              - link "Post a Job Create a new job posting to attract talent" [ref=e137] [cursor=pointer]:
+                - /url: /jobs/post
+                - generic [ref=e139]:
+                  - img [ref=e141]
+                  - heading "Post a Job" [level=3] [ref=e144]
+                  - paragraph [ref=e145]: Create a new job posting to attract talent
+              - link "Find Candidates Search and filter job seekers by skills" [ref=e146] [cursor=pointer]:
+                - /url: /candidates
+                - generic [ref=e148]:
+                  - img [ref=e150]
+                  - heading "Find Candidates" [level=3] [ref=e153]
+                  - paragraph [ref=e154]: Search and filter job seekers by skills
+          - generic [ref=e155]:
+            - generic [ref=e156]:
+              - heading "Your Job Postings (0)" [level=3] [ref=e157]
+              - link "Post new" [ref=e158] [cursor=pointer]:
+                - /url: /jobs/post
+            - generic [ref=e160]:
+              - paragraph [ref=e161]: No jobs posted yet.
+              - link "Post your first job" [ref=e162] [cursor=pointer]:
+                - /url: /jobs/post
+                - generic [ref=e163]:
+                  - text: Post your first job
+                  - img [ref=e164]

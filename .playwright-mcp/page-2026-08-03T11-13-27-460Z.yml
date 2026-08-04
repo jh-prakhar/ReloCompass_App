@@ -1,0 +1,79 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e23]
+  - generic [ref=e24]:
+    - complementary [ref=e25]:
+      - link "🧭 ReloCompass" [ref=e27] [cursor=pointer]:
+        - /url: /dashboard
+        - generic [ref=e28]: 🧭
+        - generic [ref=e29]: ReloCompass
+      - navigation [ref=e30]:
+        - generic [ref=e31]:
+          - paragraph [ref=e32]: Main
+          - generic [ref=e33]:
+            - link "📊 Dashboard" [ref=e34] [cursor=pointer]:
+              - /url: /dashboard
+              - generic [ref=e35]: 📊
+              - text: Dashboard
+            - link "🤖 AI Assistant" [ref=e36] [cursor=pointer]:
+              - /url: /assistant
+              - generic [ref=e37]: 🤖
+              - text: AI Assistant
+        - generic [ref=e38]:
+          - paragraph [ref=e39]: Hiring
+          - generic [ref=e40]:
+            - link "📝 Post a Job" [ref=e41] [cursor=pointer]:
+              - /url: /jobs/post
+              - generic [ref=e42]: 📝
+              - text: Post a Job
+            - link "📋 Manage Jobs" [ref=e43] [cursor=pointer]:
+              - /url: /jobs
+              - generic [ref=e44]: 📋
+              - text: Manage Jobs
+            - link "🔍 Find Candidates" [ref=e45] [cursor=pointer]:
+              - /url: /candidates
+              - generic [ref=e46]: 🔍
+              - text: Find Candidates
+      - generic [ref=e47]:
+        - link "⚙️ Profile & Preferences" [ref=e48] [cursor=pointer]:
+          - /url: /profile
+          - generic [ref=e49]: ⚙️
+          - text: Profile & Preferences
+        - button "🚪 Log out" [ref=e50]:
+          - generic [ref=e51]: 🚪
+          - text: Log out
+    - generic [ref=e52]:
+      - banner [ref=e53]:
+        - generic [ref=e54]:
+          - generic [ref=e55]: employer@test.com
+          - generic [ref=e56]: T
+      - main [ref=e57]:
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - heading "Welcome back, Test Employer 👋" [level=1] [ref=e60]
+            - paragraph [ref=e61]:
+              - generic [ref=e62]: Employer / Business
+          - generic [ref=e63]:
+            - link "🤖 Ask the AI Assistant Get personalized guidance on visas, accommodation, jobs, and more." [ref=e64] [cursor=pointer]:
+              - /url: /assistant
+              - generic [ref=e66]:
+                - generic [ref=e67]: 🤖
+                - heading "Ask the AI Assistant" [level=3] [ref=e68]
+                - paragraph [ref=e69]: Get personalized guidance on visas, accommodation, jobs, and more.
+            - link "📝 Post a Job Create a new job posting to attract international talent." [ref=e70] [cursor=pointer]:
+              - /url: /jobs/post
+              - generic [ref=e72]:
+                - generic [ref=e73]: 📝
+                - heading "Post a Job" [level=3] [ref=e74]
+                - paragraph [ref=e75]: Create a new job posting to attract international talent.
+            - link "🔍 Find Candidates Search and filter job seekers by skills and experience." [ref=e76] [cursor=pointer]:
+              - /url: /candidates
+              - generic [ref=e78]:
+                - generic [ref=e79]: 🔍
+                - heading "Find Candidates" [level=3] [ref=e80]
+                - paragraph [ref=e81]: Search and filter job seekers by skills and experience.
+          - generic [ref=e82]:
+            - heading "Your Job Postings (0)" [level=3] [ref=e84]
+            - paragraph [ref=e86]:
+              - text: No jobs posted yet.
+              - link "Post your first job →" [ref=e87] [cursor=pointer]:
+                - /url: /jobs/post

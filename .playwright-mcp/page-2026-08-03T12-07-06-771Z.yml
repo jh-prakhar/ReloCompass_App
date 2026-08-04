@@ -1,0 +1,364 @@
+- generic [ref=e1]:
+  - alert [ref=e31]
+  - generic [ref=e32]:
+    - complementary [ref=e33]:
+      - link "ReloCompass ReloCompass" [ref=e35] [cursor=pointer]:
+        - /url: /dashboard
+        - generic [ref=e36]:
+          - img "ReloCompass" [ref=e37]
+          - generic [ref=e45]: ReloCompass
+      - navigation [ref=e46]:
+        - generic [ref=e47]:
+          - paragraph [ref=e48]: Main
+          - generic [ref=e49]:
+            - link "📊 Dashboard" [ref=e50] [cursor=pointer]:
+              - /url: /dashboard
+              - generic [ref=e51]: 📊
+              - text: Dashboard
+            - link "🤖 AI Assistant" [ref=e52] [cursor=pointer]:
+              - /url: /assistant
+              - generic [ref=e53]: 🤖
+              - text: AI Assistant
+            - link "🏠 Accommodation" [active] [ref=e54] [cursor=pointer]:
+              - /url: /accommodation
+              - generic [ref=e55]: 🏠
+              - text: Accommodation
+            - link "🚌 Transport" [ref=e56] [cursor=pointer]:
+              - /url: /transport
+              - generic [ref=e57]: 🚌
+              - text: Transport
+            - link "💰 Budget Planner" [ref=e58] [cursor=pointer]:
+              - /url: /budget
+              - generic [ref=e59]: 💰
+              - text: Budget Planner
+            - link "👥 Community" [ref=e60] [cursor=pointer]:
+              - /url: /community
+              - generic [ref=e61]: 👥
+              - text: Community
+            - link "✅ Checklist" [ref=e62] [cursor=pointer]:
+              - /url: /checklist
+              - generic [ref=e63]: ✅
+              - text: Checklist
+        - generic [ref=e64]:
+          - paragraph [ref=e65]: Student
+          - link "💼 Jobs" [ref=e67] [cursor=pointer]:
+            - /url: /jobs
+            - generic [ref=e68]: 💼
+            - text: Jobs
+      - generic [ref=e69]:
+        - link "⚙️ Profile & Preferences" [ref=e70] [cursor=pointer]:
+          - /url: /profile
+          - generic [ref=e71]: ⚙️
+          - text: Profile & Preferences
+        - button "🚪 Log out" [ref=e72]:
+          - generic [ref=e73]: 🚪
+          - text: Log out
+    - generic [ref=e74]:
+      - banner [ref=e75]:
+        - generic [ref=e76]:
+          - generic [ref=e77]: student@test.com
+          - generic [ref=e78]: T
+      - main [ref=e79]:
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - heading "🏠 Accommodation" [level=1] [ref=e130]
+            - paragraph [ref=e131]: Find your home away from home
+          - generic [ref=e134]:
+            - generic [ref=e135]: ⚠️
+            - generic [ref=e136]:
+              - paragraph [ref=e137]: Stay safe — beware of rental scams
+              - list [ref=e138]:
+                - listitem [ref=e139]: • Never wire money or pay deposits before viewing the property or verifying the landlord.
+                - listitem [ref=e140]: • Use reputable, verified platforms for accommodation searches.
+                - listitem [ref=e141]: • Always request a written tenancy agreement before paying any deposit.
+            - button "✕" [ref=e142]
+          - generic [ref=e145]:
+            - generic [ref=e146]:
+              - generic [ref=e147]: Country
+              - combobox [ref=e148]:
+                - option "All countries" [selected]
+                - option "United States"
+                - option "United Kingdom"
+                - option "Canada"
+                - option "Australia"
+                - option "Germany"
+                - option "Ireland"
+                - option "Netherlands"
+                - option "New Zealand"
+                - option "France"
+                - option "Singapore"
+                - option "United Arab Emirates"
+                - option "Sweden"
+                - option "Denmark"
+                - option "Finland"
+                - option "Norway"
+                - option "Switzerland"
+                - option "Japan"
+                - option "South Korea"
+            - generic [ref=e149]:
+              - generic [ref=e150]: City
+              - combobox [disabled] [ref=e151]:
+                - option "All cities" [selected]
+            - generic [ref=e152]:
+              - generic [ref=e153]: Type
+              - combobox [ref=e154]:
+                - option "All types" [selected]
+                - option "Student Dormitory"
+                - option "Shared Apartment"
+                - option "Studio Apartment"
+                - option "Homestay"
+                - option "Hostel"
+                - option "Family Housing"
+            - generic [ref=e155]:
+              - generic [ref=e156]: Max Monthly Rent (USD)
+              - spinbutton [ref=e157]
+          - generic [ref=e158]:
+            - generic [ref=e160]:
+              - generic [ref=e161]:
+                - generic [ref=e162]: Student Dormitory
+                - button "♡" [ref=e163]
+              - heading "Mitte Studentenwohnheim" [level=3] [ref=e164]
+              - paragraph [ref=e165]: Berlin, Germany
+              - paragraph [ref=e166]: Affordable student dormitory in Berlin Mitte. Close to public transport and several universities.
+              - generic [ref=e167]:
+                - generic [ref=e168]: $350/mo
+                - generic [ref=e169]: 2km to center
+                - generic [ref=e170]: ★★★★★
+              - generic [ref=e171]:
+                - generic [ref=e172]: WiFi
+                - generic [ref=e173]: Laundry
+                - generic [ref=e174]: Bicycle Storage
+            - generic [ref=e176]:
+              - generic [ref=e177]:
+                - generic [ref=e178]: Hostel
+                - button "♡" [ref=e179]
+              - heading "Bondi Beach Hostel (Temporary)" [level=3] [ref=e180]
+              - paragraph [ref=e181]: Sydney, Australia
+              - paragraph [ref=e182]: Budget-friendly temporary hostel stay near Bondi Beach. Perfect for first 2-4 weeks.
+              - generic [ref=e183]:
+                - generic [ref=e184]: $400/mo
+                - generic [ref=e185]: 8km to center
+                - generic [ref=e186]: ★★★★★
+              - generic [ref=e187]:
+                - generic [ref=e188]: WiFi
+                - generic [ref=e189]: Shared Kitchen
+                - generic [ref=e190]: Laundry
+            - generic [ref=e192]:
+              - generic [ref=e193]:
+                - generic [ref=e194]: Shared Apartment
+                - button "♡" [ref=e195]
+              - heading "Kreuzberg Shared Flat (WG)" [level=3] [ref=e196]
+              - paragraph [ref=e197]: Berlin, Germany
+              - paragraph [ref=e198]: Classic Berlin Wohngemeinschaft (WG) in vibrant Kreuzberg. Furnished room in shared flat.
+              - generic [ref=e199]:
+                - generic [ref=e200]: $450/mo
+                - generic [ref=e201]: 4km to center
+                - generic [ref=e202]: ★★★★★
+              - generic [ref=e203]:
+                - generic [ref=e204]: WiFi
+                - generic [ref=e205]: Kitchen
+                - generic [ref=e206]: Laundry
+            - generic [ref=e208]:
+              - generic [ref=e209]:
+                - generic [ref=e210]: Student Dormitory
+                - button "♡" [ref=e211]
+              - heading "Melbourne Uni College" [level=3] [ref=e212]
+              - paragraph [ref=e213]: Melbourne, Australia
+              - paragraph [ref=e214]: Residential college affiliated with University of Melbourne. Includes academic support.
+              - generic [ref=e215]:
+                - generic [ref=e216]: $500/mo
+                - generic [ref=e217]: 2km to center
+                - generic [ref=e218]: ★★★★★
+              - generic [ref=e219]:
+                - generic [ref=e220]: WiFi
+                - generic [ref=e221]: Gym
+                - generic [ref=e222]: Study Room
+                - generic [ref=e223]: Common Kitchen
+            - generic [ref=e225]:
+              - generic [ref=e226]:
+                - generic [ref=e227]: Student Dormitory
+                - button "♡" [ref=e228]
+              - heading "USyd Village Apartments" [level=3] [ref=e229]
+              - paragraph [ref=e230]: Sydney, Australia
+              - paragraph [ref=e231]: Student accommodation near University of Sydney. Social events and community atmosphere.
+              - generic [ref=e232]:
+                - generic [ref=e233]: $550/mo
+                - generic [ref=e234]: 3km to center
+                - generic [ref=e235]: ★★★★★
+              - generic [ref=e236]:
+                - generic [ref=e237]: WiFi
+                - generic [ref=e238]: Pool
+                - generic [ref=e239]: Gym
+                - generic [ref=e240]: Study Room
+            - generic [ref=e242]:
+              - generic [ref=e243]:
+                - generic [ref=e244]: Shared Apartment
+                - button "♡" [ref=e245]
+              - heading "Camden Shared Flat" [level=3] [ref=e246]
+              - paragraph [ref=e247]: London, United Kingdom
+              - paragraph [ref=e248]: Shared 3-bedroom flat in Camden. Great transport links. Includes all bills.
+              - generic [ref=e249]:
+                - generic [ref=e250]: $650/mo
+                - generic [ref=e251]: 5km to center
+                - generic [ref=e252]: ★★★★★
+              - generic [ref=e253]:
+                - generic [ref=e254]: WiFi
+                - generic [ref=e255]: Kitchen
+                - generic [ref=e256]: Laundry
+            - generic [ref=e258]:
+              - generic [ref=e259]:
+                - generic [ref=e260]: Homestay
+                - button "♡" [ref=e261]
+              - heading "Dublin City Homestay" [level=3] [ref=e262]
+              - paragraph [ref=e263]: Dublin, Ireland
+              - paragraph [ref=e264]: Friendly Irish family homestay. Breakfast and dinner included. Great for cultural immersion.
+              - generic [ref=e265]:
+                - generic [ref=e266]: $650/mo
+                - generic [ref=e267]: 5km to center
+                - generic [ref=e268]: ★★★★★
+              - generic [ref=e269]:
+                - generic [ref=e270]: WiFi
+                - generic [ref=e271]: Meals Included
+                - generic [ref=e272]: Laundry
+            - generic [ref=e274]:
+              - generic [ref=e275]:
+                - generic [ref=e276]: Student Dormitory
+                - button "♡" [ref=e277]
+              - heading "Trinity Hall Residence" [level=3] [ref=e278]
+              - paragraph [ref=e279]: Dublin, Ireland
+              - paragraph [ref=e280]: Official Trinity College Dublin student residence. Single rooms with shared kitchens.
+              - generic [ref=e281]:
+                - generic [ref=e282]: $700/mo
+                - generic [ref=e283]: 3km to center
+                - generic [ref=e284]: ★★★★★
+              - generic [ref=e285]:
+                - generic [ref=e286]: WiFi
+                - generic [ref=e287]: Laundry
+                - generic [ref=e288]: Study Room
+                - generic [ref=e289]: Common Room
+            - generic [ref=e291]:
+              - generic [ref=e292]:
+                - generic [ref=e293]: Student Dormitory
+                - button "♡" [ref=e294]
+              - heading "UofT Graduate House" [level=3] [ref=e295]
+              - paragraph [ref=e296]: Toronto, Canada
+              - paragraph [ref=e297]: Graduate student residence near University of Toronto campus.
+              - generic [ref=e298]:
+                - generic [ref=e299]: $750/mo
+                - generic [ref=e300]: 1km to center
+                - generic [ref=e301]: ★★★★★
+              - generic [ref=e302]:
+                - generic [ref=e303]: WiFi
+                - generic [ref=e304]: Study Lounge
+                - generic [ref=e305]: Laundry
+                - generic [ref=e306]: Kitchen
+            - generic [ref=e308]:
+              - generic [ref=e309]:
+                - generic [ref=e310]: Shared Apartment
+                - button "♡" [ref=e311]
+              - heading "Downtown Toronto Shared Apartment" [level=3] [ref=e312]
+              - paragraph [ref=e313]: Toronto, Canada
+              - paragraph [ref=e314]: Modern shared apartment in downtown Toronto. Close to subway and shopping.
+              - generic [ref=e315]:
+                - generic [ref=e316]: $800/mo
+                - generic [ref=e317]: 2km to center
+                - generic [ref=e318]: ★★★★★
+              - generic [ref=e319]:
+                - generic [ref=e320]: WiFi
+                - generic [ref=e321]: Gym
+                - generic [ref=e322]: Laundry
+                - generic [ref=e323]: Rooftop Terrace
+            - generic [ref=e325]:
+              - generic [ref=e326]:
+                - generic [ref=e327]: Studio Apartment
+                - button "♡" [ref=e328]
+              - heading "Amsterdam Student Hotel" [level=3] [ref=e329]
+              - paragraph [ref=e330]: Amsterdam, Netherlands
+              - paragraph [ref=e331]: All-inclusive student studio in Amsterdam. Flexible contract terms available.
+              - generic [ref=e332]:
+                - generic [ref=e333]: $800/mo
+                - generic [ref=e334]: 3km to center
+                - generic [ref=e335]: ★★★★★
+              - generic [ref=e336]:
+                - generic [ref=e337]: WiFi
+                - generic [ref=e338]: Gym
+                - generic [ref=e339]: Bike Rental
+                - generic [ref=e340]: Study Room
+            - generic [ref=e342]:
+              - generic [ref=e343]:
+                - generic [ref=e344]: Student Dormitory
+                - button "♡" [ref=e345]
+              - heading "King's College Student Residence" [level=3] [ref=e346]
+              - paragraph [ref=e347]: London, United Kingdom
+              - paragraph [ref=e348]: On-campus student dormitory with single en-suite rooms. Walking distance to King's College London.
+              - generic [ref=e349]:
+                - generic [ref=e350]: $850/mo
+                - generic [ref=e351]: 3.5km to center
+                - generic [ref=e352]: ★★★★★
+              - generic [ref=e353]:
+                - generic [ref=e354]: WiFi
+                - generic [ref=e355]: Laundry
+                - generic [ref=e356]: Gym
+                - generic [ref=e357]: Study Room
+            - generic [ref=e359]:
+              - generic [ref=e360]:
+                - generic [ref=e361]: Homestay
+                - button "♡" [ref=e362]
+              - heading "North York Homestay" [level=3] [ref=e363]
+              - paragraph [ref=e364]: Toronto, Canada
+              - paragraph [ref=e365]: Warm family homestay in North York. Two meals per day included. Great for new international students.
+              - generic [ref=e366]:
+                - generic [ref=e367]: $900/mo
+                - generic [ref=e368]: 12km to center
+                - generic [ref=e369]: ★★★★★
+              - generic [ref=e370]:
+                - generic [ref=e371]: WiFi
+                - generic [ref=e372]: Meals Included
+                - generic [ref=e373]: Laundry
+            - generic [ref=e375]:
+              - generic [ref=e376]:
+                - generic [ref=e377]: Shared Apartment
+                - button "♡" [ref=e378]
+              - heading "Manhattan Shared Apartment" [level=3] [ref=e379]
+              - paragraph [ref=e380]: New York, United States
+              - paragraph [ref=e381]: Furnished room in shared apartment in Manhattan. Close to subway lines.
+              - generic [ref=e382]:
+                - generic [ref=e383]: $1200/mo
+                - generic [ref=e384]: 1km to center
+                - generic [ref=e385]: ★★★★★
+              - generic [ref=e386]:
+                - generic [ref=e387]: WiFi
+                - generic [ref=e388]: Laundry
+                - generic [ref=e389]: Elevator
+            - generic [ref=e391]:
+              - generic [ref=e392]:
+                - generic [ref=e393]: Studio Apartment
+                - button "♡" [ref=e394]
+              - heading "Canary Wharf Studio" [level=3] [ref=e395]
+              - paragraph [ref=e396]: London, United Kingdom
+              - paragraph [ref=e397]: Modern studio apartment in Canary Wharf. Ideal for young professionals.
+              - generic [ref=e398]:
+                - generic [ref=e399]: $1400/mo
+                - generic [ref=e400]: 7km to center
+                - generic [ref=e401]: ★★★★★
+              - generic [ref=e402]:
+                - generic [ref=e403]: WiFi
+                - generic [ref=e404]: Gym
+                - generic [ref=e405]: Concierge
+                - generic [ref=e406]: Laundry
+            - generic [ref=e408]:
+              - generic [ref=e409]:
+                - generic [ref=e410]: Family Housing
+                - button "♡" [ref=e411]
+              - heading "Brooklyn Family Housing" [level=3] [ref=e412]
+              - paragraph [ref=e413]: New York, United States
+              - paragraph [ref=e414]: Family-friendly 2-bedroom apartment in Brooklyn. Good schools nearby.
+              - generic [ref=e415]:
+                - generic [ref=e416]: $2200/mo
+                - generic [ref=e417]: 8km to center
+                - generic [ref=e418]: ★★★★★
+              - generic [ref=e419]:
+                - generic [ref=e420]: WiFi
+                - generic [ref=e421]: Laundry
+                - generic [ref=e422]: Playground
+                - generic [ref=e423]: Parking
