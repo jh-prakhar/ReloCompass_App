@@ -1,25 +1,26 @@
-# 🧭 ReloCompass
+<div align="center">
+
+# ReloCompass
 
 ### AI-Powered Global Relocation, Student Success & Employment Assistant
 
-<p align="center">
-  <img src="public/icon-512.png" alt="ReloCompass Logo" width="120"/>
-</p>
+<img src="public/icon-512.png" alt="ReloCompass Logo" width="120"/>
 
-<p align="center">
-  Helping people from India & Nepal relocate abroad for education or employment — with AI guidance, verified listings, job matching, and community support.
-</p>
+Helping people from India & Nepal relocate abroad for education or employment — with AI guidance, verified listings, job matching, and community support.
 
-<p align="center">
-  <a href="#features"><img alt="Features" src="https://img.shields.io/badge/Features-AI%20Powered-blue?style=for-the-badge"/></a>
-  <a href="#technology-stack"><img alt="Tech Stack" src="https://img.shields.io/badge/Stack-Next.js%2016-black?style=for-the-badge"/></a>
-  <a href="#license"><img alt="License" src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge"/></a>
-  <a href="#live-demo"><img alt="Live Demo" src="https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge"/></a>
-</p>
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38BDF8?style=flat-square)
+![Prisma](https://img.shields.io/badge/Prisma-6-2D3748?style=flat-square)
+![MySQL](https://img.shields.io/badge/MySQL-8-4479A1?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=flat-square)
+
+</div>
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Problem Statement](#problem-statement)
@@ -30,27 +31,32 @@
 - [Live Demo](#live-demo)
 - [Installation](#installation)
 - [Local Development](#local-development)
+- [Environment Variables](#environment-variables)
+- [Database Setup](#database-setup)
 - [Deployment](#deployment)
 - [Folder Structure](#folder-structure)
 - [User Roles](#user-roles)
-- [Database Schema](#database-schema)
 - [Future Roadmap](#future-roadmap)
+- [Contributing](#contributing)
 - [License](#license)
 
 ---
 
-## 🌍 Overview
+## Overview
 
-**ReloCompass** is an AI-powered web platform designed to support the complete relocation journey — from the first decision to move abroad, through preparation, arrival, and settling into a new country.
+**ReloCompass** is an AI-powered web platform that helps people from India and Nepal relocate abroad for education or employment. It covers the complete relocation journey — from the first decision to move, through preparation, arrival, and settling into a new country.
 
-The platform serves three roles:
-- **Students** pursuing education abroad
-- **Job Seekers** looking for employment opportunities overseas
-- **Employers** hiring international talent from India and Nepal
+The platform serves three user roles:
+
+| Role | Description |
+|---|---|
+| **Students** | International students preparing for undergraduate or postgraduate studies abroad |
+| **Job Seekers** | Skilled professionals seeking employment opportunities overseas |
+| **Employers** | Companies hiring talented professionals from India and Nepal |
 
 ---
 
-## 🔴 Problem Statement
+## Problem Statement
 
 Every year, hundreds of thousands of students and professionals from India and Nepal move abroad. The process is complex, stressful, and filled with uncertainty:
 
@@ -64,372 +70,400 @@ Every year, hundreds of thousands of students and professionals from India and N
 
 ---
 
-## ✅ Solution
+## Solution
 
 ReloCompass brings the entire relocation journey into one integrated platform:
 
-- 🤖 **AI Assistant** — 24/7 personalized guidance on visas, housing, jobs, and cultural tips
-- 🏠 **Accommodation Hub** — Verified listings with safety ratings and scam-prevention guidance
-- 💼 **Job Board & Matching** — Employer-posted jobs with AI-powered candidate matching
-- 🚌 **Transportation Guide** — Local transit systems, student passes, and travel cards
-- 💰 **Budget Planner** — Cost-of-living calculators tailored to each destination city
-- ✅ **Relocation Checklist** — Trackable pre-departure, packing, and post-arrival tasks
-- 👥 **Community Hub** — Student clubs, cultural groups, mentorship programs, and events
+- **AI Assistant** — 24/7 personalized guidance on visas, housing, jobs, and cultural tips
+- **Accommodation Hub** — Verified listings with safety ratings and scam-prevention guidance
+- **Job Board & Matching** — Employer-posted jobs with AI-powered candidate matching
+- **Transportation Guide** — Local transit systems, student passes, and travel cards
+- **Budget Planner** — Cost-of-living calculators tailored to each destination city
+- **Relocation Checklist** — Trackable pre-departure, packing, and post-arrival tasks
+- **Community Hub** — Student clubs, cultural groups, mentorship programs, and events
 
 ---
 
-## ✨ Features
+## Features
 
-### AI Relocation Assistant
-- Personalized chat interface powered by AI
-- Context-aware guidance based on user profile and destination
-- Creates personalized checklists and recommendations
-- Available 24/7 — reduces reliance on expensive immigration consultants
+### For Students & Job Seekers
 
-### Accommodation Hub
-- Browse dorms, shared apartments, and homestays
-- Filter by country, city, type, and budget
-- Safety ratings and amenity information
-- Scam-prevention awareness section
-- Save favorites
+- **AI Relocation Assistant** — Chat-based assistant providing personalized guidance on visa requirements, documentation, timelines, and relocation logistics
+- **Accommodation Search** — Filter and save housing listings by country, city, type, budget, and safety rating
+- **Job Discovery & Applications** — Browse employer-posted jobs, filter by visa sponsorship, and apply with cover letters
+- **Budget Planner** — Interactive sliders for estimating monthly costs (rent, food, transport, insurance) per destination city
+- **Relocation Checklist** — Auto-seeded task lists for pre-departure, packing, and post-arrival phases with progress tracking
+- **Transportation Guides** — City-specific public transit information, student pass details, and monthly costs
+- **Community Hub** — Discover student clubs, cultural organizations, professional networks, and upcoming events
+- **Profile & Preferences** — Set destination, budget, accommodation preferences, career goals, and more to personalize AI recommendations
 
-### Job Board & Matching
-- Employer-posted job opportunities
-- Filter by location, visa sponsorship, job type
-- AI-powered candidate matching for employers
-- Direct application management
-- Verified employer badges
+### For Employers
 
-### Transportation Guide
-- Local transit system information for major cities
-- Student discount passes and monthly passes
-- City-by-city navigation guidance
-
-### Budget Planner
-- Interactive cost-of-living calculator
-- 7 budget categories (rent, food, transport, utilities, insurance, entertainment, tuition)
-- Monthly expense estimation with emergency savings recommendation
-- Adjustable sliders for each category
-
-### Relocation Checklist
-- Pre-departure, packing, and post-arrival task tracking
-- Progress tracking with visual indicators
-- Add custom tasks
-- Auto-seeds with 30 common relocation tasks
-
-### Community Hub
-- Student clubs, cultural organizations, and professional networks
-- Mentorship programs and volunteer opportunities
-- Upcoming community events
-- Filter by country
-
-### Premium UI/UX
-- Modern design system with Midnight Blue, Electric Blue, and Cyan palette
-- Glassmorphism effects and animated gradient backgrounds
-- Framer Motion animations (fade-in, scroll progress, staggered reveals)
-- Fully responsive — mobile, tablet, desktop
-- Lucide SVG icons throughout
-- PWA-ready with manifest and app icons
+- **Candidate Search** — Filter candidates by skills, target country, experience level, and visa status
+- **Job Posting** — Create job listings with salary ranges, required skills, and visa sponsorship options
+- **Dashboard Analytics** — Track posted jobs and manage applications
+- **AI-Powered Matching** — Get insights on candidate-job fit
 
 ---
 
-## 🤖 AI Capabilities
+## AI Capabilities
 
-The AI assistant is at the heart of ReloCompass. It uses each user's profile — destination, budget, timeline, career goals, and accommodation preferences — to provide personalized, context-aware guidance.
+The AI assistant is powered by an OpenAI-compatible LLM gateway. It uses each user's profile and preferences to provide context-aware guidance:
 
-| Capability | Description |
+| Capability | Example |
 |---|---|
-| **Relocation Q&A** | Answers relocation questions in plain language — from visa requirements to housing searches |
-| **Personalized Checklists** | Creates customized checklists based on the user's destination and timeline |
-| **Accommodation Recommendations** | Suggests options matching the user's budget and preferences |
-| **Employer Guidance** | Helps employers write effective job descriptions and provides candidate matching |
-| **Cultural Tips** | Offers practical advice for settling into a new country |
-| **Always Available** | Available 24/7, reducing reliance on expensive immigration consultants |
+| **Relocation Planning** | "I'm moving to Toronto for my master's. What documents do I need?" |
+| **Accommodation Guidance** | "Can you find me accommodation near U of T?" |
+| **Budget Estimation** | "How much should I budget for monthly expenses in Berlin?" |
+| **Visa & Documentation** | "What's the visa process for skilled workers in Germany?" |
+| **Cultural Tips** | "What should I know about renting an apartment in London?" |
+| **Checklist Generation** | "Create a packing list for my move to Sydney." |
 
-> ⚠️ **Important:** The AI assistant provides guidance only. For visa, immigration, and legal matters, always verify with official government sources.
+> **Note:** The AI assistant provides guidance only. For visa, immigration, and legal matters, always verify with official government sources.
 
 ---
 
-## 🛠 Technology Stack
+## Technology Stack
 
 | Layer | Technology |
 |---|---|
 | **Framework** | Next.js 16 (App Router, Turbopack) |
-| **Language** | TypeScript |
+| **Language** | TypeScript 5 |
 | **Styling** | Tailwind CSS v4 |
-| **UI Components** | Custom design system + Lucide icons |
+| **Database** | MySQL 8 via Prisma ORM |
+| **Authentication** | NextAuth.js (Credentials Provider, bcrypt) |
+| **AI** | OpenAI-compatible LLM gateway |
 | **Animations** | Framer Motion |
-| **Database** | MySQL |
-| **ORM** | Prisma |
-| **Authentication** | NextAuth.js (Credentials Provider + bcrypt) |
-| **AI Integration** | OpenAI-compatible API (GLM-5 model) |
-| **Testing** | Jest + Supertest |
 | **Icons** | Lucide React |
-| **Deployment** | Docker + Caddy reverse proxy |
+| **Testing** | Jest + tsx |
+| **Package Manager** | npm |
 
 ---
 
-## 🌐 Live Demo
+## Live Demo
 
-- **Web App**: [https://relocompass-tpfpaa.drytis.dev/](https://relocompass-tpfpaa.drytis.dev/)
-- **Mobile Apps**: Coming soon (Android & iOS in development)
+The platform is deployed and accessible at:
 
-### Demo Accounts
+**https://relocompass-tpfpaa.drytis.dev/**
 
-| Role | Email | Password |
-|---|---|---|
-| Student | student@test.com | testpass123 |
-| Employer | employer@test.com | testpass123 |
+- **Student / Job Seeker:** Create a free account to explore all features
+- **Employer:** Register as an employer to access the hiring dashboard
+
+> The mobile apps (Android & iOS) are in development. Download links will be activated upon publication.
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 
-- Node.js 18+ and npm
-- MySQL database
-- An OpenAI-compatible API key (or use the built-in gateway)
+- **Node.js** 18.18+ (or 20+)
+- **npm** 10+
+- **MySQL** 8+ (or a MySQL-compatible database)
+- An OpenAI-compatible LLM API key (for the AI assistant)
 
-### Setup
+### Steps
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/jh-prakhar/ReloCompass_App.git
+   cd ReloCompass_App
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables:**
+
+   Create a `.env` file in the project root (see [Environment Variables](#environment-variables) below).
+
+4. **Set up the database:**
+
+   ```bash
+   npx prisma generate
+   npx prisma db push
+   npm run seed
+   ```
+
+5. **Run the development server:**
+
+   ```bash
+   npm run dev
+   ```
+
+6. **Open the app:**
+
+   Navigate to `http://localhost:3000`
+
+---
+
+## Local Development
 
 ```bash
-# Clone the repository
-git clone https://github.com/jh-prakhar/relocompass.git
-cd relocompass
-
 # Install dependencies
 npm install
-
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your database URL, NextAuth secret, and AI API key
 
 # Generate Prisma client
 npx prisma generate
 
-# Create database tables
+# Push schema to database
 npx prisma db push
 
-# Seed the database with sample data
-npx tsx prisma/seed.ts
+# Seed demo data
+npm run seed
 
-# Build and run
-npm run build
-npm run start
-```
-
-The app will be available at `http://localhost:3000`.
-
----
-
-## 🔧 Local Development
-
-```bash
-# Install dependencies
-npm install
-
-# Run the development server
+# Start dev server
 npm run dev
 
 # Run tests
 npm test
 
-# Run Prisma Studio (database GUI)
-npx prisma studio
+# Build for production
+npm run build
+
+# Start production server
+npm run start
 ```
 
-### Environment Variables
+### Scripts
 
-Create a `.env` file in the root directory:
+| Command | Description |
+|---|---|
+| `npm run dev` | Start development server with hot reload |
+| `npm run build` | Create production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npm test` | Run Jest test suite |
+| `npm run seed` | Seed database with demo data |
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the project root with the following variables. **Never commit this file.**
 
 ```env
-DATABASE_URL="mysql://user:password@localhost:3306/relocompass"
-NEXTAUTH_SECRET="your-secret-key-here"
+# Database
+DATABASE_URL="mysql://USER:PASSWORD@localhost:3306/DB_NAME"
+
+# Authentication
 NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your-secret-key-here"
+
+# AI Assistant (OpenAI-compatible endpoint)
+OPENAI_API_KEY="your-api-key"
+OPENAI_BASE_URL="https://your-llm-endpoint/v1"
+
+# Application
 NODE_ENV="development"
-OPENAI_API_KEY="your-ai-api-key"
-OPENAI_BASE_URL="https://your-ai-gateway-url"
+NEXT_PUBLIC_APP_NAME="ReloCompass"
+```
+
+> **Security:** The `.env` file is included in `.gitignore` and will never be committed. Generate a unique `NEXTAUTH_SECRET` using `openssl rand -base64 32`.
+
+---
+
+## Database Setup
+
+This project uses **Prisma ORM** with **MySQL**. The schema is defined in `prisma/schema.prisma`.
+
+### Schema Models
+
+| Model | Purpose |
+|---|---|
+| `User` | User accounts with role-based access (STUDENT, JOB_SEEKER, EMPLOYER) |
+| `UserPreference` | Per-user destination, budget, career, and accommodation preferences |
+| `Company` | Employer company profiles |
+| `Job` | Job postings by employers |
+| `Application` | Job applications from users |
+| `Accommodation` | Housing listings with safety ratings |
+| `TransportGuide` | City-specific transit guides |
+| `BudgetEstimate` | Monthly cost estimates per city and category |
+| `CommunityGroup` | Student clubs, cultural groups, mentorship programs |
+| `CommunityEvent` | Community-organized events |
+| `ChatSession` | AI assistant conversation history |
+| `ChecklistItem` | User relocation tasks |
+| `Favorite` | Saved accommodation listings |
+
+### Apply the Schema
+
+```bash
+npx prisma generate   # Generate the Prisma Client
+npx prisma db push    # Create tables in your database
+npm run seed          # Load demo data
 ```
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
-### Standard Deployment
+### Deploying to Vercel / Netlify / Custom Server
 
-1. **Build the application:**
+1. **Build the project:**
+
    ```bash
    npm run build
    ```
 
-2. **Run database migrations:**
+2. **Set environment variables** on your hosting platform (see [Environment Variables](#environment-variables)).
+
+3. **Ensure the database** is accessible from the deployment environment.
+
+4. **Run migrations** on first deploy:
+
    ```bash
+   npx prisma generate
    npx prisma db push
+   npm run seed
    ```
 
-3. **Seed initial data:**
-   ```bash
-   npx tsx prisma/seed.ts
-   ```
-
-4. **Start the production server:**
-   ```bash
-   npm run start
-   ```
-
-### Docker Deployment
+### Deploying with Docker
 
 ```bash
-# Build the image
+# Build image
 docker build -t relocompass .
 
-# Run the container
+# Run container
 docker run -p 3000:3000 --env-file .env relocompass
 ```
 
 ---
 
-## 📁 Folder Structure
+## Folder Structure
 
 ```
-relocompass/
+ReloCompass_App/
 ├── prisma/
-│   ├── schema.prisma          # Database schema
-│   ├── seed.ts                # Database seeding script
-│   └── migrations/            # Migration files
+│   ├── schema.prisma          # Database schema (14 models)
+│   ├── seed.ts                # Demo data seeder
+│   └── migrations/            # Database migrations
 ├── public/
-│   ├── icon-*.png             # App icons (multiple sizes)
-│   ├── favicon.*              # Favicon files
+│   ├── favicon.svg            # Brand favicon
+│   ├── icon-*.png             # PWA & app icons
 │   └── manifest.json          # PWA manifest
 ├── src/
 │   ├── app/
 │   │   ├── (auth)/            # Auth pages (login, register)
-│   │   ├── (dashboard)/       # Dashboard pages
-│   │   │   ├── dashboard/     # Main dashboard
-│   │   │   ├── assistant/     # AI chat interface
-│   │   │   ├── accommodation/ # Accommodation listings
-│   │   │   ├── transport/     # Transportation guides
-│   │   │   ├── jobs/          # Job board & posting
-│   │   │   ├── candidates/    # Employer candidate search
-│   │   │   ├── community/     # Community hub
+│   │   ├── (dashboard)/       # Protected app pages
+│   │   │   ├── accommodation/ # Accommodation hub
+│   │   │   ├── assistant/     # AI chat assistant
 │   │   │   ├── budget/        # Budget planner
+│   │   │   ├── candidates/    # Employer candidate search
 │   │   │   ├── checklist/     # Relocation checklist
-│   │   │   └── profile/       # User preferences
+│     │   │   ├── community/   # Community hub
+│   │   │   ├── dashboard/     # Role-based dashboard home
+│   │   │   ├── jobs/          # Job board + posting
+│   │   │   ├── profile/       # User preferences
+│   │   │   └── transport/     # Transportation guides
 │   │   ├── about/             # About page
 │   │   ├── contact/           # Contact page
-│   │   ├── api/               # API route handlers
+│   │   ├── api/               # API routes
 │   │   │   ├── auth/          # NextAuth endpoints
-│   │   │   ├── chat/          # AI chat endpoint
+│   │   │   ├── chat/          # AI assistant endpoint
 │   │   │   ├── jobs/          # Jobs CRUD
-│   │   │   ├── candidates/    # Candidate search
-│   │   │   ├── accommodation/ # Listings search
-│   │   │   ├── checklist/     # Checklist CRUD
-│   │   │   ├── budget/        # Budget estimates
-│   │   │   ├── community/     # Community data
-│   │   │   ├── transport/     # Transport guides
-│   │   │   ├── favorites/     # Save/unsave listings
-│   │   │   ├── profile/       # User preferences
-│   │   │   ├── register/      # Registration endpoint
-│   │   │   ├── applications/  # Job applications
-│   │   │   └── contact/       # Contact form
+│   │   │   ├── accommodation/ # Listings API
+│   │   │   └── ...            # Other API routes
 │   │   ├── globals.css        # Global styles + design system
-│   │   ├── layout.tsx         # Root layout
-│   │   └── page.tsx           # Landing page
+│   │   └── layout.tsx         # Root layout
 │   ├── components/
-│   │   ├── brand/             # Brand logo components
-│     ├── dashboard/           # Dashboard sidebar
-│   │   └── ui/                # Reusable UI components
+│   │   ├── ui/                # Button, Card, Input, Badge
+│   │   ├── brand/             # Logo & wordmark components
+│   │   └── dashboard/         # Sidebar component
 │   ├── config/
 │   │   ├── constants.ts       # App constants
-│   │   └── destinations.ts    # Country/city data
+│   │   └── destinations.ts    # Countries, cities, types
 │   ├── lib/
-│   │   ├── ai/                # AI prompt builder
-│   │   ├── auth.ts            # NextAuth config
-│   │   ├── prisma.ts          # Prisma client
-│   │   └── validators.ts      # Zod schemas
-│   ├── types/                 # TypeScript types
-│   └── middleware.ts          # Route protection
-├── jest.config.ts             # Test configuration
+│   │   ├── ai/                # AI prompts & config
+│   │   ├── __tests__/         # Unit tests
+│   │   ├── auth.ts            # NextAuth configuration
+│   │   ├── prisma.ts          # Prisma client singleton
+│   │   └── validators.ts      # Zod validation schemas
+│   └── types/
+│       └── index.ts           # TypeScript type definitions
+├── jest.config.ts             # Jest configuration
+├── jest.setup.ts              # Jest setup
 ├── next.config.ts             # Next.js config
-├── package.json               # Dependencies
-└── tsconfig.json              # TypeScript config
+├── package.json
+├── tsconfig.json
+└── .env                       # Environment (never committed)
 ```
 
 ---
 
-## 👤 User Roles
+## User Roles
+
+The platform supports three roles with distinct dashboards and permissions:
 
 ### Student & Job Seeker
-- AI relocation assistant
-- Accommodation search and favorites
-- Job board with filtering and applications
-- Transportation guides
-- Budget planner
-- Relocation checklist
-- Community hub access
-- Personalized preferences
+- Access AI assistant, accommodation search, job board, budget planner, checklist, transport guides, and community
+- Set personal preferences for personalized AI recommendations
+- Save favorite accommodations and track job applications
 
 ### Employer
-- Post job opportunities
-- AI-powered candidate matching
-- Candidate search with filters (skills, country, experience, visa status)
-- Application management dashboard
-- Verified employer badge
+- Post and manage job listings
+- Search and filter candidates by skills, experience, and visa status
+- View and manage applications through the dashboard
 
 ---
 
-## 🗄 Database Schema
+## Future Roadmap
 
-The platform uses 12 Prisma models:
-
-| Model | Purpose |
-|---|---|
-| `User` | User accounts with role-based access |
-| `UserPreference` | Personalized relocation preferences |
-| `Company` | Employer company profiles |
-| `Job` | Job postings |
-| `Application` | Job applications with status tracking |
-| `Accommodation` | Housing listings with safety ratings |
-| `Favorite` | Saved accommodations |
-| `TransportGuide` | City transit guides |
-| `BudgetEstimate` | Cost-of-living data per city |
-| `CommunityGroup` | Student/cultural/professional groups |
-| `CommunityEvent` | Community events |
-| `ChecklistItem` | User relocation tasks |
-| `ChatSession` | AI assistant conversation history |
+- [ ] **Mobile Apps** — Native Android (Kotlin) and iOS (Swift) applications
+- [ ] **Verified Partnerships** — Direct integration with verified landlords and employers
+- [ ] **Mentorship Network** — Connect experienced expatriates with newcomers
+- [ ] **Visa Processing API** — Real-time visa status updates from government APIs
+- [ ] **AI Document Review** — Automated CV, rental application, and visa form review
+- [ ] **Multi-language Support** — Interface localization for Hindi, Nepali, and more
+- [ ] **In-Platform Messaging** — Direct communication between employers and candidates
+- [ ] **Payment Integration** — Subscription plans for premium employer features
+- [ ] **Analytics Dashboard** — Advanced hiring and relocation analytics
 
 ---
 
-## 🗺 Future Roadmap
+## Contributing
 
-- [ ] Mobile apps for Android and iOS
-- [ ] Expand to support more source countries beyond India & Nepal
-- [ ] Verified landlord and employer partnerships
-- [ ] Mentorship network connecting experienced expatriates with newcomers
-- [ ] Real-time visa processing updates
-- [ ] AI-powered document review (CVs, rental applications, visa forms)
-- [ ] Multi-language support
-- [ ] In-app messaging between users and employers/landlords
-- [ ] Integration with university course catalogs
-- [ ] Predictive analytics for relocation success
+Contributions are welcome! Please follow these steps:
 
----
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
 
-## 📄 License
+### Guidelines
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
----
-
-## 📧 Contact
-
-**Prakhar Jha**  
-📧 [prakharnpp@gmail.com](mailto:prakharnpp@gmail.com)  
-🌐 [Portfolio](https://jh-prakhar.github.io/prakhar_protfolio/)
+- Follow the existing code style and naming conventions
+- Add tests for new features
+- Ensure all tests pass (`npm test`) before submitting
+- Keep PRs focused — one feature per PR
+- Write clear commit messages
 
 ---
 
-<p align="center">
-  Made with care for India & Nepal 🧭
-</p>
+## License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+```
+MIT License
+
+Copyright (c) 2025 ReloCompass
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, restriction...
+```
+
+---
+
+<div align="center">
+
+**ReloCompass** — Made with care for India & Nepal.
+
+[Report Bug](https://github.com/jh-prakhar/ReloCompass_App/issues) · [Request Feature](https://github.com/jh-prakhar/ReloCompass_App/issues) · [Live Demo](https://relocompass-tpfpaa.drytis.dev/)
+
+</div>

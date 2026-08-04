@@ -40,8 +40,6 @@ export async function POST(request: Request) {
     // 1. Send an email notification to prakharnpp@gmail.com
     // 2. Store in a database
     // 3. Send an auto-reply to the submitter
-    console.log(`[Contact] New submission from ${submission.name} <${submission.email}>: ${submission.subject}`);
-
     return NextResponse.json({ success: true, message: "Message received" }, { status: 201 });
   } catch {
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
