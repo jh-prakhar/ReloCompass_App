@@ -6,7 +6,7 @@ import logging
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
@@ -70,6 +70,18 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# ── Cache headers for PWA assets ──
+# The service worker and the JS that registers it must always revalidate,
+# otherwise a heuristically-cached stale copy silently skips SW registration.
+@app.middleware("http")
+async def pwa_cache_control(request: Request, call_next):
+    response = await call_next(request)
+    path = request.url.path
+    if path == "/sw.js" or path.startswith("/js/"):
+        response.headers["Cache-Control"] = "no-cache"
+    return response
 
 # ── Register API routers ──
 app.include_router(auth.router, prefix=settings.API_V1_PREFIX)

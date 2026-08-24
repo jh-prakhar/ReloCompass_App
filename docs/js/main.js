@@ -7,6 +7,75 @@
 (function () {
   'use strict';
 
+  // ── PWA: service worker registration ──
+  if (
+    'serviceWorker' in navigator &&
+    (location.protocol === 'https:' || location.hostname === 'localhost')
+  ) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker
+        .register(
+          location.pathname.indexOf('/ReloCompass_App/') === 0
+            ? '/ReloCompass_App/sw.js'
+            : 'sw.js'
+        )
+        .catch(function () { /* SW is progressive enhancement — never break the page */ });
+    });
+  }
+
+  // ── PWA: install prompt ──
+  let deferredInstallPrompt = null;
+  var INSTALL_DISMISSED_KEY = 'relocompass_install_dismissed';
+
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    if (sessionStorage.getItem(INSTALL_DISMISSED_KEY)) return;
+    showInstallBanner();
+  });
+
+  window.addEventListener('appinstalled', function () {
+    deferredInstallPrompt = null;
+    hideInstallBanner();
+  });
+
+  function showInstallBanner() {
+    if (document.getElementById('pwa-install-banner')) return;
+    var banner = document.createElement('div');
+    banner.id = 'pwa-install-banner';
+    banner.style.cssText =
+      'position:fixed;bottom:1rem;left:1rem;right:1rem;z-index:9999;display:flex;align-items:center;gap:0.75rem;' +
+      'background:#0F172A;color:#F6EFE2;padding:0.85rem 1rem;border-radius:14px;box-shadow:0 10px 30px rgba(15,23,42,.35);' +
+      'font-size:0.85rem;max-width:34rem;margin:0 auto;';
+    banner.innerHTML =
+      '<span style="font-size:1.3rem">🧭</span>' +
+      '<span style="flex:1"><strong>Install ReloCompass</strong> — quick access from your home screen.</span>' +
+      '<button id="pwa-install-btn" style="background:linear-gradient(135deg,#3B82F6,#06B6D4);color:#fff;border:none;' +
+      'border-radius:8px;padding:0.5rem 0.9rem;font-weight:600;font-size:0.8rem;cursor:pointer">Install</button>' +
+      '<button id="pwa-install-close" aria-label="Dismiss" style="background:none;border:none;color:#94A3B8;' +
+      'font-size:1rem;cursor:pointer;padding:0.25rem">✕</button>';
+
+    document.body.appendChild(banner);
+
+    banner.querySelector('#pwa-install-btn').addEventListener('click', function () {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      deferredInstallPrompt.userChoice.then(function (choice) {
+        if (choice && choice.outcome) deferredInstallPrompt = null;
+        hideInstallBanner();
+      });
+    });
+    banner.querySelector('#pwa-install-close').addEventListener('click', function () {
+      sessionStorage.setItem(INSTALL_DISMISSED_KEY, '1');
+      hideInstallBanner();
+    });
+  }
+
+  function hideInstallBanner() {
+    var el = document.getElementById('pwa-install-banner');
+    if (el) el.remove();
+  }
+
   // ── Navbar scroll effect ──
   const navbar = document.getElementById('navbar');
   if (navbar) {

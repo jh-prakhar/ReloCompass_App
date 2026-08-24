@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ReloCompass</string>
+    <string name="tagline">AI-powered relocation guidance</string>
+
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_assistant">AI Assistant</string>
+    <string name="nav_jobs">Jobs</string>
+    <string name="nav_applications">My Applications</string>
+    <string name="nav_employer">Employer Portal</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_logout">Log out</string>
+
+    <string name="login_title">Welcome back</string>
+    <string name="login_subtitle">Log in to continue your relocation journey</string>
+    <string name="register_title">Create your account</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Full name</string>
+    <string name="role_student">Student</string>
+    <string name="role_job_seeker">Job seeker</string>
+    <string name="role_employer">Employer</string>
+
+    <string name="assistant_greeting">Hi! I\'m your relocation assistant. Ask me about visas, housing, banking, or jobs abroad — I\'ll cite my sources.</string>
+    <string name="jobs_empty">No jobs match your filters yet. Try clearing them.</string>
+</resources>

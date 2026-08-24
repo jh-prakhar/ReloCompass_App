@@ -24,6 +24,7 @@
   - [Backend Setup (Python / FastAPI)](#backend-setup-python--fastapi)
   - [Frontend Setup (HTML / CSS / Vanilla JS)](#frontend-setup-html--css--vanilla-js)
 - [Environment Variables](#environment-variables)
+- [Mobile](#mobile)
 - [API Endpoints](#api-endpoints)
 - [Authentication Flow](#authentication-flow)
 - [Deployment](#deployment)
@@ -392,6 +393,25 @@ The backend seeds these demo accounts automatically on first run (see `Deploymen
 > ⚠️ **Change or remove these accounts before any public/production deployment.** They are intended for local development and demos only (passwords can be overridden via the `DEV_ADMIN_PASSWORD` environment variable for the admin account).
 
 **📥 Complete source bundle:** [`docs/assets/ReloCompass.zip`](docs/assets/ReloCompass.zip) — the full app (backend + frontend + tests + knowledge base), env/secret-free.
+
+---
+
+## 📱 Mobile
+
+**Install as an app (PWA).** On Android, open the site in Chrome and tap
+*Install ReloCompass* in the banner (or Chrome menu → *Add to Home screen*).
+It launches full-screen with its own icon and offline-capable shell, while API
+calls stay live.
+
+**Native Android app (Kotlin + Jetpack Compose).** A full native client lives
+in [`android/`](android/) — login/register, dashboard, the RAG AI assistant
+with source citations, the visa-filtered jobs board with one-tap apply,
+application status tracking, and the employer portal (post jobs, review
+applicants with profiles, change status). It talks to the same hosted API.
+Open the folder in Android Studio and run — see [`android/README.md`](android/README.md).
+
+**📱 Android-only source bundle:** [`docs/assets/ReloCompass-Android.zip`](docs/assets/ReloCompass-Android.zip)
+— the complete Kotlin/Compose project, ready to open in Android Studio.
 
 ---
 

@@ -1,0 +1,60 @@
+{
+  "name": "ReloCompass — AI Relocation Platform",
+  "short_name": "ReloCompass",
+  "description": "AI-powered global relocation guidance: visas, accommodation, jobs abroad with visa sponsorship, and an AI assistant that cites its sources.",
+  "id": "/",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#0F172A",
+  "background_color": "#F8FAFC",
+  "categories": [
+    "travel",
+    "productivity",
+    "business"
+  ],
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI Assistant",
+      "url": "assistant.html",
+      "description": "Chat with the relocation assistant"
+    },
+    {
+      "name": "Jobs",
+      "url": "jobs.html",
+      "description": "Browse jobs abroad"
+    },
+    {
+      "name": "Dashboard",
+      "url": "dashboard.html",
+      "description": "Your dashboard"
+    }
+  ]
+}
