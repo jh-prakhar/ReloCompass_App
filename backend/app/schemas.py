@@ -67,6 +67,7 @@ class JobOut(BaseModel):
     visa_sponsorship: bool = False
     experience_years: Optional[str] = None
     is_sample: bool = False
+    is_active: bool = True
     created_at: Optional[datetime] = None
 
     class Config:
@@ -92,7 +93,6 @@ class AccommodationOut(BaseModel):
 
 # ── Applications ──
 class ApplicationCreate(BaseModel):
-    job_id: int
     cover_letter: Optional[str] = None
 
 
@@ -106,6 +106,18 @@ class ApplicationOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class ApplicationStatusUpdate(BaseModel):
+    status: str = Field(..., pattern="^(pending|reviewed|shortlisted|rejected|accepted)$")
+
+
+class ApplicationWithApplicantOut(ApplicationOut):
+    """Application detail for employers — includes applicant profile."""
+    applicant: "UserOut"
+
+
+ApplicationWithApplicantOut.model_rebuild()
 
 
 # ── Contact ──

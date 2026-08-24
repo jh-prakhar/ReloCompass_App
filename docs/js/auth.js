@@ -177,6 +177,29 @@ const Auth = (function () {
     }
   }
 
+  /**
+   * Guard a page by authentication and role.
+   * By default redirects to login (unauthenticated) or dashboard (wrong role)
+   * and returns false; returns true when the current user may stay.
+   * With { redirect: false } it only reports the verdict — useful when the
+   * page has a public fallback view.
+   * @param {string[]|null} roles — allowed roles (e.g. ['employer']); null = any logged-in user
+   * @param {object} [options] — { redirect: boolean } (default true)
+   * @returns {boolean}
+   */
+  function requireRole(roles, options) {
+    var redirect = !(options && options.redirect === false);
+    if (!isLoggedIn()) {
+      if (redirect) window.location.href = getPagePath('login.html');
+      return false;
+    }
+    if (roles && roles.indexOf(getUser().role) === -1) {
+      if (redirect) window.location.href = getPagePath('dashboard.html');
+      return false;
+    }
+    return true;
+  }
+
   // Auto-update nav on page load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', updateNav);
@@ -195,6 +218,7 @@ const Auth = (function () {
     updateNav,
     verifyToken,
     getPagePath,
+    requireRole,
   };
 })();
 

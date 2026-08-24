@@ -47,14 +47,17 @@ class Settings:
     JWT_ALGORITHM: str = "HS256"
     JWT_EXPIRE_HOURS: int = 24
 
-    # CORS — allows GitHub Pages frontend + local dev
+    # CORS — configured via CORS_ORIGINS env var (comma-separated list,
+    # backend-managed; includes the project domain at deploy time).
+    # Static fallbacks cover local dev only.
     CORS_ORIGINS: list = [
-        "https://jh-prakhar.github.io",
-        "https://relocompass-tpfpaa.drytis.dev",
-        "http://localhost:8888",
-        "http://localhost:3000",
-        "http://127.0.0.1:8888",
-        "null",  # file:// protocol
+        origin.strip()
+        for origin in os.getenv(
+            "CORS_ORIGINS",
+            "https://jh-prakhar.github.io,http://localhost:8888,"
+            "http://localhost:3000,http://127.0.0.1:8888,null",
+        ).split(",")
+        if origin.strip()
     ]
 
     # ── AI / LLM Configuration ──
@@ -75,8 +78,10 @@ class Settings:
     RAG_TOP_K: int = int(os.getenv("RAG_TOP_K", "5"))
 
     # ── Dev Admin Account (development only!) ──
+    # Password comes from env; the fallback only boots environments
+    # that never set it and is not used in production deploys.
     DEV_ADMIN_EMAIL: str = os.getenv("DEV_ADMIN_EMAIL", "admin@relocompass.org")
-    DEV_ADMIN_PASSWORD: str = os.getenv("DEV_ADMIN_PASSWORD", "Admin@12345")
+    DEV_ADMIN_PASSWORD: str = os.getenv("DEV_ADMIN_PASSWORD", "change-me-dev-only")
 
     @property
     def IS_LLM_CONFIGURED(self) -> bool:

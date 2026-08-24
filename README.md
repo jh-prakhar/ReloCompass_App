@@ -14,6 +14,7 @@
 
 - [Overview](#overview)
 - [Features](#features)
+- [Demo Accounts](#demo-accounts)
 - [AI Assistant Architecture](#ai-assistant-architecture)
 - [Architecture](#architecture)
 - [Tech Stack](#tech-stack)
@@ -46,17 +47,17 @@ The project is built with a clear **frontend–backend separation**:
 ## Features
 
 ### For Students & Job Seekers
-- **AI Assistant** — Chat-based guidance for relocation questions, visa info, and city recommendations
+- **AI Assistant** — Chat-based guidance for relocation questions, visa info, and city recommendations (multi-turn, cites knowledge-base sources, persists history)
 - **Accommodation Hub** — Search student housing, dorms, shared apartments by city and budget
 - **Transportation Guide** — Public transit info, airport connections, and travel tips for major destinations
-- **Job Board & Matching** — Browse job listings with visa sponsorship filters
+- **Job Board & Matching** — Browse live listings with search, location, job-type and visa-sponsorship filters; apply with a cover letter and track application status (pending → reviewed → shortlisted → accepted/rejected)
 - **Community Hub** — Connect with other relocators through groups and events
 - **Financial Planning** — Budget estimators for cost of living across cities
 - **Relocation Checklists** — Step-by-step task lists for a smooth move
 
 ### For Employers
-- **Post Jobs** — Create listings with visa sponsorship details
-- **Candidate Matching** — Review applications from relocating professionals
+- **Post Jobs** — Create listings with visa sponsorship details; manage and close listings from the employer portal
+- **Applicant Tracking** — Review applicants (profile + cover letter) for each posting and update their status
 - **Company Profile** — Showcase your organization to a global talent pool
 
 ### Platform-wide
@@ -377,6 +378,23 @@ Create `backend/.env` based on `backend/.env.example`:
 
 ---
 
+## 🔑 Demo Accounts
+
+The backend seeds these demo accounts automatically on first run (see `Deployment` / setup script). Use them to explore every role's features:
+
+| Role | Email | Password | Access |
+|------|-------|----------|--------|
+| **Admin** | `admin@relocompass.org` | `Admin@12345` | Full platform access — admin panel, user management, AI document uploads & usage stats |
+| **Employer** | `employer@relocompass.org` | `Employer@12345` | Employer portal — post/manage jobs, view applicants, update application statuses |
+| **Job Seeker** | `jobseeker@relocompass.org` | `JobSeeker@12345` | Browse & filter jobs, apply with cover letters, track application status |
+| **Student** | `student@relocompass.org` | `Student@12345` | AI assistant, jobs board, applications |
+
+> ⚠️ **Change or remove these accounts before any public/production deployment.** They are intended for local development and demos only (passwords can be overridden via the `DEV_ADMIN_PASSWORD` environment variable for the admin account).
+
+**📥 Complete source bundle:** [`docs/assets/ReloCompass.zip`](docs/assets/ReloCompass.zip) — the full app (backend + frontend + tests + knowledge base), env/secret-free.
+
+---
+
 ## API Endpoints
 
 ### Authentication
@@ -417,10 +435,15 @@ Create `backend/.env` based on `backend/.env.example`:
 
 | Method | Endpoint | Description | Auth |
 |--------|----------|-------------|------|
-| `GET` | `/api/jobs/` | List all active job listings | No |
+| `GET` | `/api/jobs/` | List active jobs. Filters: `q`, `location`, `job_type`, `visa_only`, `skip`, `limit` (1–100) | No |
 | `GET` | `/api/jobs/{id}` | Get a specific job by ID | No |
 | `POST` | `/api/jobs/` | Create a new job posting | Employer |
-| `POST` | `/api/jobs/{id}/apply` | Apply to a job | Yes |
+| `GET` | `/api/jobs/mine` | List jobs the current employer posted | Employer |
+| `DELETE` | `/api/jobs/{id}` | Soft-delete (deactivate) own job | Employer (owner) |
+| `POST` | `/api/jobs/{id}/apply` | Apply to a job (students/job seekers) | Yes |
+| `GET` | `/api/jobs/{id}/applications` | List applicants for own job | Employer (owner) |
+| `PATCH` | `/api/jobs/applications/{app_id}` | Update application status: `pending` → `reviewed` → `shortlisted` → `rejected` / `accepted` | Employer (owner) |
+| `GET` | `/api/jobs/applications/me` | List the current user's applications | Yes |
 
 ### Accommodations
 

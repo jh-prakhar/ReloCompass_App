@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Employers — ReloCompass</title>
-  <meta name="description" content="Post jobs, get AI-matched candidates, and reach talent from India and Nepal.">
+  <title>Employers — ReloCompass</title>
+  <meta name="description" content="Post jobs and connect with skilled students and workers from India and Nepal planning to relocate.">
   <meta name="theme-color" content="#0F172A">
   <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/portal.css">
 </head>
 <body>
   <div class="scroll-progress" id="scroll-progress"></div>
@@ -26,18 +27,13 @@
       </a>
       <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="index.html#features">Features</a>
-        <a href="index.html#students">Students</a>
-        <a href="index.html#destinations">Destinations</a>
-        <a href="employers.html" class="active">Employers</a>
+        <a href="assistant.html">AI Assistant</a>
         <a href="jobs.html">Jobs</a>
+        <a href="employers.html" class="active">Employers</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </div>
-      <div class="nav-actions">
-        <a href="login.html" class="btn btn-ghost btn-sm">Login</a>
-        <a href="register.html" class="btn btn-primary btn-sm">Sign Up</a>
-      </div>
+      <div class="nav-actions"></div>
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
         <svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -45,17 +41,12 @@
     </nav>
     <div class="mobile-menu" id="mobile-menu">
       <a href="index.html">Home</a>
-      <a href="index.html#features">Features</a>
-        <a href="index.html#students">Students</a>
-      <a href="index.html#destinations">Destinations</a>
-      <a href="employers.html">Employers</a>
+      <a href="assistant.html">AI Assistant</a>
       <a href="jobs.html">Jobs</a>
+      <a href="employers.html">Employers</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <div class="mobile-actions">
-        <a href="login.html" class="btn btn-outline btn-sm" style="width:100%">Login</a>
-        <a href="register.html" class="btn btn-primary btn-sm" style="width:100%">Sign Up</a>
-      </div>
+      <div class="mobile-actions"></div>
     </div>
   </header>
 
@@ -64,86 +55,133 @@
     <div class="hero-orb hero-orb-1"></div>
     <div class="container text-center">
       <div class="animate-fadeIn">
-        <span class="badge badge-electric">For Employers</span>
-        <h1 style="margin-top:1rem">Hire global talent from <span class="text-gradient">India &amp; Nepal</span></h1>
-        <p>Post jobs, get AI-matched candidates, and manage applications — all in one platform designed to connect employers with skilled international talent.</p>
+        <span class="badge badge-electric">Employer Portal</span>
+        <h1 style="margin-top:1rem">Hire Global Talent</h1>
+        <p>Post jobs, review applicants, and connect with skilled students and professionals from India and Nepal.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== EMPLOYER FEATURES ===== -->
-  <section class="section">
+  <!-- ===== PORTAL (employer only) ===== -->
+  <section class="section" id="employer-portal" style="display:none">
     <div class="container">
-      <div class="features-grid">
-        <div class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-          <h3>AI Candidate Matching</h3>
-          <p>Our AI engine matches job postings with the most suitable candidates based on skills, experience, and relocation preferences.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon emerald"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <h3>Verified Employer Badge</h3>
-          <p>Get a verified badge on your profile to build trust with applicants and stand out as a legitimate employer.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-3">
-          <div class="feature-icon indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-          <h3>Application Dashboard</h3>
-          <p>Manage all applications in one place — review profiles, track status, and communicate with candidates directly.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-4">
-          <div class="feature-icon violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-          <h3>Talent from India &amp; Nepal</h3>
-          <p>Reach skilled students and professionals actively looking for opportunities abroad from India and Nepal.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div style="max-width:56rem;margin:0 auto">
 
-  <!-- ===== SAMPLE LISTING ===== -->
-  <section class="section section-white">
-    <div class="container">
-      <div class="page-content">
-        <div class="reveal" style="text-align:center;margin-bottom:3rem">
-          <span class="badge badge-sample">SAMPLE LISTING</span>
-          <h2 style="font-size:2rem;font-weight:800;color:var(--midnight);margin-top:1rem">Example Employer Job Post</h2>
-          <p style="color:var(--text-secondary);margin-top:0.5rem">This is how your job posting will look to candidates.</p>
-        </div>
-        <div class="sample-listing reveal">
-          <div class="sample-listing-header">
-            <h3 style="font-size:1.05rem;font-weight:600;color:var(--midnight)">Example Employer Posting</h3>
-            <span class="badge badge-sample">SAMPLE</span>
+        <!-- Stats -->
+        <div class="employer-stats">
+          <div class="employer-stat">
+            <div class="employer-stat-value" id="stat-jobs">0</div>
+            <div class="employer-stat-label">Posted Jobs</div>
           </div>
-          <div class="sample-listing-card">
-            <div class="company-row">
-              <div class="company-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg></div>
-              <div style="flex:1">
-                <h4>Software Engineer</h4>
-                <p class="company-name">Example Tech Solutions (Sample)</p>
-                <div class="sample-listing-meta">
-                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> Full-Time</span>
-                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Toronto, Canada</span>
-                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Visa Sponsorship</span>
-                </div>
-                <p class="sample-listing-desc">This is a demonstration listing showing how employers can post job opportunities on the platform. Salary information available upon application.</p>
+          <div class="employer-stat">
+            <div class="employer-stat-value" id="stat-applicants">0</div>
+            <div class="employer-stat-label">Total Applicants</div>
+          </div>
+          <div class="employer-stat">
+            <div class="employer-stat-value" id="stat-shortlisted">0</div>
+            <div class="employer-stat-label">Shortlisted</div>
+          </div>
+        </div>
+
+        <!-- Post a job -->
+        <h2 style="font-size:1.25rem;font-weight:700;color:var(--midnight);margin-bottom:1rem">Post a New Job</h2>
+        <div class="contact-form-card" style="padding:2rem;margin-bottom:2.5rem">
+          <form id="post-job-form" novalidate>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+              <div class="form-group">
+                <label for="job-title">Job Title *</label>
+                <input type="text" id="job-title" class="form-input" placeholder="e.g. Registered Nurse" maxlength="200" required>
+              </div>
+              <div class="form-group">
+                <label for="job-company">Company Name *</label>
+                <input type="text" id="job-company" class="form-input" placeholder="e.g. Toronto General Hospital" maxlength="200" required>
               </div>
             </div>
-          </div>
-          <p class="sample-disclaimer">This is a sample listing for demonstration purposes. Real job postings will appear once employers join the platform.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+              <div class="form-group">
+                <label for="job-location">Location</label>
+                <input type="text" id="job-location" class="form-input" placeholder="e.g. Toronto, Canada">
+              </div>
+              <div class="form-group">
+                <label for="job-type">Job Type</label>
+                <select id="job-type" class="form-input">
+                  <option value="Full-Time">Full-Time</option>
+                  <option value="Part-Time">Part-Time</option>
+                  <option value="Contract">Contract</option>
+                  <option value="Internship">Internship</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="job-experience">Experience Level</label>
+              <select id="job-experience" class="form-input">
+                <option value="Entry Level">Entry Level</option>
+                <option value="1-2 Years">1-2 Years</option>
+                <option value="2-4 Years">2-4 Years</option>
+                <option value="5+ Years">5+ Years</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="job-description">Job Description</label>
+              <textarea id="job-description" class="form-input" rows="4" placeholder="Describe responsibilities, requirements, and what you offer…"></textarea>
+            </div>
+            <label class="visa-toggle" style="margin-bottom:1rem">
+              <input type="checkbox" id="job-visa">
+              This role offers visa sponsorship
+            </label>
+            <div style="display:flex;align-items:center;gap:0.75rem">
+              <button type="submit" class="btn btn-gradient" id="post-job-btn">Publish Job</button>
+              <span id="post-job-msg" style="font-size:0.85rem"></span>
+            </div>
+          </form>
         </div>
+
+        <!-- My posted jobs -->
+        <h2 style="font-size:1.25rem;font-weight:700;color:var(--midnight);margin-bottom:1rem">My Posted Jobs</h2>
+        <div id="my-jobs-list" class="app-list"></div>
+        <div id="my-jobs-empty" class="empty-state" style="display:none">
+          <h3>No jobs posted yet</h3>
+          <p>Use the form above to publish your first listing — it appears on the public job board immediately.</p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ===== CTA ===== -->
-  <section class="section">
+  <!-- ===== NON-EMPLOYER VIEW ===== -->
+  <section class="section" id="non-employer-view">
     <div class="container">
-      <div class="cta-card reveal">
-        <h2>Ready to hire?</h2>
-        <p>Create an employer account and post your first job today.</p>
-        <a href="register.html" class="btn btn-gradient btn-lg" style="margin-top:2rem">
-          Create Employer Account
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 5 19"/></svg>
-        </a>
+      <div style="max-width:56rem;margin:0 auto">
+        <div class="reveal" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.5rem;text-align:center;margin-bottom:2.5rem">
+          <span class="badge badge-electric">Employer Portal</span>
+          <h3 style="margin-top:1rem;font-size:1.25rem;color:var(--midnight)">Log in as an employer to post jobs</h3>
+          <p style="margin-top:0.5rem;color:var(--text-secondary);max-width:32rem;margin-left:auto;margin-right:auto">
+            Employer accounts can publish job listings, review applicants, and shortlist candidates — free during launch.
+          </p>
+          <div style="display:flex;gap:0.75rem;justify-content:center;margin-top:1.25rem;flex-wrap:wrap">
+            <a href="login.html" class="btn btn-primary">Login</a>
+            <a href="register.html" class="btn btn-outline">Create Employer Account</a>
+          </div>
+        </div>
+
+        <h2 style="font-size:1.25rem;font-weight:700;color:var(--midnight);margin-bottom:1rem">Why hire through ReloCompass?</h2>
+        <div class="jobs-grid">
+          <div class="feature-card">
+            <div class="feature-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>Pre-Motivated Talent</h3>
+            <p>Candidates here are actively planning relocation — they commit for the long term.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div>
+            <h3>Skills-Forward Profiles</h3>
+            <p>Applicant profiles highlight skills, experience, and visa readiness.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>Zero Cost During Launch</h3>
+            <p>Post unlimited jobs and browse applicants free while we grow.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -162,11 +200,10 @@
         <div>
           <h4>Platform</h4>
           <ul>
-            <li><a href="index.html#features">Features</a>
-        <a href="index.html#students">Students</a></li>
-            <li><a href="index.html#destinations">Destinations</a></li>
-            <li><a href="employers.html">Employers</a></li>
+            <li><a href="assistant.html">AI Assistant</a></li>
             <li><a href="jobs.html">Jobs</a></li>
+            <li><a href="employers.html">Employers</a></li>
+            <li><a href="index.html#destinations">Destinations</a></li>
           </ul>
         </div>
         <div>
@@ -193,5 +230,6 @@
   <script src="js/config.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/employers.js"></script>
 </body>
 </html>

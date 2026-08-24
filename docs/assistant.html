@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Assistant — ReloCompass</title>
+  <meta name="description" content="Chat with the ReloCompass AI relocation assistant for guidance on visas, accommodation, jobs, and settling abroad.">
+  <meta name="theme-color" content="#0F172A">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/portal.css">
+</head>
+<body class="assistant-page">
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar scrolled" id="navbar">
+    <nav class="container navbar-inner">
+      <a href="index.html" class="nav-brand">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#1E2A45"/><g transform="translate(34,24) scale(0.94)"><path d="M 60 6 C 32 6 10 28 10 56 C 10 85 36 108 60 137 C 84 108 110 85 110 56 C 110 28 88 6 60 6 Z" fill="none" stroke="#F6EFE2" stroke-width="6" stroke-linejoin="round"/><circle cx="60" cy="58" r="34" fill="none" stroke="#F6EFE2" stroke-width="3.5"/><polygon points="53,58 60,21 67,58" fill="#F6EFE2"/><polygon points="53,58 60,123 67,58" fill="#C1552C"/><circle cx="60" cy="58" r="7" fill="#1E2A45" stroke="#F6EFE2" stroke-width="2.5"/></g></svg>
+        <span class="brand-text">Relo<span>Compass</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="assistant.html" class="active">AI Assistant</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="employers.html">Employers</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-actions"></div>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="assistant.html">AI Assistant</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="employers.html">Employers</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <div class="mobile-actions"></div>
+    </div>
+  </header>
+
+  <!-- ===== ASSISTANT ===== -->
+  <main class="assistant-wrap">
+    <section class="page-hero" style="padding:7.5rem 0 1.5rem">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="container text-center">
+        <span class="badge badge-electric">AI Assistant</span>
+        <h1 style="margin-top:1rem;font-size:clamp(1.8rem,4vw,2.6rem)">Your Relocation Copilot</h1>
+        <p style="margin-top:0.5rem;color:var(--text-secondary);max-width:42rem;margin-left:auto;margin-right:auto">
+          Ask anything about visas, accommodation, jobs, budgeting, or settling in.
+          Answers are grounded in our relocation knowledge base — with sources.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:1rem;padding-bottom:4rem">
+      <div class="container">
+        <div class="chat-shell glass">
+          <div class="chat-header">
+            <div class="chat-header-left">
+              <div class="feature-icon cyan" style="width:2.5rem;height:2.5rem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M8.5 14.5s1.5 1.5 3.5 1.5 3.5-1.5 3.5-1.5"/></svg>
+              </div>
+              <div>
+                <strong>ReloCompass Assistant</strong>
+                <span class="chat-status" id="chat-status">Online</span>
+              </div>
+            </div>
+            <button class="btn btn-outline btn-sm" id="clear-chat-btn" style="display:none">New Conversation</button>
+          </div>
+
+          <div class="chat-messages" id="chat-messages" aria-live="polite">
+            <!-- messages rendered by JS -->
+          </div>
+
+          <div class="chat-suggestions" id="chat-suggestions" style="display:none">
+            <!-- suggestion chips rendered by JS -->
+          </div>
+
+          <form class="chat-input-row" id="chat-form">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Ask about visas, housing, jobs, budgeting…" autocomplete="off" maxlength="4000">
+            <button type="submit" class="btn btn-primary" id="chat-send-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send
+            </button>
+          </form>
+        </div>
+
+        <p class="chat-disclaimer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          Guidance only — not legal or immigration advice. Always verify with official government sources for your destination.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/assistant.js"></script>
+</body>
+</html>
