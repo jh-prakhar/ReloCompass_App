@@ -2,11 +2,11 @@
 ReloCompass Backend - Jobs Router
 Public job board + employer job management + applications.
 """
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, status
 from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
-from app.database import get_db
+from app.database import get_db, SessionLocal
 from app.deps import get_current_user
 from app.models import Job, Application, User, UserRole
 from app.schemas import (
@@ -17,6 +17,37 @@ from app.schemas import (
 router = APIRouter(prefix="/jobs", tags=["jobs"])
 
 VALID_APPLICATION_STATUSES = {"pending", "reviewed", "shortlisted", "rejected", "accepted"}
+
+
+from app.services.email import send_application_status_email
+
+
+def _notify_applicant_async(*, application_id: int, new_status: str) -> None:
+    """Background task: email the applicant about their status change."""
+    db = SessionLocal()
+    try:
+        application = (
+            db.query(Application)
+            .filter(Application.id == application_id)
+            .first()
+        )
+        if not application:
+            return
+        send_application_status_email(
+            db,
+            to_email=application.applicant.email,
+            user_name=application.applicant.name,
+            job_title=application.job.title,
+            company=application.job.company,
+            new_status=new_status,
+        )
+    except Exception as e:  # noqa: BLE001 — notification failures never break the flow
+        import logging
+        logging.getLogger("relocompass.jobs").error(
+            "Status-change email failed for application %s: %s", application_id, e
+        )
+    finally:
+        db.close()
 
 
 @router.get("/", response_model=list[JobOut])
@@ -61,6 +92,62 @@ def my_jobs(
         .order_by(Job.created_at.desc())
         .all()
     )
+
+
+@router.get("/match")
+def match_jobs(
+    limit: int = Query(default=10, ge=1, le=50),
+    min_score: int = Query(default=0, ge=0, le=100),
+    skills: str | None = Query(default=None, description="Comma-separated skills text"),
+    city: str | None = Query(default=None),
+    country: str | None = Query(default=None),
+    needs_visa: bool = Query(default=False),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """
+    Ranked job recommendations for the signed-in user.
+
+    Signals: skills overlap (40%), location (25%), visa sponsorship (20%),
+    recency (15%). Profile fields (city/country) come from the user's profile
+    unless overridden via query params; `skills` may come from a skills
+    input on the profile or the query string.
+    """
+    from app.services.matching import score_job
+
+    user_skills_text = " ".join(
+        filter(None, [skills, current_user.bio or ""])
+    )
+    user_city = city or current_user.city
+    user_country = country or current_user.country
+
+    jobs = (
+        db.query(Job)
+        .filter(Job.is_active == True)  # noqa: E712
+        .order_by(Job.created_at.desc())
+        .limit(200)
+        .all()
+    )
+
+    scored = []
+    for job in jobs:
+        result = score_job(
+            job,
+            user_skills_text=user_skills_text,
+            user_city=user_city,
+            user_country=user_country,
+            needs_visa=needs_visa,
+        )
+        if result["score"] >= min_score:
+            scored.append({
+                "job": JobOut.model_validate(job, from_attributes=True).model_dump(),
+                "score": result["score"],
+                "reasons": result["reasons"],
+                "skills_matched": result["skills_matched"],
+            })
+
+    scored.sort(key=lambda x: x["score"], reverse=True)
+    return {"matches": scored[:limit], "total_scored": len(scored)}
 
 
 @router.get("/applications/me", response_model=list[ApplicationOut])
@@ -175,6 +262,7 @@ def job_applications(
 def update_application_status(
     application_id: int,
     payload: ApplicationStatusUpdate,
+    background_tasks: BackgroundTasks,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
@@ -193,6 +281,13 @@ def update_application_status(
     application.status = payload.status
     db.commit()
     db.refresh(application)
+
+    # Notify the applicant by email (own DB session; failures never block the API).
+    background_tasks.add_task(
+        _notify_applicant_async,
+        application_id=application.id,
+        new_status=payload.status,
+    )
     return application
 
 

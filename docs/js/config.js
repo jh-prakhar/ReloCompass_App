@@ -1,32 +1,32 @@
 /**
  * ReloCompass Frontend Configuration
- * API base URL — change this when deploying the backend to a different host.
+ * API base URL resolution — no hardcoded hosts.
+ *
+ * Resolution order:
+ * 1. localStorage 'relo_backend_url' — explicit override (set by the user
+ *    or an ops script); highest priority.
+ * 2. window.location.origin — same-origin (preview/staging/self-hosted),
+ *    i.e. API served by the same host as these pages.
+ * 3. localhost/127.0.0.1 pages → http://localhost:8000 (local dev server).
+ *
+ * For a GitHub Pages-style static deployment, set the override once:
+ *   localStorage.setItem('relo_backend_url', 'https://your-backend.example')
  */
 const API_CONFIG = {
-  /**
-   * Backend API URL.
-   * - GitHub Pages (jh-prakhar.github.io): keep the hosted backend URL below
-   * - Local development (localhost): defaults to http://localhost:8000
-   * - Other environments: set BACKEND_URL to your backend's public URL
-   *
-   * IMPORTANT: Update this value when you deploy the backend to a new host.
-   */
-  BACKEND_URL: 'https://relocompass-tpfpaa.drytis.dev', // ← Hosted FastAPI backend (workspace deployment)
-
-  // Auto-detect environment when BACKEND_URL is not set
   get BASE_URL() {
+    // Explicit override (survives reloads, travels with the browser)
+    let override = null;
+    try { override = localStorage.getItem('relo_backend_url'); } catch (e) { /* private mode */ }
+    if (override) return override.replace(/\/$/, '');
+
     const host = window.location.hostname;
 
-    // Local development — API on separate port (local backend wins over
-    // the hosted URL so devs can run their own instance)
+    // Local development — API on the standard local port
     if (host === 'localhost' || host === '127.0.0.1') {
       return 'http://localhost:8000';
     }
 
-    // Explicitly configured backend host (e.g. GitHub Pages → hosted API)
-    if (this.BACKEND_URL) return this.BACKEND_URL;
-
-    // Same-origin as backend (preview/staging) — relative URLs.
+    // Same-origin as backend (preview/staging/prod) — relative URLs.
     return '';
   },
 

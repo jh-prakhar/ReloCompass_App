@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visa Checklist — ReloCompass</title>
+  <meta name="description" content="Generate a personalized visa and immigration document checklist for your destination.">
+  <meta name="theme-color" content="#0F172A">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ReloCompass">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/portal.css">
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-brand">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#1E2A45"/><g transform="translate(34,24) scale(0.94)"><path d="M 60 6 C 32 6 10 28 10 56 C 10 85 36 108 60 137 C 84 108 110 85 110 56 C 110 28 88 6 60 6 Z" fill="none" stroke="#F6EFE2" stroke-width="6" stroke-linejoin="round"/><circle cx="60" cy="58" r="34" fill="none" stroke="#F6EFE2" stroke-width="3.5"/><line x1="60" y1="24" x2="60" y2="15" stroke="#F6EFE2" stroke-width="3.5" stroke-linecap="round"/><line x1="60" y1="92" x2="60" y2="101" stroke="#F6EFE2" stroke-width="3.5" stroke-linecap="round"/><line x1="94" y1="58" x2="103" y2="58" stroke="#F6EFE2" stroke-width="3.5" stroke-linecap="round"/><line x1="26" y1="58" x2="17" y2="58" stroke="#F6EFE2" stroke-width="3.5" stroke-linecap="round"/><polygon points="53,58 60,21 67,58" fill="#F6EFE2"/><polygon points="53,58 60,123 67,58" fill="#C1552C"/><circle cx="60" cy="58" r="7" fill="#1E2A45" stroke="#F6EFE2" stroke-width="2.5"/></g></svg>
+      <span class="brand-text">Relo<span>Compass</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="assistant.html" data-i18n="nav.assistant">AI Assistant</a>
+      <a href="jobs.html" data-i18n="nav.jobs">Jobs</a>
+      <a href="community.html" data-i18n="nav.community">Community</a>
+      <a href="employers.html" data-i18n="nav.employers">Employers</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-actions"></div>
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+      <svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html" data-i18n="nav.home">Home</a>
+    <a href="assistant.html" data-i18n="nav.assistant">AI Assistant</a>
+    <a href="jobs.html" data-i18n="nav.jobs">Jobs</a>
+    <a href="community.html" data-i18n="nav.community">Community</a>
+    <a href="employers.html" data-i18n="nav.employers">Employers</a>
+    <a href="about.html" data-i18n="nav.about">About</a>
+    <a href="contact.html" data-i18n="nav.contact">Contact</a>
+  </div>
+
+  <main style="max-width:860px;margin:0 auto;padding:7rem 1.25rem 3rem">
+    <header style="margin-bottom:1.5rem">
+      <h1 style="font-size:2rem;font-weight:800">🛂 Visa checklist generator</h1>
+      <p style="color:var(--text-secondary);margin-top:0.35rem">
+        Pick your destination and visa type — get an ordered document checklist with
+        official sources for verification.
+      </p>
+    </header>
+
+    <form class="card" id="visa-form" style="display:grid;grid-template-columns:1fr;gap:1rem;padding:1.5rem;margin-bottom:1.5rem">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem">
+        <div class="form-group" style="margin:0">
+          <label for="visa-destination">Destination</label>
+          <select id="visa-destination" required></select>
+        </div>
+        <div class="form-group" style="margin:0">
+          <label for="visa-type">Visa type</label>
+          <select id="visa-type" required></select>
+        </div>
+        <div class="form-group" style="margin:0">
+          <label for="visa-situation">Your situation</label>
+          <select id="visa-situation">
+            <option value="">—</option>
+            <option value="student">Student</option>
+            <option value="job_seeker">Job seeker</option>
+            <option value="family">Moving with family</option>
+            <option value="with_kids">With children</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+        <button type="submit" class="btn btn-primary" id="visa-generate">Generate checklist</button>
+        <button type="button" class="btn btn-ghost" id="visa-print" hidden>🖨️ Print / save PDF</button>
+      </div>
+      <div id="visa-msg" style="display:none;padding:0.6rem 0.9rem;border-radius:8px;font-size:0.85rem"></div>
+    </form>
+
+    <section id="visa-result" hidden>
+      <div class="card" style="padding:1.5rem;margin-bottom:1.25rem">
+        <h2 id="visa-result-title" style="font-size:1.25rem;font-weight:800"></h2>
+        <p id="visa-result-sub" style="color:var(--text-secondary);font-size:0.9rem;margin-top:0.3rem"></p>
+        <div style="margin-top:0.9rem;display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center">
+          <strong id="visa-progress-label" style="font-size:0.9rem"></strong>
+          <a id="visa-official" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">Official source ↗</a>
+        </div>
+        <div style="margin-top:0.6rem;height:8px;background:rgba(15,23,42,0.08);border-radius:999px;overflow:hidden">
+          <div id="visa-progress-bar" style="height:100%;width:0;background:linear-gradient(90deg,#6366f1,#3b82f6);transition:width 0.3s ease"></div>
+        </div>
+      </div>
+      <div id="visa-phases"></div>
+      <p id="visa-disclaimer" style="font-size:0.75rem;color:var(--text-muted);margin-top:1rem"></p>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/visa.js"></script>
+</body>
+</html>

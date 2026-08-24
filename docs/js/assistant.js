@@ -166,13 +166,119 @@
     addMessage('user', message);
     input.value = '';
     hideSuggestions();
-    showTyping();
     setBusy(true);
 
     const userContext = user
       ? `I am ${user.name}, a ${user.role.replace('_', ' ')}${user.city ? ' interested in ' + user.city : ''}${user.country ? ', ' + user.country : ''}.`
       : null;
 
+    // --- Streaming (SSE) path, with non-streaming fallback ---
+    let streamed = false;
+    try {
+      const token = localStorage.getItem('relocompass_token');
+      const res = await fetch(API_CONFIG.API_URL + '/chat/stream', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: 'Bearer ' + token } : {}),
+        },
+        body: JSON.stringify({ message, session_id, user_context: userContext }),
+      });
+      if (res.ok && res.body) {
+        showTyping();
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buf = '';
+        let text = '';
+        let gotError = false;
+        let assistantRow = null;
+        let metaSources = [];
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buf += decoder.decode(value, { stream: true });
+          let sep;
+          while ((sep = buf.indexOf('\n\n')) !== -1) {
+            const block = buf.slice(0, sep);
+            buf = buf.slice(sep + 2);
+            let evt = 'message', data = '';
+            for (const line of block.split('\n')) {
+              if (line.startsWith('event: ')) evt = line.slice(7).trim();
+              else if (line.startsWith('data: ')) data += line.slice(6);
+            }
+            if (!data) continue;
+            let parsed;
+            try { parsed = JSON.parse(data); } catch { continue; }
+
+            if (evt === 'meta') {
+              if (parsed.session_id) {
+                session_id = parsed.session_id;
+                localStorage.setItem(SESSION_KEY, session_id);
+              }
+              if (Array.isArray(parsed.sources) && parsed.sources.length) {
+                // Keep the RAG source names so we can render chips under the
+                // streamed reply once the text completes (same as /chat/ path).
+                metaSources = parsed.sources;
+              }
+            } else if (evt === 'delta') {
+              if (assistantRow === null) {
+                removeTyping();
+                assistantRow = addMessage('assistant', '');
+              }
+              text += parsed.text || '';
+              const bodyEl = assistantRow.querySelector('.chat-msg-body');
+              bodyEl.innerHTML = esc(text).replace(/\n/g, '<br>');
+              scrollToBottom();
+            } else if (evt === 'error') {
+              gotError = true;
+            }
+          }
+        }
+
+        if (text) {
+          streamed = true;
+          // Sources arrive in meta before the text — attach chips under the
+          // streamed reply's bubble (same visual as the non-streaming path).
+          if (metaSources.length && assistantRow) {
+            const bubble = assistantRow.querySelector('.chat-msg');
+            if (bubble && !bubble.querySelector('.chat-sources')) {
+              const chipsWrap = document.createElement('div');
+              chipsWrap.className = 'chat-sources';
+              const seen = new Set();
+              const names = [];
+              metaSources.forEach((s) => {
+                const name = s.title || s.source || s.filename || s.name;
+                if (name && !seen.has(name)) { seen.add(name); names.push(name); }
+              });
+              chipsWrap.innerHTML =
+                '<span class="chat-sources-label">Sources:</span> ' +
+                names.slice(0, 5)
+                  .map((name) => `<span class="chat-source-chip">${esc(name)}</span>`)
+                  .join('');
+              bubble.appendChild(chipsWrap);
+            }
+          }
+          clearBtn.style.display = 'inline-flex';
+        } else if (!gotError) {
+          removeTyping();
+        } else {
+          removeTyping(); // fall through to non-streaming
+        }
+        if (gotError && !text) streamed = false;
+      }
+    } catch {
+      removeTyping();
+    }
+
+    if (streamed) {
+      setBusy(false);
+      input.focus();
+      return;
+    }
+
+    // --- Non-streaming fallback ---
+    showTyping();
     try {
       const res = await Auth.apiRequest('/chat/', {
         method: 'POST',

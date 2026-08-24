@@ -20,6 +20,49 @@
   let appliedJobIds = new Set();
   let debounceTimer = null;
 
+  // ── For You (match) section ──
+  const forYouRow = document.getElementById('for-you-row');
+  const forYouStatus = document.getElementById('for-you-status');
+
+  async function loadForYou() {
+    if (!isSeeker || !forYouRow) return;
+    try {
+      const res = await Auth.apiRequest('/jobs/match?limit=4');
+      if (!res.ok) return; // silently skip for employers / server errors
+      const data = await res.json();
+      if (!data.matches || !data.matches.length) return;
+      forYouRow.innerHTML = data.matches.map(function (m) {
+        const job = m.job;
+        const pct = Math.max(0, Math.min(100, m.score));
+        const ring = 'hsl(' + Math.round(140 * pct / 100) + ' 70% 42%)';
+        const reasons = (m.reasons || []).slice(0, 2).map(function (r) {
+          return '<div class="match-reason">' + esc(r) + '</div>';
+        }).join('');
+        return (
+          '<article class="job-card for-you-card" data-job-id="' + job.id + '">' +
+          '<div class="for-you-top"><span class="for-you-badge">✨ For You</span>' +
+          '<span class="match-score" style="color:' + ring + ';font-weight:700">' + pct + '% match</span></div>' +
+          '<h3 class="job-card-title">' + esc(job.title) + '</h3>' +
+          '<p class="job-card-company">' + esc(job.company) + '</p>' +
+          '<p class="job-card-meta">' + esc(job.location || '—') + (job.visa_sponsorship ? ' · 🛂 Visa' : '') + '</p>' +
+          reasons +
+          '</article>'
+        );
+      }).join('');
+      forYouRow.querySelectorAll('.for-you-card').forEach(function (card) {
+        card.addEventListener('click', function () {
+          openJobModal(parseInt(card.dataset.jobId, 10));
+        });
+      });
+      const section = document.getElementById('for-you-section');
+      if (section) section.style.display = 'block';
+    } catch (e) {
+      // Offline or auth issue — hide section quietly
+      const section = document.getElementById('for-you-section');
+      if (section) section.style.display = 'none';
+    }
+  }
+
   function esc(str) {
     const d = document.createElement('div');
     d.textContent = str || '';
@@ -176,7 +219,13 @@
               cover_letter: document.getElementById('apply-cover-letter').value.trim() || null,
             }),
           });
-          if (res.status === 201) {
+          if (res.status === 202 || (res.headers && res.headers.get('X-Relocompass-Queued'))) {
+            // Queued by the service worker — will auto-send when back online
+            appliedJobIds.add(job.id);
+            applyBtn.textContent = 'Queued — will send on reconnect ⏳';
+            msg.textContent = "You're offline. The application was saved and will be sent automatically when you reconnect.";
+            renderJobs();
+          } else if (res.status === 201) {
             appliedJobIds.add(job.id);
             applyBtn.textContent = 'Application Sent ✓';
             applyBtn.classList.add('btn-primary');
@@ -275,6 +324,7 @@
   // ── Init: board first (so titles resolve), then applications + badges ──
   (async function init() {
     await loadJobs();
+    loadForYou();
     await loadMyApplications();
     refreshAppliedBadges();
   })();

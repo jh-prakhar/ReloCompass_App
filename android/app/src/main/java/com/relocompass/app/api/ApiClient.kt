@@ -39,6 +39,10 @@ object ApiClient {
     @Volatile private var tokenProvider: () -> String? = { null }
 
     fun init(baseUrl: String, tokenProvider: () -> String?) {
+        require(baseUrl.isNotBlank()) {
+            "API_BASE_URL is not configured. Build with -PapiBaseUrl=https://<host> " +
+                "or set API_BASE_URL in local.properties (see android/README.md)."
+        }
         this.tokenProvider = tokenProvider
         val client = OkHttpClient.Builder()
             .addInterceptor(AuthInterceptor(this.tokenProvider))

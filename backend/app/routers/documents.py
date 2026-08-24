@@ -50,6 +50,15 @@ async def upload_documents(
     upload_dir = Path(settings.UPLOAD_DIR)
     upload_dir.mkdir(parents=True, exist_ok=True)
 
+    def _resolve_upload_path(untrusted: str):
+        """Resolve an untrusted filename to a path guaranteed inside upload_dir.
+        Returns None if it would escape the directory (defense in depth — the
+        caller also sanitizes with Path(...).name before storing)."""
+        candidate = (upload_dir / untrusted).resolve()
+        if candidate.parent == upload_dir.resolve():
+            return candidate
+        return None
+
     results = []
 
     for file in files:
@@ -61,18 +70,26 @@ async def upload_documents(
                        f"Supported: {', '.join(sorted(SUPPORTED_EXTENSIONS))}",
             )
 
-        # Save file
-        file_path = upload_dir / file.filename
+        # Save under a sanitized basename. file.filename is user-controlled and can
+        # carry ../ traversal — Path(...).name strips any directory component, and a
+        # counter disambiguates so an existing file is never silently overwritten.
+        display_name = Path(file.filename).name or f"upload{ext}"
+        stored_name = display_name
+        counter = 1
+        while (upload_dir / stored_name).exists():
+            stored_name = f"{Path(display_name).stem} ({counter}){ext}"
+            counter += 1
+        file_path = upload_dir / stored_name
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
 
         # Ingest into FAISS
         try:
-            ingestion_result = ingest_document(file_path, file.filename, category)
+            ingestion_result = ingest_document(file_path, stored_name, category)
 
             # Record in database
             doc = KnowledgeDocument(
-                filename=file.filename,
+                filename=stored_name,
                 file_type=ext.lstrip("."),
                 file_size=file_path.stat().st_size,
                 category=ingestion_result["category"],
@@ -116,10 +133,11 @@ def delete_document(
             detail="Document not found",
         )
 
-    # Remove file from disk
-    file_path = Path(settings.UPLOAD_DIR) / doc.filename
-    if file_path.exists():
-        file_path.unlink()
+    # Remove file from disk (containment: only unlink paths inside UPLOAD_DIR)
+    uploads_root = Path(settings.UPLOAD_DIR).resolve()
+    candidate = (uploads_root / doc.filename).resolve()
+    if candidate.parent == uploads_root and candidate.exists():
+        candidate.unlink()
 
     filename = doc.filename
     db.delete(doc)

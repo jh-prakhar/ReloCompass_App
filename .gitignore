@@ -86,3 +86,4 @@ backend/uploads/
 # ── fastembed model cache ──
 .local_cache/
 fastembed_cache/
+.playwright-mcp/

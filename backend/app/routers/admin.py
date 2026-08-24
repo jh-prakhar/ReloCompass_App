@@ -95,3 +95,36 @@ def admin_ai_usage(
         "admin": admin,
         "logs": logs,
     })
+
+
+@router.get("/emails")
+def admin_emails(
+    limit: int = 50,
+    current_user: User = Depends(get_admin_user),
+    db: Session = Depends(get_db),
+):
+    """Outbox inspection (admin only) — most recent emails across all flows."""
+    from app.models import EmailOutbox
+
+    rows = (
+        db.query(EmailOutbox)
+        .order_by(EmailOutbox.created_at.desc())
+        .limit(min(max(limit, 1), 200))
+        .all()
+    )
+    return {
+        "count": len(rows),
+        "emails": [
+            {
+                "id": r.id,
+                "to": r.to_email,
+                "subject": r.subject,
+                "kind": r.kind,
+                "status": r.status,
+                "error": r.error,
+                "created_at": r.created_at.isoformat() if r.created_at else None,
+                "preview": (r.body_text or "")[:200],
+            }
+            for r in rows
+        ],
+    }

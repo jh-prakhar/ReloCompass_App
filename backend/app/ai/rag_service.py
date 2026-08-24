@@ -117,3 +117,52 @@ def chat_with_rag(
         "usage": result.get("usage"),
         "latency_ms": result.get("latency_ms"),
     }
+
+
+def chat_with_rag_stream(
+    user_message: str,
+    conversation_history: list[dict] = None,
+    user_context: Optional[str] = None,
+):
+    """
+    Streaming variant of chat_with_rag.
+    Yields ('sources', {sources: list}) first, then ('delta', str) chunks,
+    then ('done', {model_used, usage, latency_ms}).
+    On LLM errors, yields ('error', str) instead of raising.
+    """
+    import time
+
+    conversation_history = conversation_history or []
+
+    start = time.time()
+    context_chunks = []
+    sources = []
+    try:
+        if vector_store.is_ready():
+            context_chunks = vector_store.search(user_message, top_k=settings.RAG_TOP_K)
+            sources = [
+                {"source": c["source"], "category": c["category"], "score": round(c["score"], 3)}
+                for c in context_chunks
+            ]
+            logger.info(f"RAG (stream) retrieved {len(context_chunks)} chunks for query")
+    except Exception as e:
+        logger.error(f"Vector search error: {e}")
+
+    messages = build_rag_messages(
+        user_message=user_message,
+        conversation_history=conversation_history,
+        context_chunks=context_chunks,
+        user_context=user_context,
+    )
+
+    yield ("sources", {"sources": sources})
+
+    try:
+        usage = None
+        stream = llm_service.chat_stream(messages)
+        for delta in stream:
+            yield ("delta", delta)
+        yield ("done", {"model_used": llm_service.model, "usage": usage, "latency_ms": int((time.time() - start) * 1000)})
+    except Exception as e:
+        logger.error(f"LLM stream error: {e}")
+        yield ("error", f"stream_failed: {type(e).__name__}")

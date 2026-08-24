@@ -8,6 +8,13 @@ const Auth = (function () {
   const TOKEN_KEY = 'relocompass_token';
   const USER_KEY = 'relocompass_user';
 
+  /** Escape a string for safe interpolation into innerHTML. */
+  function esc(str) {
+    const d = document.createElement('div');
+    d.textContent = str == null ? '' : String(str);
+    return d.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
   /**
    * Get the stored JWT token.
    * @returns {string|null}
@@ -142,7 +149,7 @@ const Auth = (function () {
     const mobileActions = document.querySelectorAll('.mobile-actions');
 
     const authHTML = loggedIn
-      ? `<span style="font-size:0.8rem;color:var(--text-muted);margin-right:0.5rem">Hi, ${user?.name?.split(' ')[0] || 'User'}</span>
+      ? `<span style="font-size:0.8rem;color:var(--text-muted);margin-right:0.5rem">Hi, ${esc(user?.name?.split(' ')[0] || 'User')}</span>
          <a href="#" onclick="Auth.logout();return false;" class="btn btn-outline btn-sm">Logout</a>
          <a href="${getPagePath('dashboard.html')}" class="btn btn-primary btn-sm">Dashboard</a>`
       : `<a href="${getPagePath('login.html')}" class="btn btn-ghost btn-sm">Login</a>
@@ -154,8 +161,19 @@ const Auth = (function () {
       : `<a href="${getPagePath('login.html')}" class="btn btn-outline btn-sm" style="width:100%">Login</a>
          <a href="${getPagePath('register.html')}" class="btn btn-primary btn-sm" style="width:100%">Sign Up Free</a>`;
 
-    navActions.forEach(el => el.innerHTML = authHTML);
-    mobileActions.forEach(el => el.innerHTML = mobileAuthHTML);
+    navActions.forEach(el => {
+      // Preserve the i18n language picker across the nav rewrite (i18n.js mounts it here)
+      const picker = el.querySelector('.relo-lang-picker');
+      el.innerHTML = authHTML;
+      if (picker) el.appendChild(picker);
+    });
+    mobileActions.forEach(el => {
+      const picker = el.querySelector('.relo-lang-picker');
+      el.innerHTML = mobileAuthHTML;
+      if (picker) el.appendChild(picker);
+    });
+    // Let i18n.js re-mount anything it owns (e.g. picker not yet built)
+    document.dispatchEvent(new CustomEvent('relo:navupdated'));
   }
 
   /**

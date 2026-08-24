@@ -996,6 +996,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .job-meta span { display: flex; align-items: center; gap: 0.25rem; }
 .job-meta svg { width: 0.75rem; height: 0.75rem; }
 .job-desc { margin-top: 0.75rem; font-size: 0.875rem; color: var(--text-secondary); }
+.job-card-title { font-size: 1.1rem; font-weight: 700; color: var(--midnight); }
+.job-card-company { font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem; }
+.job-card-meta { margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary); }
 .jobs-grid {
   display: grid; grid-template-columns: 1fr; gap: 1.5rem;
 }
@@ -1007,6 +1010,42 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   grid-template-columns: 1fr;
   gap: 2rem;
 }
+
+/* ── For You (job match) cards ── */
+.for-you-card {
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.08);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.for-you-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.16);
+}
+.for-you-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.for-you-badge {
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+.for-you-card .job-card-title { font-size: 1.05rem; margin-bottom: 0.25rem; }
+.for-you-card .job-card-company { color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.35rem; }
+.for-you-card .job-card-meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+.match-reason {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  padding: 0.15rem 0;
+}
+.match-reason::before { content: '› '; color: var(--electric); font-weight: 700; }
 @media (min-width: 1024px) { .contact-grid { grid-template-columns: 2fr 3fr; } }
 .contact-info-card {
   background: var(--white);

@@ -9,18 +9,21 @@ with "/" in the backend router must be called WITH the trailing slash.
 
 Usage:
     python tests/android_contract_test.py [base_url]
-    python tests/android_contract_test.py https://relocompass-tpfpaa.drytis.dev
+    python tests/android_contract_test.py https://<your-deployment-host>
 
 Exits non-zero on any failure. Read-only against existing data; creates and
 deletes its own QA job.
 """
 import json
+import os
 import sys
 import urllib.request
 import urllib.error
 import uuid
 
-BASE = (sys.argv[1] if len(sys.argv) > 1 else "https://relocompass-tpfpaa.drytis.dev").rstrip("/")
+# Target API base: arg 1, else the RELO_API_BASE env var, else localhost.
+# (Run against the live deployment with: python3 tests/android_contract_test.py https://<host>)
+BASE = (sys.argv[1] if len(sys.argv) > 1 else os.environ.get("RELO_API_BASE", "http://localhost:8000")).rstrip("/")
 
 passed, failed = 0, 0
 

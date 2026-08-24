@@ -9,13 +9,14 @@ import uuid
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.deps import get_current_user_optional
 from app.models import User, ChatSession, AIUsageLog
 from app.schemas import ChatRequest, ChatResponse, ChatHistoryResponse, MessageResponse
-from app.ai.rag_service import chat_with_rag
+from app.ai.rag_service import chat_with_rag, chat_with_rag_stream
 from app.ai.llm_service import llm_service
 
 logger = logging.getLogger(__name__)
@@ -126,6 +127,96 @@ def chat(
         session_id=session.session_id,
         sources=result["sources"],
         model_used=result.get("model_used"),
+    )
+
+
+@router.post("/stream")
+def chat_stream(
+    payload: ChatRequest,
+    db: Session = Depends(get_db),
+    user: User | None = Depends(get_current_user_optional),
+):
+    """
+    Streaming variant of POST /chat/.
+
+    Server-Sent Events:
+      event: meta      data: {"session_id": "...", "sources": [...]}
+      event: delta     data: {"text": "..."}        (many)
+      event: done      data: {"session_id": "..."}  (history saved)
+      event: error     data: {"detail": "..."}
+
+    Falls back internally: on LLM stream failure the client receives an
+    `error` event and may retry against the non-streaming endpoint.
+    """
+    if not llm_service.is_configured():
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="AI service is not configured. Please set OPENAI_API_KEY.",
+        )
+
+    session = _get_or_create_session(db, payload.session_id, user)
+    history = json.loads(session.messages) if session.messages else []
+    user_context = payload.user_context or _build_user_context(user)
+    session_id = session.session_id
+    user_id = user.id if user else None
+
+    def sse(event: str, data) -> str:
+        return f"event: {event}\ndata: {json.dumps(data, ensure_ascii=False)}\n\n"
+
+    def event_stream():
+        from app.database import SessionLocal
+
+        full_reply = ""
+        ok = False
+        try:
+            for kind, payload_data in chat_with_rag_stream(
+                user_message=payload.message,
+                conversation_history=history,
+                user_context=user_context,
+            ):
+                if kind == "sources":
+                    yield sse("meta", {"session_id": session_id, "sources": payload_data["sources"]})
+                elif kind == "delta":
+                    full_reply += payload_data
+                    yield sse("delta", {"text": payload_data})
+                elif kind == "done":
+                    ok = True
+                    yield sse("done", {"session_id": session_id})
+                elif kind == "error":
+                    yield sse("error", {"detail": payload_data})
+        finally:
+            # Persist conversation + usage log even if the client disconnects mid-stream
+            if full_reply:
+                try:
+                    with SessionLocal() as sdb:
+                        s = sdb.query(ChatSession).filter(
+                            ChatSession.session_id == session_id
+                        ).first()
+                        if s:
+                            h = json.loads(s.messages) if s.messages else []
+                            h.append({"role": "user", "content": payload.message})
+                            h.append({"role": "assistant", "content": full_reply})
+                            s.messages = json.dumps(h)
+                            sdb.commit()
+                        sdb.add(
+                            AIUsageLog(
+                                user_id=user_id,
+                                endpoint="chat_stream",
+                                success=ok,
+                                latency_ms=None,
+                            )
+                        )
+                        sdb.commit()
+                except Exception as e:  # noqa: BLE001 — persistence must not kill the stream
+                    logger.error(f"Failed to persist streamed chat: {e}")
+
+    return StreamingResponse(
+        event_stream(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        },
     )
 
 

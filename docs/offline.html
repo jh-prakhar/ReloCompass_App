@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline — ReloCompass</title>
+  <meta name="theme-color" content="#0F172A">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;text-align:center">
+    <div style="max-width:28rem">
+      <div style="font-size:4rem;line-height:1">🧭</div>
+      <h1 style="margin-top:1rem;font-size:1.75rem;font-weight:800">You're offline</h1>
+      <p style="color:var(--text-secondary);margin-top:0.75rem">
+        This page isn't cached on your device. Reconnect to the internet and try again —
+        pages you've visited before will still work offline.
+      </p>
+      <div style="display:flex;gap:0.75rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap">
+        <a href="index.html" class="btn btn-primary">Go home</a>
+        <button type="button" class="btn btn-ghost" onclick="location.reload()">Retry</button>
+      </div>
+      <p id="online-state" style="margin-top:1.25rem;font-size:0.8rem;color:var(--text-muted)">
+        Checking connection…
+      </p>
+    </div>
+  </main>
+  <script>
+    (function () {
+      const el = document.getElementById('online-state');
+      function paint() {
+        el.textContent = navigator.onLine ? 'Back online — reloading…' : 'Still offline.';
+        if (navigator.onLine) setTimeout(function () { location.reload(); }, 900);
+      }
+      paint();
+      window.addEventListener('online', paint);
+      window.addEventListener('offline', paint);
+    })();
+  </script>
+</body>
+</html>

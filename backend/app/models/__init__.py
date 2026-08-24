@@ -112,6 +112,37 @@ class Accommodation(Base):
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 
 
+class PasswordResetToken(Base):
+    __tablename__ = "password_reset_tokens"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    token_hash = Column(String(64), unique=True, nullable=False, index=True)  # sha256 hex
+    expires_at = Column(DateTime, nullable=False)
+    used_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+    user = relationship("User")
+
+    @property
+    def is_expired(self) -> bool:
+        return datetime.now(timezone.utc) >= self.expires_at.replace(tzinfo=timezone.utc)
+
+
+class EmailOutbox(Base):
+    __tablename__ = "email_outbox"
+
+    id = Column(Integer, primary_key=True, index=True)
+    to_email = Column(String(255), nullable=False, index=True)
+    subject = Column(String(300), nullable=False)
+    body_text = Column(Text, nullable=False)
+    body_html = Column(Text, nullable=True)
+    kind = Column(String(50), default="generic")  # password_reset | application_update | ...
+    status = Column(String(20), default="pending")  # pending | sent | failed | dev_logged
+    error = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
 class ContactMessage(Base):
     __tablename__ = "contact_messages"
 
@@ -170,3 +201,17 @@ class AIUsageLog(Base):
     latency_ms = Column(Integer, nullable=True)
     success = Column(Boolean, default=True)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class CommunityMessage(Base):
+    """Real-time community chat messages, persisted per room."""
+    __tablename__ = "community_messages"
+
+    id = Column(Integer, primary_key=True, index=True)
+    room = Column(String(30), nullable=False, index=True)  # global | housing | visas | jobs
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    user_name = Column(String(100), nullable=False)  # denormalized for cheap history reads
+    content = Column(Text, nullable=False)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), index=True)
+
+    user = relationship("User")

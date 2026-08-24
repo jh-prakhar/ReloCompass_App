@@ -13,7 +13,7 @@ from fastapi.staticfiles import StaticFiles
 from app.config import settings
 from app.database import engine, Base
 from app.routers import auth, jobs, accommodations, contact, users
-from app.routers import chat, documents, ai_status, admin
+from app.routers import chat, documents, ai_status, admin, community, visa, housing
 
 logger = logging.getLogger(__name__)
 
@@ -95,10 +95,15 @@ app.include_router(chat.router, prefix=settings.API_V1_PREFIX)
 app.include_router(documents.router, prefix=settings.API_V1_PREFIX)
 app.include_router(ai_status.router, prefix=settings.API_V1_PREFIX)
 app.include_router(admin.router, prefix=settings.API_V1_PREFIX)
+app.include_router(community.router, prefix=settings.API_V1_PREFIX)
+app.include_router(visa.router, prefix=settings.API_V1_PREFIX)
+app.include_router(housing.router, prefix=settings.API_V1_PREFIX)
 
 
 @app.get("/health")
+@app.get("/api/health")
 def health():
+    """Liveness probe — no auth, no DB round-trip."""
     return {"status": "healthy", "version": "2.0.0"}
 
 
@@ -116,6 +121,9 @@ def api_info():
             "accommodations": "/api/accommodations",
             "contact": "/api/contact",
             "chat": "/api/chat",
+            "community": "/api/community",
+            "visa": "/api/visa",
+            "housing": "/api/housing",
             "documents": "/api/documents",
             "ai_status": "/api/ai/status",
             "admin": "/api/admin",

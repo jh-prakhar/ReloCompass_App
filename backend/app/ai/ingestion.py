@@ -70,9 +70,24 @@ READERS = {
     ".markdown": read_markdown,
     ".csv": read_csv,
     ".json": read_json,
+    ".png": None,  # OCR-capable (see ocr.py)
+    ".jpg": None,
+    ".jpeg": None,
+    ".webp": None,
 }
 
 SUPPORTED_EXTENSIONS = set(READERS.keys())
+
+IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
+
+
+def _pdf_has_text(file_path: Path) -> bool:
+    """True if the PDF already carries an extractable text layer."""
+    try:
+        text = read_pdf(file_path)
+        return len((text or "").strip()) >= 50
+    except Exception:  # noqa: BLE001
+        return False
 
 
 def detect_category(filename: str, content: str) -> str:
@@ -152,9 +167,20 @@ def ingest_document(
     if ext not in READERS:
         raise ValueError(f"Unsupported file type: {ext}. Supported: {', '.join(SUPPORTED_EXTENSIONS)}")
 
-    # Read document
-    reader = READERS[ext]
-    raw_text = reader(file_path)
+    # Read document — with OCR fallback for images & textless PDFs
+    from app.ai.ocr import ocr_image, ocr_scanned_pdf
+
+    raw_text = ""
+    ocr_used = False
+    if ext in IMAGE_EXTENSIONS:
+        raw_text = ocr_image(file_path)
+        ocr_used = True
+    elif ext == ".pdf" and not _pdf_has_text(file_path):
+        raw_text = ocr_scanned_pdf(file_path)
+        ocr_used = True
+    else:
+        reader = READERS[ext]
+        raw_text = reader(file_path)
 
     if not raw_text.strip():
         logger.warning(f"No text extracted from {filename}")
@@ -186,12 +212,13 @@ def ingest_document(
         vector_store.add_chunks(chunks)
         vector_store.save()
 
-    logger.info(f"Ingested {filename}: {len(chunks)} chunks, category={category}")
+    logger.info(f"Ingested {filename}: {len(chunks)} chunks, category={category}" + (" (via OCR)" if ocr_used else ""))
     return {
         "filename": filename,
         "category": category,
         "num_chunks": len(chunks),
         "success": True,
+        "ocr_used": ocr_used,
     }
 
 

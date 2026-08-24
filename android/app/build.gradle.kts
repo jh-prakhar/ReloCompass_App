@@ -26,8 +26,11 @@ android {
             "API_BASE_URL",
             "\"${project.findProperty("apiBaseUrl")
                 ?: localProps.getProperty("API_BASE_URL")
-                ?: "https://relocompass-tpfpaa.drytis.dev"}\""
+                ?: ""}\""
         )
+        // No literal backend URL ships in source. Builds MUST provide one via
+        // -PapiBaseUrl=... (or API_BASE_URL in local.properties); the app shows
+        // a clear configuration error at startup if it's empty.
         // Optional demo-build password for the login screen's demo-account
         // chips. Leave unset for normal builds — passwords never ship in source.
         buildConfigField(

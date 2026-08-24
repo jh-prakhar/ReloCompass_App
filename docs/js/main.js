@@ -19,7 +19,21 @@
             ? '/ReloCompass_App/sw.js'
             : 'sw.js'
         )
+        .then(function (reg) {
+          // Safari has no Background Sync — ask the SW to replay queued
+          // applies whenever the page loads while online.
+          if (navigator.onLine && reg.active) {
+            reg.active.postMessage('relocompass:replay-applies');
+          }
+        })
         .catch(function () { /* SW is progressive enhancement — never break the page */ });
+    });
+
+    // Reconnect while the page is open → replay queued offline actions
+    window.addEventListener('online', function () {
+      navigator.serviceWorker.ready.then(function (reg) {
+        reg.active && reg.active.postMessage('relocompass:replay-applies');
+      });
     });
   }
 

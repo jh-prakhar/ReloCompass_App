@@ -81,6 +81,31 @@ class LLMService:
                 "error": str(e),
             }
 
+    def chat_stream(
+        self,
+        messages: list[dict],
+        temperature: Optional[float] = None,
+        max_tokens: Optional[int] = None,
+    ):
+        """
+        Stream a chat completion. Yields content deltas (str).
+        Raises on connection errors — caller decides how to surface.
+        """
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=messages,
+            temperature=temperature or self.temperature,
+            max_tokens=max_tokens or self.max_tokens,
+            stream=True,
+        )
+        for chunk in response:
+            if not getattr(chunk, "choices", None):
+                continue
+            delta = chunk.choices[0].delta
+            content = getattr(delta, "content", None)
+            if content:
+                yield content
+
     # ── Embeddings (local via fastembed — no external API needed) ──
     _embedder = None
 

@@ -47,11 +47,15 @@ The project is built with a clear **frontend–backend separation**:
 ## Features
 
 ### For Students & Job Seekers
-- **AI Assistant** — Chat-based guidance for relocation questions, visa info, and city recommendations (multi-turn, cites knowledge-base sources, persists history)
-- **Accommodation Hub** — Search student housing, dorms, shared apartments by city and budget
+- **AI Assistant** — Chat-based guidance for relocation questions, visa info, and city recommendations (multi-turn, streaming responses, cites knowledge-base sources, persists history)
+- **Accommodation Hub** — Search student housing, dorms, shared apartments by city and budget; university housing availability via pluggable providers (demo provider included)
 - **Transportation Guide** — Public transit info, airport connections, and travel tips for major destinations
 - **Job Board & Matching** — Browse live listings with search, location, job-type and visa-sponsorship filters; apply with a cover letter and track application status (pending → reviewed → shortlisted → accepted/rejected)
-- **Community Hub** — Connect with other relocators through groups and events
+- **Smart Job Matching ("For You")** — Weighted matching on skills (40%), location (25%), visa-sponsorship preference (20%), and recency (15%) with explainable reason chips per job
+- **Community Chat** — Real-time WebSocket chat: global lounge plus Housing, Jobs, and Visas topic rooms, presence counts, rate limiting, and persisted history
+- **Visa Checklist Generator** — Destination × visa-type × situation document checklists (Canada, Germany, UK, Australia, USA) with progress tracking, official-source links, and print support
+- **Multi-language UI** — English, Hindi, Nepali, Spanish, and French with persisted language preference
+- **Email Notifications** — Token-based single-use password reset (30-min expiry) and application-status emails; SMTP when configured, audited dev outbox otherwise
 - **Financial Planning** — Budget estimators for cost of living across cities
 - **Relocation Checklists** — Step-by-step task lists for a smooth move
 
@@ -61,19 +65,20 @@ The project is built with a clear **frontend–backend separation**:
 - **Company Profile** — Showcase your organization to a global talent pool
 
 ### Platform-wide
-- **Secure Authentication** — JWT-based login with bcrypt password hashing
+- **Secure Authentication** — JWT-based login with bcrypt password hashing; token-based single-use password reset
 - **Role-Based Access** — Student, Job Seeker, Employer, and Admin accounts
 - **Responsive Design** — Works on desktop, tablet, and mobile
 - **Accessibility** — WCAG 2.1 AA compliant with semantic HTML and ARIA labels
+- **PWA with Offline Support** — Installable app shell, network-first data with offline fallback, and job applications queue offline then replay on reconnect
 
 ### AI-Powered Features
-- **Conversational Chat Assistant** — RAG-powered AI that answers relocation questions grounded in a curated knowledge base
-- **Document Ingestion Pipeline** — Upload PDF, DOCX, TXT, MD, CSV, JSON documents; automatic text extraction, chunking, embedding, and FAISS indexing
+- **Streaming Conversational Assistant** — RAG-powered AI with server-sent events (SSE) so replies render token-by-token, falling back to standard request/response when streaming is unavailable
+- **Document Ingestion Pipeline** — Upload PDF, DOCX, TXT, MD, CSV, JSON **and images / scanned PDFs (OCR via vision model)**; automatic text extraction, chunking, embedding, and FAISS indexing
 - **FAISS Vector Search** — Retrieves the most relevant knowledge base passages to ground AI responses
 - **Session Memory** — Multi-turn conversations with context retention
-- **Source Citations** — AI cites which knowledge base document each answer came from
+- **Source Citations** — AI cites which knowledge base document each answer came from (streaming and non-streaming paths)
 - **Honest Fallbacks** — The AI says "I don't know" rather than inventing information
-- **Admin Panel** — Upload documents, rebuild the index, manage users, and monitor AI usage
+- **Admin Panel** — Upload documents, rebuild the index, manage users, monitor AI usage, and inspect the email outbox
 - **Personalized Recommendations** — Responses tailored to user role (student, job seeker, employer) and profile
 
 ---
@@ -371,6 +376,12 @@ Create `backend/.env` based on `backend/.env.example`:
 | `CHUNK_SIZE` | Text chunk size for ingestion | `800` |
 | `CHUNK_OVERLAP` | Overlap between chunks | `150` |
 | `RAG_TOP_K` | Number of chunks retrieved per query | `5` |
+| `FRONTEND_URL` | Public frontend URL used in email links | *(empty)* |
+| `SMTP_HOST` | SMTP relay host — empty = dev outbox mode | *(empty)* |
+| `SMTP_PORT` | SMTP relay port | `587` |
+| `SMTP_USER` | SMTP username | *(empty)* |
+| `SMTP_PASSWORD` | SMTP password | *(empty)* |
+| `SMTP_FROM` | From address for outgoing email | `noreply@relocompass.org` |
 
 ---
 
@@ -629,15 +640,15 @@ Update `CORS_ORIGINS` in `backend/.env` if deploying to a different domain.
 
 - [x] ~~Real AI assistant integration (OpenAI / LLM-powered chat)~~ — **Done!**
 - [x] ~~Admin dashboard for content management~~ — **Done!**
-- [ ] Email notification system (password reset, application updates)
-- [ ] Advanced job matching algorithm (skills + location + preferences)
-- [ ] Multi-language support (Hindi, Nepali, Spanish, French)
-- [ ] Progressive Web App (PWA) with offline support
-- [ ] Real-time chat between community members
-- [ ] Visa & immigration document checklist generator
-- [ ] Integration with university APIs for housing availability
-- [ ] Streaming AI responses (SSE) for real-time chat experience
-- [ ] Multi-modal document ingestion (images, scanned PDFs via OCR)
+- [x] ~~Email notification system (password reset, application updates)~~ — **Done!** (dev outbox; set SMTP_* env for real delivery)
+- [x] ~~Advanced job matching algorithm (skills + location + preferences)~~ — **Done!** (GET /api/jobs/match + "For You" section)
+- [x] ~~Multi-language support (Hindi, Nepali, Spanish, French)~~ — **Done!** (5 locales, persisted preference)
+- [x] ~~Progressive Web App (PWA) with offline support~~ — **Done!** (installable, offline shell, queued applies replay on reconnect)
+- [x] ~~Real-time chat between community members~~ — **Done!** (WebSocket: global + housing/jobs/visas rooms)
+- [x] ~~Visa & immigration document checklist generator~~ — **Done!** (5 destinations, progress tracking, print)
+- [x] ~~Integration with university APIs for housing availability~~ — **Done!** (pluggable provider interface + demo provider; real university APIs plug in later)
+- [x] ~~Streaming AI responses (SSE) for real-time chat experience~~ — **Done!** (POST /api/chat/stream with graceful fallback)
+- [x] ~~Multi-modal document ingestion (images, scanned PDFs via OCR)~~ — **Done!** (vision-model OCR pipeline)
 
 ---
 

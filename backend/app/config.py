@@ -60,6 +60,17 @@ class Settings:
         if origin.strip()
     ]
 
+    # Email / SMTP — when SMTP_HOST is unset, emails land in the dev outbox
+    # (email_outbox table + server log) instead of being delivered.
+    SMTP_HOST: str = os.getenv("SMTP_HOST", "")
+    SMTP_PORT: int = int(os.getenv("SMTP_PORT", "587"))
+    SMTP_USER: str = os.getenv("SMTP_USER", "")
+    SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
+    SMTP_FROM: str = os.getenv("SMTP_FROM", "")
+    # Public URL of the frontend (used in emails). No literal default — the
+    # value is registered as a backend env key (site_url tag).
+    FRONTEND_URL: str = os.getenv("FRONTEND_URL", "")
+
     # ── AI / LLM Configuration ──
     # OpenAI-compatible endpoint. Point to any LLM gateway by changing these.
     LLM_API_KEY: str = os.getenv("LLM_API_KEY", os.getenv("OPENAI_API_KEY", ""))
