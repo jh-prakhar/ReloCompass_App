@@ -373,8 +373,6 @@ Create `backend/.env` based on `backend/.env.example`:
 | `CHUNK_SIZE` | Text chunk size for ingestion | `800` |
 | `CHUNK_OVERLAP` | Overlap between chunks | `150` |
 | `RAG_TOP_K` | Number of chunks retrieved per query | `5` |
-| `DEV_ADMIN_EMAIL` | Dev admin email (auto-seeded) | `admin@relocompass.org` |
-| `DEV_ADMIN_PASSWORD` | Dev admin password (auto-seeded) | `Admin@12345` |
 
 ---
 
