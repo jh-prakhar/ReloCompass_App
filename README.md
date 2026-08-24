@@ -378,23 +378,6 @@ Create `backend/.env` based on `backend/.env.example`:
 
 ---
 
-## 🔑 Demo Accounts
-
-The backend seeds these demo accounts automatically on first run (see `Deployment` / setup script). Use them to explore every role's features:
-
-| Role | Email | Password | Access |
-|------|-------|----------|--------|
-| **Admin** | `admin@relocompass.org` | `Admin@12345` | Full platform access — admin panel, user management, AI document uploads & usage stats |
-| **Employer** | `employer@relocompass.org` | `Employer@12345` | Employer portal — post/manage jobs, view applicants, update application statuses |
-| **Job Seeker** | `jobseeker@relocompass.org` | `JobSeeker@12345` | Browse & filter jobs, apply with cover letters, track application status |
-| **Student** | `student@relocompass.org` | `Student@12345` | AI assistant, jobs board, applications |
-
-> ⚠️ **Change or remove these accounts before any public/production deployment.** They are intended for local development and demos only (passwords can be overridden via the `DEV_ADMIN_PASSWORD` environment variable for the admin account).
-
-**📥 Complete source bundle:** [`docs/assets/ReloCompass.zip`](docs/assets/ReloCompass.zip) — the full app (backend + frontend + tests + knowledge base), env/secret-free.
-
----
-
 ## API Endpoints
 
 ### Authentication
