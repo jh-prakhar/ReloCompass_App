@@ -76,14 +76,16 @@ android/
 
 ## Demo accounts (hosted backend)
 
-| Role | Email | Password |
-|---|---|---|
-| Student | student@relocompass.org | Student@12345 |
-| Job seeker | jobseeker@relocompass.org | JobSeeker@12345 |
-| Employer | employer@relocompass.org | Employer@12345 |
-| Admin | admin@relocompass.org | Admin@12345 |
+| Role | Email |
+|---|---|
+| Student | student@relocompass.org |
+| Job seeker | jobseeker@relocompass.org |
+| Employer | employer@relocompass.org |
 
-The login screen shows one-tap chips for the first three.
+Passwords are not published — they're set at deploy time via the demo-account
+seed environment variables on the server. The login screen's demo chips fill
+the email; the password is read from `BuildConfig.DEMO_PASSWORD` if you set
+`demoPassword=...` as a Gradle property, otherwise type it manually.
 
 ## Notes
 

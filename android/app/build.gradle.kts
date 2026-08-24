@@ -28,6 +28,15 @@ android {
                 ?: localProps.getProperty("API_BASE_URL")
                 ?: "https://relocompass-tpfpaa.drytis.dev"}\""
         )
+        // Optional demo-build password for the login screen's demo-account
+        // chips. Leave unset for normal builds — passwords never ship in source.
+        buildConfigField(
+            "String",
+            "DEMO_PASSWORD",
+            "\"${project.findProperty("demoPassword")
+                ?: localProps.getProperty("DEMO_PASSWORD")
+                ?: ""}\""
+        )
     }
 
     buildTypes {

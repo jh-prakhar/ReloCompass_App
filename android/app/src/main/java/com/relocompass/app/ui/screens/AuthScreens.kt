@@ -23,6 +23,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.relocompass.app.BuildConfig
 import com.relocompass.app.data.SessionViewModel
 import com.relocompass.app.ui.components.PrimaryButton
 import com.relocompass.app.ui.theme.*
@@ -104,7 +105,11 @@ fun LoginScreen(session: SessionViewModel, onRegister: () -> Unit) {
                 Text("Create an account", color = Blue, fontWeight = FontWeight.SemiBold)
             }
 
-            // Demo accounts against the hosted backend
+            // Demo accounts against the hosted backend.
+            // Passwords aren't shipped in source: set demoPassword via Gradle
+            // (-PdemoPassword=... or local.properties DEMO_PASSWORD=...) for a
+            // demo build; the chips prefill the email only.
+            val demoPassword = BuildConfig.DEMO_PASSWORD
             Spacer(Modifier.height(20.dp))
             HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
             Spacer(Modifier.height(12.dp))
@@ -115,18 +120,13 @@ fun LoginScreen(session: SessionViewModel, onRegister: () -> Unit) {
                 "Job seeker" to "jobseeker@relocompass.org",
                 "Employer" to "employer@relocompass.org",
             ).forEach { (label, mail) ->
-                val demoPassword = when (label) {
-                    "Student" -> "Student@12345"
-                    "Job seeker" -> "JobSeeker@12345"
-                    else -> "Employer@12345"
-                }
                 Row(
                     Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(10.dp))
                         .clickable {
                             email = mail
-                            password = demoPassword
+                            if (demoPassword.isNotBlank()) password = demoPassword
                         }
                         .padding(vertical = 8.dp, horizontal = 10.dp),
                     verticalAlignment = Alignment.CenterVertically,

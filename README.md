@@ -14,7 +14,6 @@
 
 - [Overview](#overview)
 - [Features](#features)
-- [Demo Accounts](#demo-accounts)
 - [AI Assistant Architecture](#ai-assistant-architecture)
 - [Architecture](#architecture)
 - [Tech Stack](#tech-stack)
@@ -147,10 +146,8 @@ Authenticated administrators can:
 - Manage user accounts
 - Monitor system health (LLM status, vector index size, document count)
 
-**Dev Admin Account** (auto-seeded, development only):
-- Email: `admin@relocompass.org`
-- Password: `Admin@12345`
-- **⚠️ Remove or change before any production deployment.**
+**Dev Admin Account** (auto-seeded, development only — override via the
+`DEV_ADMIN_PASSWORD` env var; **remove or change before any production deployment**).
 
 ---
 
