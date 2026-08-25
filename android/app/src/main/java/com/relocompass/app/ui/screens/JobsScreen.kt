@@ -3,6 +3,7 @@ package com.relocompass.app.ui.screens
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -14,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.relocompass.app.api.ApiClient
 import com.relocompass.app.api.Job
+import com.relocompass.app.api.JobMatch
 import com.relocompass.app.data.SessionViewModel
 import androidx.compose.foundation.verticalScroll
 import com.relocompass.app.api.ApplyRequest
@@ -31,6 +33,7 @@ fun JobsScreen(session: SessionViewModel, navigate: (String) -> Unit = { }) {
     val isEmployer = user?.role == "employer"
     val scope = rememberCoroutineScope()
     var jobs by remember { mutableStateOf<List<Job>?>(null) }
+    var matches by remember { mutableStateOf<List<JobMatch>>(emptyList()) }
     var error by remember { mutableStateOf<String?>(null) }
     var selected by remember { mutableStateOf<Job?>(null) }
     var q by remember { mutableStateOf("") }
@@ -51,6 +54,14 @@ fun JobsScreen(session: SessionViewModel, navigate: (String) -> Unit = { }) {
             jobs = result.getOrNull()
             error = if (jobs == null) result.exceptionOrNull()?.message else null
         }
+    }
+
+    // "For You" matches: jobseekers/students only, silent on failure
+    LaunchedEffect(isEmployer) {
+        if (isEmployer) { matches = emptyList(); return@LaunchedEffect }
+        apiCall { ApiClient.api.jobMatches(limit = 6) }
+            .onSuccess { matches = it.matches }
+            .onFailure { matches = emptyList() }
     }
 
     LaunchedEffect(Unit) { reload() }
@@ -125,6 +136,24 @@ fun JobsScreen(session: SessionViewModel, navigate: (String) -> Unit = { }) {
                     contentPadding = PaddingValues(16.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
+                    if (matches.isNotEmpty()) {
+                        item(key = "for-you-header") {
+                            Column {
+                                Text("For You", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                                Text(
+                                    "Matched on skills, location & visa preference",
+                                    color = Slate600, fontSize = 12.sp,
+                                )
+                                Spacer(Modifier.height(8.dp))
+                                LazyRow(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                                    items(matches, key = { "m" + it.job.id }) { m ->
+                                        MatchCard(m) { selected = m.job }
+                                    }
+                                }
+                                Spacer(Modifier.height(12.dp))
+                            }
+                        }
+                    }
                     items(jobs!!, key = { it.id }) { job ->
                         JobCard(job) { selected = job }
                     }
@@ -145,6 +174,47 @@ private fun EmptyState(title: String, subtitle: String?) {
         Spacer(Modifier.height(8.dp))
         Text(title, fontWeight = FontWeight.SemiBold)
         subtitle?.let { Text(it, color = Slate600, fontSize = 13.sp) }
+    }
+}
+
+@Composable
+private fun MatchCard(match: JobMatch, onClick: () -> Unit) {
+    Surface(
+        shape = RoundedCornerShape(16.dp),
+        color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.35f),
+        modifier = Modifier.width(220.dp).clickable(onClick = onClick),
+    ) {
+        Column(Modifier.padding(12.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    "${match.score}%",
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+                Spacer(Modifier.width(6.dp))
+                Text("match", fontSize = 11.sp, color = Slate600)
+            }
+            Spacer(Modifier.height(4.dp))
+            Text(match.job.title, fontWeight = FontWeight.SemiBold, fontSize = 14.sp, maxLines = 2)
+            Text(match.job.company, color = Slate600, fontSize = 12.sp, maxLines = 1)
+            if (match.reasons.isNotEmpty()) {
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    match.reasons.take(2).joinToString(" · "),
+                    fontSize = 11.sp,
+                    color = Slate600,
+                    maxLines = 2,
+                )
+            }
+            if (match.skillsMatched.isNotEmpty()) {
+                Spacer(Modifier.height(6.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                    match.skillsMatched.take(3).forEach { skill ->
+                        AssistChip(onClick = {}, label = { Text(skill, fontSize = 10.sp) })
+                    }
+                }
+            }
+        }
     }
 }
 

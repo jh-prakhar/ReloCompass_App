@@ -130,3 +130,130 @@ data class ApiError(val detail: Any? = null) {
         else -> detail.toString()
     }
 }
+
+// ── Phase 4: job matching ───────────────────────────────────────────────────
+
+data class JobMatch(
+    val job: Job,
+    val score: Int,
+    val reasons: List<String> = emptyList(),
+    @SerializedName("skills_matched") val skillsMatched: List<String> = emptyList(),
+)
+
+data class MatchResponse(
+    val matches: List<JobMatch> = emptyList(),
+    @SerializedName("total_scored") val totalScored: Int = 0,
+)
+
+// ── Phase 4: visa checklist ─────────────────────────────────────────────────
+
+data class VisaDestination(
+    val id: String,
+    val label: String,
+    @SerializedName("visa_types") val visaTypes: List<VisaTypeRef> = emptyList(),
+    @SerializedName("official_sources") val officialSources: List<String> = emptyList(),
+)
+
+data class VisaTypeRef(val id: String, val label: String)
+
+data class DestinationsResponse(val destinations: List<VisaDestination> = emptyList())
+
+data class ChecklistItem(
+    val id: String,
+    val label: String,
+    val phase: String,
+    val note: String? = null,
+)
+
+data class ChecklistPhase(
+    val phase: String,
+    val label: String,
+    val items: List<ChecklistItem> = emptyList(),
+)
+
+data class VisaChecklist(
+    val destination: String,
+    @SerializedName("visa_type") val visaType: String,
+    val situation: String? = null,
+    val checklist: List<ChecklistPhase> = emptyList(),
+    @SerializedName("total_items") val totalItems: Int = 0,
+    @SerializedName("official_sources") val officialSources: List<String> = emptyList(),
+    val disclaimer: String? = null,
+)
+
+// ── Phase 4: community chat ─────────────────────────────────────────────────
+
+data class CommunityRoom(
+    val id: String,
+    val name: String,
+    val description: String? = null,
+)
+
+data class CommunityRoomsResponse(val rooms: List<CommunityRoom> = emptyList())
+
+data class CommunityMessage(
+    val id: Long,
+    val room: String,
+    @SerializedName("user_id") val userId: Int,
+    @SerializedName("user_name") val userName: String,
+    val content: String,
+    @SerializedName("created_at") val createdAt: String? = null,
+)
+
+data class CommunityHistory(val room: String, val messages: List<CommunityMessage> = emptyList())
+
+/** Inbound WebSocket frames. */
+data class WsEvent(
+    val type: String, // history | presence | message | error
+    val count: Int? = null,
+    val detail: String? = null,
+    // message payloads share CommunityMessage's fields inline
+    val id: Long? = null,
+    @SerializedName("user_id") val userId: Int? = null,
+    @SerializedName("user_name") val userName: String? = null,
+    val content: String? = null,
+    @SerializedName("created_at") val createdAt: String? = null,
+    val messages: List<CommunityMessage>? = null,
+)
+
+/** Outbound WebSocket frames. */
+data class WsSend(val type: String, val room: String, val content: String)
+
+// ── Phase 4: university housing ─────────────────────────────────────────────
+
+data class HousingProvider(
+    val id: String,
+    val label: String,
+    val universities: List<String> = emptyList(),
+)
+
+data class ProvidersResponse(val providers: List<HousingProvider> = emptyList())
+
+data class HousingOption(
+    val provider: String,
+    val university: String,
+    val campus: String? = null,
+    val kind: String, // dorm | studio | shared_flat | homestay
+    val title: String,
+    @SerializedName("monthly_cost") val monthlyCost: Double,
+    val currency: String,
+    @SerializedName("available_from") val availableFrom: String? = null,
+    @SerializedName("available_to") val availableTo: String? = null,
+    @SerializedName("distance_km") val distanceKm: Double? = null,
+    @SerializedName("meals_included") val mealsIncluded: Boolean = false,
+    val url: String? = null,
+    val notes: String? = null,
+)
+
+data class AvailabilityResponse(
+    val university: String,
+    val provider: HousingProviderSummary,
+    val options: List<HousingOption> = emptyList(),
+    val count: Int = 0,
+)
+
+data class HousingProviderSummary(val id: String, val label: String)
+
+// ── Phase 4: password reset ─────────────────────────────────────────────────
+
+data class PasswordResetRequest(val email: String)

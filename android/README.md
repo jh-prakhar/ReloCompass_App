@@ -19,9 +19,15 @@ cites its sources).
 | Dashboard | Role-aware greeting and quick actions |
 | AI Assistant | RAG chat with the live assistant, multi-turn sessions, source citations under replies |
 | Jobs | Search board with `q` / location / visa-sponsorship filters, job detail, one-tap apply with optional cover letter |
+| For You (v2) | Smart match cards on the jobs board — score %, reasons, matched-skill chips (skills 40% / location 25% / visa 20% / recency 15%) |
+| Community (v2) | Live WebSocket chat — 🌍 global plus 🏠 housing / 💼 jobs / 🛂 visas rooms, presence count, reconnect with backoff, stale-socket guard on room switches |
+| Visa Checklist (v2) | Destination → visa type → situation builder; phased, checkable document list with progress, official-source links, disclaimer |
+| University Housing (v2) | Provider + university picker → live availability (dorm/studio, monthly cost, distance, meals); pluggable demo provider |
 | Applications | Status tracking (pending → reviewed → shortlisted → accepted/rejected) |
 | Employer Portal | Post jobs, view applicants with profiles + cover letters, change application status, delete listings |
 | Profile | Update name, phone, destination country/city, bio (feeds the assistant's context) |
+
+v2 also adds a password-reset request entry point (`POST /api/auth/password-reset`).
 
 ## Build & run
 

@@ -17,6 +17,7 @@ deletes its own QA job.
 import json
 import os
 import sys
+import urllib.parse
 import urllib.request
 import urllib.error
 import uuid
@@ -95,6 +96,48 @@ def main() -> int:
     assert sid and "reply" in r and isinstance(r.get("sources"), list), "chat response shape wrong"
     check("chat history", "GET", f"/api/chat/history/{sid}", 200, stok)
     check("chat clear", "DELETE", f"/api/chat/history/{sid}", 200, stok)
+
+    # ── Phase 4 endpoints (Android v2) ─────────────────────────────────────────
+    # Job matching (ReloApi.jobMatches)
+    r = check("jobs match", "GET", "/api/jobs/match?limit=6", 200, stok)
+    assert isinstance(r.get("matches"), list) and isinstance(r.get("total_scored"), int), "match response shape wrong"
+    if r["matches"]:
+        m = r["matches"][0]
+        assert {"job", "score", "reasons", "skills_matched"} <= set(m.keys()), "match item shape wrong"
+        assert {"id", "title", "company", "location", "job_type", "visa_sponsorship"} <= set(m["job"].keys()), "match.job shape wrong"
+
+    # Visa catalogue + checklist (ReloApi.visaDestinations / visaChecklist)
+    r = check("visa destinations", "GET", "/api/visa/destinations", 200)
+    dests = r.get("destinations", [])
+    assert dests and {"id", "label", "visa_types", "official_sources"} <= set(dests[0].keys()), "destination shape wrong"
+    r = check("visa checklist", "GET", "/api/visa/checklist?destination=canada&visa_type=study_permit", 200)
+    assert {"checklist", "total_items", "official_sources"} <= set(r.keys()), "checklist shape wrong"
+    phase0 = r["checklist"][0]
+    assert {"phase", "label", "items"} <= set(phase0.keys()), "checklist phase shape wrong"
+    assert {"id", "label", "phase", "note"} <= set(phase0["items"][0].keys()), "checklist item shape wrong"
+    check("visa checklist unknown dest", "GET", "/api/visa/checklist?destination=narnia&visa_type=study_permit", 404)
+    check("visa checklist unknown situation", "GET", "/api/visa/checklist?destination=canada&visa_type=study_permit&situation=nonsense", 404)
+
+    # Community (ReloApi.communityRooms / communityHistory; WsEvent shapes)
+    r = check("community rooms", "GET", "/api/community/rooms", 200)
+    rooms = r.get("rooms", [])
+    assert rooms and {"id", "name"} <= set(rooms[0].keys()), "room shape wrong"
+    r = check("community history", "GET", f"/api/community/history/{rooms[0]['id']}", 200, stok)
+    assert "messages" in r, "history shape wrong"
+    check("community history unknown room", "GET", "/api/community/history/nonsense", 404, stok)
+
+    # Housing (ReloApi.housingProviders / housingAvailability)
+    r = check("housing providers", "GET", "/api/housing/providers", 200)
+    providers = r.get("providers", [])
+    assert providers and {"id", "label", "universities"} <= set(providers[0].keys()), "provider shape wrong"
+    uni = providers[0]["universities"][0]
+    r = check("housing availability", "GET", f"/api/housing/availability?university={urllib.parse.quote(uni)}", 200)
+    assert {"university", "provider", "options", "count"} <= set(r.keys()), "availability shape wrong"
+    if r["options"]:
+        assert {"kind", "title", "monthly_cost", "currency"} <= set(r["options"][0].keys()), "option shape wrong"
+
+    # Password reset request (ReloApi.requestPasswordReset) — always 200, no enumeration
+    check("password reset request", "POST", "/api/auth/password-reset", 200, None, {"email": f"nobody_{stamp}@qacontract.dev"})
 
     # Error envelope shapes the Kotlin Errors.parse() expects
     code, payload = call("POST", "/api/auth/register", None, {"name": "A", "email": "bad", "password": "123", "role": "student"})

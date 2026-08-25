@@ -16,9 +16,9 @@ fun ReloBottomBar(
 ) {
     val items = buildList {
         add(Triple("dashboard", "Home", IconsHome))
-        add(Triple("assistant", "AI Chat", IconsChat))
         add(Triple("jobs", "Jobs", IconsJobs))
-        add(Triple("applications", "Applied", IconsApplied))
+        add(Triple("community", "Chat", IconsChat))
+        if (!isEmployer) add(Triple("visa", "Visa", IconsVisa))
         if (isEmployer) add(Triple("employer", "Hiring", IconsHiring))
         add(Triple("profile", "Profile", IconsProfile))
     }

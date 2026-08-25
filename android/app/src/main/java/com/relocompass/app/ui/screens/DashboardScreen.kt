@@ -69,7 +69,7 @@ fun DashboardScreen(session: SessionViewModel, navigate: (String) -> Unit) {
                             if (user?.role == "employer")
                                 "Post jobs, review applicants, and hire international talent."
                             else
-                                "Visas, housing, and jobs abroad — with an AI assistant that cites its sources.",
+                                "Visas, housing, jobs & community — with an AI assistant that cites its sources.",
                             color = Cream.copy(alpha = 0.85f),
                             fontSize = 14.sp,
                         )
@@ -83,8 +83,13 @@ fun DashboardScreen(session: SessionViewModel, navigate: (String) -> Unit) {
             Spacer(Modifier.height(12.dp))
 
             val cards = buildList {
-                add(Action("🤖", "AI Assistant", "Ask anything about relocating — answers cite sources") { navigate("assistant") })
-                add(Action("💼", "Find Jobs", "Visa-sponsorship filter, one-tap apply") { navigate("jobs") })
+                add(Action("🤖", "AI Assistant", "Streaming answers that cite sources") { navigate("assistant") })
+                add(Action("💼", "Find Jobs", "\"For You\" matches, visa filter, one-tap apply") { navigate("jobs") })
+                add(Action("💬", "Community", "Live chat — global, housing, jobs & visas rooms") { navigate("community") })
+                if (user?.role != "employer") {
+                    add(Action("🛂", "Visa Checklist", "Document checklist by destination & situation") { navigate("visa") })
+                    add(Action("🏠", "University Housing", "Dorms & studios near your campus") { navigate("housing") })
+                }
                 add(Action("📄", "My Applications", "Track status from pending to accepted") { navigate("applications") })
                 if (user?.role == "employer") {
                     add(Action("🏢", "Employer Portal", "Post jobs and manage applicants") { navigate("employer") })

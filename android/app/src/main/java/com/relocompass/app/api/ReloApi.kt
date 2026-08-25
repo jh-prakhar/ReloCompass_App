@@ -61,4 +61,40 @@ interface ReloApi {
         @Path("applicationId") applicationId: Int,
         @Body body: StatusUpdate,
     ): Application
+
+    // ── Job matching (Phase 4) ──
+    @GET("jobs/match")
+    suspend fun jobMatches(@Query("limit") limit: Int = 4): MatchResponse
+
+    // ── Visa checklist (Phase 4) ──
+    @GET("visa/destinations")
+    suspend fun visaDestinations(): DestinationsResponse
+
+    @GET("visa/checklist")
+    suspend fun visaChecklist(
+        @Query("destination") destination: String,
+        @Query("visa_type") visaType: String,
+        @Query("situation") situation: String? = null,
+    ): VisaChecklist
+
+    // ── Community chat (Phase 4) ──
+    @GET("community/rooms")
+    suspend fun communityRooms(): CommunityRoomsResponse
+
+    @GET("community/history/{room}")
+    suspend fun communityHistory(@Path("room") room: String): CommunityHistory
+
+    // ── University housing (Phase 4) ──
+    @GET("housing/providers")
+    suspend fun housingProviders(): ProvidersResponse
+
+    @GET("housing/availability")
+    suspend fun housingAvailability(
+        @Query("university") university: String,
+        @Query("provider_id") providerId: String = "demo",
+    ): AvailabilityResponse
+
+    // ── Password reset (Phase 4) ──
+    @POST("auth/password-reset")
+    suspend fun requestPasswordReset(@Body body: PasswordResetRequest): MessageResponse
 }

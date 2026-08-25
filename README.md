@@ -394,9 +394,10 @@ calls stay live.
 
 **Native Android app (Kotlin + Jetpack Compose).** A full native client lives
 in [`android/`](android/) — login/register, dashboard, the RAG AI assistant
-with source citations, the visa-filtered jobs board with one-tap apply,
-application status tracking, and the employer portal (post jobs, review
-applicants with profiles, change status). It talks to the same hosted API.
+with source citations, the visa-filtered jobs board with "For You" smart-match
+cards, live community chat (global + housing/jobs/visas rooms) over WebSocket,
+the visa checklist generator, university housing availability, application
+status tracking, and the employer portal. It talks to the same hosted API.
 Open the folder in Android Studio and run — see [`android/README.md`](android/README.md).
 
 **📱 Android-only source bundle:** [`docs/assets/ReloCompass-Android.zip`](docs/assets/ReloCompass-Android.zip)

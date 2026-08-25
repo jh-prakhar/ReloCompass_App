@@ -36,6 +36,10 @@ object ApiClient {
     lateinit var chat: ChatApi
         private set
 
+    /** Raw base (no trailing slash), e.g. https://host — used to build the WS URL. */
+    var webSocketBase: String = ""
+        private set
+
     @Volatile private var tokenProvider: () -> String? = { null }
 
     fun init(baseUrl: String, tokenProvider: () -> String?) {
@@ -44,11 +48,13 @@ object ApiClient {
                 "or set API_BASE_URL in local.properties (see android/README.md)."
         }
         this.tokenProvider = tokenProvider
+        this.webSocketBase = baseUrl.trimEnd('/')
         val client = OkHttpClient.Builder()
             .addInterceptor(AuthInterceptor(this.tokenProvider))
             .connectTimeout(20, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
+            .pingInterval(30, TimeUnit.SECONDS) // keeps community WS alive behind NATs
             .build()
 
         fun buildRetrofit(path: String) = Retrofit.Builder()

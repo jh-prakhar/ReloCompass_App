@@ -53,6 +53,9 @@ private fun MainNav(session: SessionViewModel, store: TokenStore) {
         composable("jobs") { JobsScreen(session, navigate = { navigateFromBar(nav, it) }) }
         composable("applications") { ApplicationsScreen(session, navigate = { navigateFromBar(nav, it) }) }
         composable("employer") { EmployerScreen(session, navigate = { navigateFromBar(nav, it) }) }
+        composable("visa") { VisaScreen(session, navigate = { navigateFromBar(nav, it) }) }
+        composable("community") { CommunityScreen(session, store) }
+        composable("housing") { HousingScreen(session) }
         composable("profile") { ProfileScreen(session, navigate = { navigateFromBar(nav, it) }) }
     }
 }
