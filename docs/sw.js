@@ -6,7 +6,7 @@
  * - Background-sync apply queue: POST /jobs/{id}/apply replayed when back online
  * - Never caches: /api/auth (tokens), POST/PATCH/DELETE responses (except queued applies)
  */
-const VERSION = 'v4';
+const VERSION = 'v5';
 const SHELL_CACHE = `relocompass-shell-${VERSION}`;
 const STATIC_CACHE = `relocompass-static-${VERSION}`;
 const PENDING_DBS = 'relocompass-pending-applies';

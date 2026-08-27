@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 
 from sqlalchemy import (
     Column, Integer, String, Text, Boolean, DateTime, Enum, Float, ForeignKey,
+    UniqueConstraint,
 )
 from sqlalchemy.orm import relationship
 
@@ -40,6 +41,7 @@ class User(Base):
     country = Column(String(100), nullable=True)
     city = Column(String(100), nullable=True)
     bio = Column(Text, nullable=True)
+    preferred_language = Column(String(2), nullable=True)  # en | hi | ne | es | fr
 
     # Relations
     jobs = relationship("Job", back_populates="employer", cascade="all, delete-orphan")
@@ -212,6 +214,65 @@ class CommunityMessage(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     user_name = Column(String(100), nullable=False)  # denormalized for cheap history reads
     content = Column(Text, nullable=False)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), index=True)
+
+    user = relationship("User")
+
+class SavedJob(Base):
+    """User-bookmarked job listings."""
+    __tablename__ = "saved_jobs"
+    __table_args__ = (UniqueConstraint("user_id", "job_id", name="uq_saved_job"),)
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    job_id = Column(Integer, ForeignKey("jobs.id"), nullable=False, index=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+    user = relationship("User")
+    job = relationship("Job")
+
+
+class SavedAccommodation(Base):
+    """User-bookmarked accommodation listings."""
+    __tablename__ = "saved_accommodations"
+    __table_args__ = (UniqueConstraint("user_id", "accommodation_id", name="uq_saved_acc"),)
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    accommodation_id = Column(Integer, ForeignKey("accommodations.id"), nullable=False, index=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
+    user = relationship("User")
+    accommodation = relationship("Accommodation")
+
+
+class RelocationPlan(Base):
+    """One relocation plan per user (upserted from the planner UI)."""
+    __tablename__ = "relocation_plans"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, unique=True, index=True)
+    destination_country = Column(String(100), nullable=True)
+    destination_city = Column(String(100), nullable=True)
+    move_date = Column(String(20), nullable=True)  # ISO date string from the date input
+    notes = Column(Text, nullable=True)
+    checklist_json = Column(Text, nullable=True)   # [{id,label,done}]
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc),
+                        onupdate=lambda: datetime.now(timezone.utc))
+
+    user = relationship("User")
+
+
+class Notification(Base):
+    """In-app notifications (application status changes, system messages)."""
+    __tablename__ = "notifications"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    kind = Column(String(30), nullable=False, default="generic")  # application_update | generic
+    title = Column(String(200), nullable=False)
+    body = Column(Text, nullable=True)
+    is_read = Column(Boolean, default=False, nullable=False)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), index=True)
 
     user = relationship("User")

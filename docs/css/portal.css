@@ -601,3 +601,20 @@
 .for-you-card .job-card-meta { font-size: 0.8rem; color: var(--text-muted, #64748b); margin-bottom: 0.5rem; }
 .match-reason { font-size: 0.75rem; color: var(--text-secondary, #475569); padding: 0.15rem 0; }
 .match-reason::before { content: '› '; color: var(--electric, #3b82f6); font-weight: 700; }
+
+/* ── Save buttons (jobs board + accommodation cards) ── */
+.save-job-btn, .save-btn {
+  align-self: flex-start;
+  margin-top: 0.6rem;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.32rem 0.95rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.save-job-btn:hover, .save-btn:hover { border-color: var(--electric); color: var(--electric); }
+.save-job-btn.on, .save-btn.on { border-color: #10B981; color: #10B981; background: rgba(16,185,129,0.07); }

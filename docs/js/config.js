@@ -1,17 +1,16 @@
 /**
  * ReloCompass Frontend Configuration
- * API base URL resolution — no hardcoded hosts.
+ * API base URL resolution.
  *
  * Resolution order:
  * 1. localStorage 'relo_backend_url' — explicit override (set by the user
  *    or an ops script); highest priority.
- * 2. window.location.origin — same-origin (preview/staging/self-hosted),
- *    i.e. API served by the same host as these pages.
- * 3. localhost/127.0.0.1 pages → http://localhost:8000 (local dev server).
- *
- * For a GitHub Pages-style static deployment, set the override once:
- *   localStorage.setItem('relo_backend_url', 'https://your-backend.example')
+ * 2. localhost/127.0.0.1 pages → http://localhost:8000 (local dev server).
+ * 3. drytis.dev preview hosts → same-origin (API served by the same host).
+ * 4. GitHub Pages (and any other static host) → the deployed Python backend.
  */
+const PROD_API_URL = 'https://relocompass-tpfpaa.drytis.dev';
+
 const API_CONFIG = {
   get BASE_URL() {
     // Explicit override (survives reloads, travels with the browser)
@@ -26,8 +25,13 @@ const API_CONFIG = {
       return 'http://localhost:8000';
     }
 
-    // Same-origin as backend (preview/staging/prod) — relative URLs.
-    return '';
+    // drytis preview/self-hosted deployments — API on the same origin
+    if (host.endsWith('.drytis.dev')) {
+      return '';
+    }
+
+    // GitHub Pages and any other static host — call the deployed backend.
+    return PROD_API_URL;
   },
 
   API_PREFIX: '/api',

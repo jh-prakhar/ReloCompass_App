@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db, SessionLocal
 from app.deps import get_current_user
-from app.models import Job, Application, User, UserRole
+from app.models import Job, Application, User, UserRole, Notification
 from app.schemas import (
     JobCreate, JobOut, ApplicationCreate, ApplicationOut,
     ApplicationStatusUpdate, ApplicationWithApplicantOut, MessageResponse,
@@ -41,6 +41,14 @@ def _notify_applicant_async(*, application_id: int, new_status: str) -> None:
             company=application.job.company,
             new_status=new_status,
         )
+        db.add(Notification(
+            user_id=application.applicant.id,
+            kind="application_update",
+            title=f"Application update: {application.job.title}",
+            body=f"Your application for {application.job.title} at {application.job.company} "
+                 f"moved to {new_status}.",
+        ))
+        db.commit()
     except Exception as e:  # noqa: BLE001 — notification failures never break the flow
         import logging
         logging.getLogger("relocompass.jobs").error(

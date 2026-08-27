@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transportation — ReloCompass</title>
+  <meta name="theme-color" content="#0F172A">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ReloCompass">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/portal.css">
+  <style>
+    .trans-grid { display:grid; gap:1.25rem; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); margin-bottom:2.5rem; }
+    .trans-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; }
+    .trans-card h3 { font-size:1.05rem; color:var(--midnight); display:flex; align-items:center; gap:0.5rem; }
+    .trans-card p { font-size:0.9rem; color:var(--text-secondary); margin-top:0.5rem; }
+    .trans-card a { color:var(--electric); font-weight:600; font-size:0.875rem; text-decoration:none; }
+    .trans-card a:hover { text-decoration:underline; }
+    .steps { counter-reset: step; margin-top:1rem; }
+    .steps li { list-style:none; position:relative; padding:0.4rem 0 0.4rem 2.4rem; font-size:0.9rem; color:var(--text-secondary); }
+    .steps li::before { counter-increment: step; content: counter(step); position:absolute; left:0; top:0.35rem; width:1.6rem; height:1.6rem; border-radius:50%; background:rgba(59,130,246,0.12); color:var(--electric); font-weight:700; font-size:0.8rem; display:flex; align-items:center; justify-content:center; }
+    .notice { background:rgba(59,130,246,0.07); border-left:3px solid var(--electric); padding:1rem 1.25rem; border-radius:8px; font-size:0.9rem; color:var(--text-secondary); margin-bottom:2.5rem; }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar scrolled" id="navbar">
+    <nav class="container navbar-inner">
+      <a href="index.html" class="nav-brand">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#1E2A45"/><g transform="translate(34,24) scale(0.94)"><path d="M 60 6 C 32 6 10 28 10 56 C 10 85 36 108 60 137 C 84 108 110 85 110 56 C 110 28 88 6 60 6 Z" fill="none" stroke="#F6EFE2" stroke-width="6" stroke-linejoin="round"/><circle cx="60" cy="58" r="34" fill="none" stroke="#F6EFE2" stroke-width="3.5"/><polygon points="53,58 60,21 67,58" fill="#F6EFE2"/><polygon points="53,58 60,123 67,58" fill="#C1552C"/><circle cx="60" cy="58" r="7" fill="#1E2A45" stroke="#F6EFE2" stroke-width="2.5"/></g></svg>
+        <span class="brand-text">Relo<span>Compass</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a>
+        <a href="assistant.html" data-i18n="nav.assistant">AI Assistant</a>
+        <a href="jobs.html" data-i18n="nav.jobs">Jobs</a>
+        <a href="accommodations.html" data-i18n="nav.accommodation">Accommodation</a>
+        <a href="transport.html" data-i18n="nav.transport">Transport</a>
+        <a href="community.html" data-i18n="nav.community">Community</a>
+      </div>
+      <div class="nav-actions"></div>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a>
+      <a href="assistant.html" data-i18n="nav.assistant">AI Assistant</a>
+      <a href="jobs.html" data-i18n="nav.jobs">Jobs</a>
+      <a href="accommodations.html" data-i18n="nav.accommodation">Accommodation</a>
+      <a href="transport.html" data-i18n="nav.transport">Transport</a>
+      <a href="community.html" data-i18n="nav.community">Community</a>
+      <div class="mobile-actions"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero" style="padding-bottom:1.5rem">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="container">
+        <div class="animate-fadeIn">
+          <span class="badge badge-electric" data-i18n="transport.title">Transportation</span>
+          <h1 style="margin-top:1rem" data-i18n="transport.subtitle">Getting around your new city — official providers first.</h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:1.5rem">
+      <div class="container">
+
+        <div class="notice">
+          <strong>Always confirm fares, passes and rules on the operator's official site</strong> — they change frequently and student discounts usually require enrollment proof from your university.
+        </div>
+
+        <h2 style="font-size:1.25rem;margin-bottom:1rem">First month transport plan</h2>
+        <ol class="steps" style="margin-bottom:2.5rem">
+          <li>Before arrival: check your university's transport page for student pass programs.</li>
+          <li>Week 1: get a local payment/travel card (e.g. PRESTO, Opus, Oyster, Suica) at an airport or station kiosk.</li>
+          <li>Week 1–2: apply for the student/ concession fare once you have your enrollment letter.</li>
+          <li>Week 2–3: map your daily commute (home ↔ campus/work) and compare monthly pass vs pay-per-ride.</li>
+          <li>Ongoing: keep proof of student status with you when using concession fares.</li>
+        </ol>
+
+        <h2 style="font-size:1.25rem;margin-bottom:1rem">Popular destinations — official operators</h2>
+        <div class="trans-grid">
+          <article class="trans-card">
+            <h3>🇨🇦 Canada</h3>
+            <p>Toronto (TTC), Montréal (STM), Vancouver (TransLink). PRESTO (Ontario) and Opus (Québec) are the main travel cards.</p>
+            <a href="https://www.ttc.ca" target="_blank" rel="noopener noreferrer">ttc.ca ↗</a> ·
+            <a href="https://www.stm.info" target="_blank" rel="noopener noreferrer">stm.info ↗</a> ·
+            <a href="https://www.translink.ca" target="_blank" rel="noopener noreferrer">translink.ca ↗</a>
+          </article>
+          <article class="trans-card">
+            <h3>🇦🇺 Australia</h3>
+            <p>Opal (Sydney), myki (Melbourne), Go Card (Brisbane). International students get concession fares in most states.</p>
+            <a href="https://transportnsw.info" target="_blank" rel="noopener noreferrer">transportnsw.info ↗</a> ·
+            <a href="https://www.ptv.vic.gov.au" target="_blank" rel="noopener noreferrer">ptv.vic.gov.au ↗</a>
+          </article>
+          <article class="trans-card">
+            <h3>🇩🇪 Germany</h3>
+            <p>Deutschland-Ticket — one monthly ticket for all regional transport nationwide. Most universities also offer a semester ticket.</p>
+            <a href="https://www.bahn.com" target="_blank" rel="noopener noreferrer">bahn.com ↗</a> ·
+            <a href="https://www.deutschland-ticket.de" target="_blank" rel="noopener noreferrer">deutschland-ticket.de ↗</a>
+          </article>
+          <article class="trans-card">
+            <h3>🇬🇧 United Kingdom</h3>
+            <p>Oyster / contactless in London, railcards for long-distance discounts, and 16–25 or student railcards.</p>
+            <a href="https://tfl.gov.uk" target="_blank" rel="noopener noreferrer">tfl.gov.uk ↗</a> ·
+            <a href="https://www.nationalrail.co.uk" target="_blank" rel="noopener noreferrer">nationalrail.co.uk ↗</a>
+          </article>
+          <article class="trans-card">
+            <h3>🇺🇸 United States</h3>
+            <p>Systems vary by city — MTA (NYC), CTA (Chicago), Clipper (SF). Many universities include transit passes in fees.</p>
+            <a href="https://new.mta.info" target="_blank" rel="noopener noreferrer">mta.info ↗</a> ·
+            <a href="https://www.transitchicago.com" target="_blank" rel="noopener noreferrer">transitchicago.com ↗</a>
+          </article>
+          <article class="trans-card">
+            <h3>✈️ Airport transfers</h3>
+            <p>Prefer official airport express trains/buses over unlicensed taxis. Most major airports publish fare ranges on their official sites.</p>
+            <a href="https://www.iatatravelcentre.com" target="_blank" rel="noopener noreferrer">IATA Travel Centre ↗</a>
+          </article>
+        </div>
+
+        <div class="contact-form-card" style="padding:1.75rem">
+          <h3 style="font-size:1rem">Need help planning a specific route?</h3>
+          <p style="font-size:0.9rem;color:var(--text-secondary);margin-top:0.5rem">Ask the AI Assistant — it can walk you through the transport options for your exact destination and situation.</p>
+          <a href="assistant.html" class="btn btn-primary btn-sm" style="margin-top:0.75rem">Open AI Assistant</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p style="color:var(--text-muted);font-size:0.85rem">© 2025 ReloCompass — Relocation guidance for international students and job seekers.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Auth guard — these features are part of the logged-in experience
+    (function () {
+      if (!window.Auth || !Auth.isLoggedIn()) {
+        window.location.replace('login.html');
+      }
+    })();
+  </script>
+</body>
+</html>

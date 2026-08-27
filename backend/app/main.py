@@ -13,7 +13,7 @@ from fastapi.staticfiles import StaticFiles
 from app.config import settings
 from app.database import engine, Base
 from app.routers import auth, jobs, accommodations, contact, users
-from app.routers import chat, documents, ai_status, admin, community, visa, housing
+from app.routers import chat, documents, ai_status, admin, community, visa, housing, saved, planner, notifications, account
 
 logger = logging.getLogger(__name__)
 
@@ -98,6 +98,10 @@ app.include_router(admin.router, prefix=settings.API_V1_PREFIX)
 app.include_router(community.router, prefix=settings.API_V1_PREFIX)
 app.include_router(visa.router, prefix=settings.API_V1_PREFIX)
 app.include_router(housing.router, prefix=settings.API_V1_PREFIX)
+app.include_router(saved.router, prefix=settings.API_V1_PREFIX)
+app.include_router(planner.router, prefix=settings.API_V1_PREFIX)
+app.include_router(notifications.router, prefix=settings.API_V1_PREFIX)
+app.include_router(account.router, prefix=settings.API_V1_PREFIX)
 
 
 @app.get("/health")

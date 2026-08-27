@@ -18,6 +18,30 @@
 
   let jobs = [];
   let appliedJobIds = new Set();
+  const savedJobIds = new Set();
+
+  async function loadSavedJobs() {
+    if (!Auth.isLoggedIn()) return;
+    try {
+      const res = await Auth.apiRequest('/saved/jobs');
+      if (res.ok) (await res.json()).forEach((j) => savedJobIds.add(j.id));
+    } catch { /* offline */ }
+  }
+
+  async function toggleSaveJob(jobId, btn) {
+    if (!Auth.isLoggedIn()) { window.location.href = 'login.html'; return; }
+    const saved = savedJobIds.has(jobId);
+    try {
+      const res = await Auth.apiRequest('/saved/jobs/' + jobId, { method: saved ? 'DELETE' : 'POST' });
+      if (res.ok) {
+        if (saved) savedJobIds.delete(jobId); else savedJobIds.add(jobId);
+        if (btn) {
+          btn.classList.toggle('on', !saved);
+          btn.textContent = !saved ? '★ Saved' : '☆ Save';
+        }
+      }
+    } catch { /* offline */ }
+  }
   let debounceTimer = null;
 
   // ── For You (match) section ──
@@ -133,11 +157,18 @@
           </div>
           ${job.experience_years ? `<span class="badge badge-warning" style="align-self:flex-start;font-size:0.7rem">${esc(job.experience_years)}</span>` : ''}
           ${applied ? '<span class="badge badge-success" style="align-self:flex-start;font-size:0.7rem">✓ Applied</span>' : ''}
+          ${Auth.isLoggedIn() && isSeeker ? `<button class="save-job-btn ${savedJobIds.has(job.id) ? 'on' : ''}" data-save="${job.id}" onclick="event.stopPropagation()">${savedJobIds.has(job.id) ? '★ Saved' : '☆ Save'}</button>` : ''}
         </article>`;
     }).join('');
 
     grid.querySelectorAll('.job-card').forEach((card) => {
       card.addEventListener('click', () => openJobModal(Number(card.dataset.id)));
+    });
+    grid.querySelectorAll('[data-save]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleSaveJob(Number(btn.dataset.save), btn);
+      });
     });
   }
 
@@ -323,6 +354,7 @@
 
   // ── Init: board first (so titles resolve), then applications + badges ──
   (async function init() {
+    await loadSavedJobs();
     await loadJobs();
     loadForYou();
     await loadMyApplications();

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — ReloCompass</title>
+  <meta name="theme-color" content="#0F172A">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ReloCompass">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/portal.css">
+  <style>
+    .settings-card { padding: 2rem; margin-bottom: 2rem; }
+    .lang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+    .lang-option { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.85rem 1rem; text-align: center; cursor: pointer; font-size: 0.9rem; background: var(--surface); transition: border-color .15s ease; }
+    .lang-option:hover { border-color: var(--electric); }
+    .lang-option.active { border-color: #3B82F6; background: rgba(59,130,246,0.08); font-weight: 600; }
+    .lang-native { display: block; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.15rem; }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar scrolled" id="navbar">
+    <nav class="container navbar-inner">
+      <a href="index.html" class="nav-brand">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#1E2A45"/><g transform="translate(34,24) scale(0.94)"><path d="M 60 6 C 32 6 10 28 10 56 C 10 85 36 108 60 137 C 84 108 110 85 110 56 C 110 28 88 6 60 6 Z" fill="none" stroke="#F6EFE2" stroke-width="6" stroke-linejoin="round"/><circle cx="60" cy="58" r="34" fill="none" stroke="#F6EFE2" stroke-width="3.5"/><polygon points="53,58 60,21 67,58" fill="#F6EFE2"/><polygon points="53,58 60,123 67,58" fill="#C1552C"/><circle cx="60" cy="58" r="7" fill="#1E2A45" stroke="#F6EFE2" stroke-width="2.5"/></g></svg>
+        <span class="brand-text">Relo<span>Compass</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a>
+        <a href="assistant.html" data-i18n="nav.assistant">AI Assistant</a>
+        <a href="jobs.html" data-i18n="nav.jobs">Jobs</a>
+        <a href="accommodations.html" data-i18n="nav.accommodation">Accommodation</a>
+        <a href="transport.html" data-i18n="nav.transport">Transport</a>
+        <a href="community.html" data-i18n="nav.community">Community</a>
+      </div>
+      <div class="nav-actions"></div>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a>
+      <a href="assistant.html" data-i18n="nav.assistant">AI Assistant</a>
+      <a href="jobs.html" data-i18n="nav.jobs">Jobs</a>
+      <a href="accommodations.html" data-i18n="nav.accommodation">Accommodation</a>
+      <a href="transport.html" data-i18n="nav.transport">Transport</a>
+      <a href="community.html" data-i18n="nav.community">Community</a>
+      <div class="mobile-actions"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero" style="padding-bottom:1.5rem">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="container">
+        <div class="animate-fadeIn">
+          <span class="badge badge-electric" data-i18n="nav.settings">Settings</span>
+          <h1 style="margin-top:1rem" data-i18n="settings.title">Account Settings</h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:1.5rem">
+      <div class="container" style="max-width:40rem">
+
+        <!-- Language -->
+        <div class="contact-form-card settings-card">
+          <h2 data-i18n="settings.language">Interface language</h2>
+          <div class="lang-grid" id="lang-grid">
+            <div class="lang-option" data-lang="en">English<span class="lang-native">English</span></div>
+            <div class="lang-option" data-lang="hi">हिन्दी<span class="lang-native">Hindi</span></div>
+            <div class="lang-option" data-lang="ne">नेपाली<span class="lang-native">Nepali</span></div>
+            <div class="lang-option" data-lang="es">Español<span class="lang-native">Spanish</span></div>
+            <div class="lang-option" data-lang="fr">Français<span class="lang-native">French</span></div>
+          </div>
+          <span id="lang-saved-msg" style="display:none;margin-top:0.75rem;font-size:0.875rem;color:var(--emerald)">✓ <span data-i18n="settings.langChanged">Language saved.</span></span>
+        </div>
+
+        <!-- Password -->
+        <div class="contact-form-card settings-card">
+          <h2 data-i18n="settings.password">Change password</h2>
+          <div class="form-group" style="margin-top:1rem">
+            <label for="pw-current" data-i18n="settings.currentPw">Current password</label>
+            <input type="password" id="pw-current" autocomplete="current-password">
+          </div>
+          <div class="form-group">
+            <label for="pw-new" data-i18n="settings.newPw">New password</label>
+            <input type="password" id="pw-new" autocomplete="new-password" placeholder="At least 6 characters">
+          </div>
+          <div class="form-group">
+            <label for="pw-confirm">Confirm new password</label>
+            <input type="password" id="pw-confirm" autocomplete="new-password">
+          </div>
+          <button class="btn btn-gradient" id="pw-change-btn" data-i18n="settings.changePw">Update password</button>
+          <span id="pw-msg" style="margin-left:0.75rem;font-size:0.875rem"></span>
+        </div>
+
+        <!-- Account -->
+        <div class="contact-form-card settings-card">
+          <h2>Account</h2>
+          <p id="acct-info" style="color:var(--text-secondary);font-size:0.9rem;margin-top:0.75rem"></p>
+          <a href="#" onclick="Auth.logout();return false;" class="btn btn-outline btn-sm" style="margin-top:0.5rem;color:#e11d48;border-color:#e11d48">Logout</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p style="color:var(--text-muted);font-size:0.85rem">© 2025 ReloCompass — Relocation guidance for international students and job seekers.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      if (!Auth.requireRole(null)) return;
+      const user = Auth.getUser();
+
+      document.getElementById('acct-info').textContent =
+        user ? (user.email + ' · ' + user.role.replace('_', ' ')) : '';
+
+      // ── Language ──
+      const grid = document.getElementById('lang-grid');
+      let currentLang = (user && user.preferred_language) || localStorage.getItem('relo_lang') || 'en';
+      function markActive() {
+        grid.querySelectorAll('.lang-option').forEach(o => o.classList.toggle('active', o.dataset.lang === currentLang));
+      }
+      markActive();
+
+      grid.querySelectorAll('.lang-option').forEach(opt => {
+        opt.addEventListener('click', async () => {
+          currentLang = opt.dataset.lang;
+          markActive();
+          localStorage.setItem('relo_lang', currentLang);
+          document.documentElement.lang = currentLang;
+          try {
+            const res = await Auth.apiRequest('/settings/language', {
+              method: 'PUT',
+              body: JSON.stringify({ preferred_language: currentLang }),
+            });
+            if (res.ok) {
+              const updated = await res.json();
+              localStorage.setItem('relocompass_user', JSON.stringify(updated));
+              document.getElementById('lang-saved-msg').style.display = 'inline';
+              setTimeout(() => document.getElementById('lang-saved-msg').style.display = 'none', 2000);
+            }
+          } catch { /* saved locally anyway */ }
+          window.location.reload();
+        });
+      });
+
+      // ── Password ──
+      document.getElementById('pw-change-btn').addEventListener('click', async function () {
+        const btn = this;
+        const msg = document.getElementById('pw-msg');
+        const current = document.getElementById('pw-current').value;
+        const next = document.getElementById('pw-new').value;
+        const confirm = document.getElementById('pw-confirm').value;
+        msg.style.color = 'var(--rose, #e11d48)';
+
+        if (next.length < 6) { msg.textContent = 'New password must be at least 6 characters.'; return; }
+        if (next !== confirm) { msg.textContent = 'Passwords do not match.'; return; }
+
+        btn.disabled = true; btn.textContent = 'Updating…';
+        try {
+          const res = await Auth.apiRequest('/settings/password', {
+            method: 'PUT',
+            body: JSON.stringify({ current_password: current, new_password: next }),
+          });
+          if (res.ok) {
+            msg.style.color = 'var(--emerald)';
+            msg.textContent = '✓ Password updated.';
+            document.getElementById('pw-current').value = '';
+            document.getElementById('pw-new').value = '';
+            document.getElementById('pw-confirm').value = '';
+          } else {
+            const data = await res.json().catch(() => ({}));
+            msg.textContent = data.detail || 'Could not update password.';
+          }
+        } catch {
+          msg.textContent = 'Network error — please try again.';
+        }
+        btn.disabled = false; btn.textContent = 'Update password';
+      });
+    })();
+  </script>
+</body>
+</html>

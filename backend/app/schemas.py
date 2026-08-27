@@ -46,6 +46,7 @@ class UserOut(BaseModel):
     country: Optional[str] = None
     city: Optional[str] = None
     bio: Optional[str] = None
+    preferred_language: Optional[str] = None
 
     class Config:
         from_attributes = True

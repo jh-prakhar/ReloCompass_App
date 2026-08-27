@@ -31,13 +31,11 @@
         <span class="brand-text">Relo<span>Compass</span></span>
       </a>
       <div class="nav-links">
-        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a>
         <a href="assistant.html" data-i18n="nav.assistant">AI Assistant</a>
-        <a href="index.html#students">Students</a>
         <a href="jobs.html" data-i18n="nav.jobs">Jobs</a>
-        <a href="employers.html" data-i18n="nav.employers">Employers</a>
-        <a href="about.html" data-i18n="nav.about">About</a>
-        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        <a href="accommodations.html" data-i18n="nav.accommodation">Accommodation</a>
+        <a href="transport.html" data-i18n="nav.transport">Transport</a>
         <a href="community.html" data-i18n="nav.community">Community</a>
       </div>
       <div class="nav-actions"></div>
@@ -47,15 +45,13 @@
       </button>
     </nav>
     <div class="mobile-menu" id="mobile-menu">
-      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a>
       <a href="assistant.html" data-i18n="nav.assistant">AI Assistant</a>
       <a href="jobs.html" data-i18n="nav.jobs">Jobs</a>
-      <a href="employers.html" data-i18n="nav.employers">Employers</a>
-      <a href="about.html" data-i18n="nav.about">About</a>
-      <a href="contact.html" data-i18n="nav.contact">Contact</a>
-      <div class="mobile-actions">
+      <a href="accommodations.html" data-i18n="nav.accommodation">Accommodation</a>
+      <a href="transport.html" data-i18n="nav.transport">Transport</a>
       <a href="community.html" data-i18n="nav.community">Community</a>
-      </div>
+      <div class="mobile-actions"></div>
     </div>
   </header>
 
@@ -114,6 +110,7 @@
   <script src="js/config.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/notifications.js"></script>
   <script src="js/main.js"></script>
   <script>
     (async function () {
@@ -139,24 +136,35 @@
         student: [
           { title: 'AI Assistant', desc: 'Get personalized guidance on visas, housing, and settling in.', icon: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M8.5 14.5s1.5 1.5 3.5 1.5 3.5-1.5 3.5-1.5"/>', url: 'assistant.html', color: 'cyan' },
           { title: 'Browse Jobs', desc: 'Find job opportunities abroad with visa sponsorship.', icon: '<path d="M21 13.255A23.93 23.93 0 0 1 12 15c-3.18 0-6.22-.62-9-1.745M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2m4 6h.01M5 20h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/>', url: 'jobs.html', color: 'blue' },
+          { title: 'Accommodation', desc: 'Browse verified housing near your campus or work.', icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>', url: 'accommodations.html', color: 'cyan' },
+          { title: 'Transportation', desc: 'Official operators, airport transfers and monthly passes.', icon: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>', url: 'transport.html', color: 'blue' },
+          { title: 'Saved', desc: 'Your bookmarked jobs and accommodation.', icon: '<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>', url: 'saved.html', color: 'blue' },
+          { title: 'Relocation Planner', desc: 'Plan your move and track every step.', icon: '<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>', url: 'planner.html', color: 'violet' },
           { title: 'Community Chat', desc: 'Talk live with other students in global & topic rooms.', icon: '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>', url: 'community.html', color: 'cyan' },
           { title: 'Visa Checklist', desc: 'Generate your destination-specific document checklist.', icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', url: 'visa-checklist.html', color: 'violet' },
           { title: 'My Applications', desc: 'Track the status of jobs you applied to.', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>', url: 'jobs.html#my-applications-section', color: 'violet' },
           { title: 'Profile Settings', desc: 'Update your personal information and preferences.', icon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>', url: '#profile', color: 'blue', action: 'toggleProfile' },
+          { title: 'Settings', desc: 'Language, password and account preferences.', icon: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>', url: 'settings.html', color: 'violet' },
         ],
         job_seeker: [
           { title: 'AI Assistant', desc: 'Practice interviews, plan your move, and get job-market answers.', icon: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M8.5 14.5s1.5 1.5 3.5 1.5 3.5-1.5 3.5-1.5"/>', url: 'assistant.html', color: 'cyan' },
           { title: 'Browse Jobs', desc: 'Find opportunities abroad with visa sponsorship.', icon: '<path d="M21 13.255A23.93 23.93 0 0 1 12 15c-3.18 0-6.22-.62-9-1.745M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2m4 6h.01M5 20h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/>', url: 'jobs.html', color: 'blue' },
+          { title: 'Accommodation', desc: 'Browse verified housing near your campus or work.', icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>', url: 'accommodations.html', color: 'cyan' },
+          { title: 'Transportation', desc: 'Official operators, airport transfers and monthly passes.', icon: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>', url: 'transport.html', color: 'blue' },
+          { title: 'Saved', desc: 'Your bookmarked jobs and accommodation.', icon: '<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>', url: 'saved.html', color: 'blue' },
+          { title: 'Relocation Planner', desc: 'Plan your move and track every step.', icon: '<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>', url: 'planner.html', color: 'violet' },
           { title: 'Community Chat', desc: 'Talk live with other job seekers in global & topic rooms.', icon: '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>', url: 'community.html', color: 'cyan' },
           { title: 'Visa Checklist', desc: 'Generate your destination-specific document checklist.', icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', url: 'visa-checklist.html', color: 'violet' },
           { title: 'My Applications', desc: 'Track the status of jobs you applied to.', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>', url: 'jobs.html#my-applications-section', color: 'violet' },
           { title: 'Profile Settings', desc: 'Update your personal information and preferences.', icon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>', url: '#profile', color: 'blue', action: 'toggleProfile' },
+          { title: 'Settings', desc: 'Language, password and account preferences.', icon: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>', url: 'settings.html', color: 'violet' },
         ],
         employer: [
           { title: 'AI Assistant', desc: 'Ask about sponsorship rules and hiring international talent.', icon: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M8.5 14.5s1.5 1.5 3.5 1.5 3.5-1.5 3.5-1.5"/>', url: 'assistant.html', color: 'cyan' },
           { title: 'Post a Job', desc: 'Create a job listing to find talent from India & Nepal.', icon: '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>', url: 'employers.html', color: 'blue' },
           { title: 'My Posted Jobs', desc: 'Review applicants and manage your listings.', icon: '<path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/>', url: 'employers.html#my-jobs-list', color: 'violet' },
           { title: 'Community Chat', desc: 'Meet candidates in the community rooms.', icon: '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>', url: 'community.html', color: 'cyan' },
+          { title: 'Settings', desc: 'Language, password and account preferences.', icon: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>', url: 'settings.html', color: 'violet' },
           { title: 'Profile Settings', desc: 'Update your employer profile and company info.', icon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>', url: '#profile', color: 'blue', action: 'toggleProfile' },
         ],
         admin: [
@@ -164,6 +172,7 @@
           { title: 'Browse Jobs', desc: 'See all live job postings.', icon: '<path d="M21 13.255A23.93 23.93 0 0 1 12 15c-3.18 0-6.22-.62-9-1.745M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2m4 6h.01M5 20h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/>', url: 'jobs.html', color: 'blue' },
           { title: 'Employer Portal', desc: 'See the posting and applicant workflow.', icon: '<path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/>', url: 'employers.html', color: 'violet' },
           { title: 'Community Chat', desc: 'Moderate and observe the community rooms.', icon: '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>', url: 'community.html', color: 'cyan' },
+          { title: 'Settings', desc: 'Language, password and account preferences.', icon: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>', url: 'settings.html', color: 'violet' },
         ],
       };
 
@@ -222,6 +231,35 @@
         btn.disabled = false;
         btn.textContent = 'Save Profile';
       });
+    })();
+    // ── Recent notifications (dashboard) ──
+    (async function loadDashNotifs() {
+      const wrap = document.getElementById('dash-notifications');
+      const list = document.getElementById('dash-notif-list');
+      if (!wrap || !list) return;
+      try {
+        const res = await Auth.apiRequest('/notifications/?limit=5');
+        if (!res.ok) return;
+        const items = await res.json();
+        if (!items.length) return;
+        wrap.style.display = 'block';
+        const esc2 = (str) => { const d = document.createElement('div'); d.textContent = str == null ? '' : String(str); return d.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;'); };
+        const timeAgo2 = (iso) => { if (!iso) return ''; const s = Math.floor((Date.now() - new Date(iso).getTime())/1000); if (s<60) return 'just now'; if (s<3600) return Math.floor(s/60)+'m ago'; if (s<86400) return Math.floor(s/3600)+'h ago'; return Math.floor(s/86400)+'d ago'; };
+        list.innerHTML = items.map(n => `
+          <div class="saved-card" style="padding:0.9rem 1.1rem;${n.is_read ? 'opacity:0.65;' : 'border-left:3px solid var(--electric);'}">
+            <div style="font-weight:600;font-size:0.9rem">${esc2(n.title)}${n.is_read ? '' : ' <span style="font-size:0.65rem;color:var(--electric);font-weight:700">NEW</span>'}</div>
+            ${n.body ? `<div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.2rem">${esc2(n.body)}</div>` : ''}
+            <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.25rem">${timeAgo2(n.created_at)}</div>
+          </div>`).join('');
+        document.getElementById('dash-notif-readall').addEventListener('click', async () => {
+          try {
+            await Auth.apiRequest('/notifications/read-all', { method: 'POST' });
+            list.querySelectorAll('[style*="opacity"]').forEach(el => el.style.opacity = '0.65');
+            list.querySelectorAll('span').forEach(sp => { if (sp.textContent === 'NEW') sp.remove(); });
+            if (window.Notif) Notif.refreshUnread();
+          } catch { }
+        });
+      } catch { /* offline — section stays hidden */ }
     })();
   </script>
 </body>

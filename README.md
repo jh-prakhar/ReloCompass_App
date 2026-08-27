@@ -57,7 +57,10 @@ The project is built with a clear **frontend–backend separation**:
 - **Multi-language UI** — English, Hindi, Nepali, Spanish, and French with persisted language preference
 - **Email Notifications** — Token-based single-use password reset (30-min expiry) and application-status emails; SMTP when configured, audited dev outbox otherwise
 - **Financial Planning** — Budget estimators for cost of living across cities
-- **Relocation Checklists** — Step-by-step task lists for a smooth move
+- **Relocation Planner** — Plan your move: destination, target date, notes, and a personal step checklist with progress tracking — saved to your account
+- **Saved Items** — Bookmark jobs and accommodation listings to your Saved page
+- **In-App Notifications** — Bell menu with unread badge; application-status changes notify you in-app and by email
+- **Account Settings** — Interface language (syncs with your profile) and password change
 
 ### For Employers
 - **Post Jobs** — Create listings with visa sponsorship details; manage and close listings from the employer portal

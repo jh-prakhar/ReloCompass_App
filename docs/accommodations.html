@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accommodation — ReloCompass</title>
+  <meta name="theme-color" content="#0F172A">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ReloCompass">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/portal.css">
+  <style>
+    .acc-grid { display:grid; gap:1.25rem; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); }
+    .acc-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; display:flex; flex-direction:column; gap:0.5rem; }
+    .acc-card h3 { font-size:1.05rem; color:var(--midnight); }
+    .acc-price { font-weight:700; color:var(--electric); }
+    .acc-meta { font-size:0.85rem; color:var(--text-muted); }
+    .save-btn { margin-top:auto; align-self:flex-start; background:none; border:1px solid var(--border); border-radius:8px; padding:0.4rem 1rem; font-size:0.82rem; cursor:pointer; color:var(--text-secondary); }
+    .save-btn:hover { border-color:var(--electric); color:var(--electric); }
+    .save-btn.on { border-color:#10B981; color:#10B981; }
+    .filter-bar { display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .filter-bar input, .filter-bar select { flex:1; min-width:150px; }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar scrolled" id="navbar">
+    <nav class="container navbar-inner">
+      <a href="index.html" class="nav-brand">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" rx="44" fill="#1E2A45"/><g transform="translate(34,24) scale(0.94)"><path d="M 60 6 C 32 6 10 28 10 56 C 10 85 36 108 60 137 C 84 108 110 85 110 56 C 110 28 88 6 60 6 Z" fill="none" stroke="#F6EFE2" stroke-width="6" stroke-linejoin="round"/><circle cx="60" cy="58" r="34" fill="none" stroke="#F6EFE2" stroke-width="3.5"/><polygon points="53,58 60,21 67,58" fill="#F6EFE2"/><polygon points="53,58 60,123 67,58" fill="#C1552C"/><circle cx="60" cy="58" r="7" fill="#1E2A45" stroke="#F6EFE2" stroke-width="2.5"/></g></svg>
+        <span class="brand-text">Relo<span>Compass</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a>
+        <a href="assistant.html" data-i18n="nav.assistant">AI Assistant</a>
+        <a href="jobs.html" data-i18n="nav.jobs">Jobs</a>
+        <a href="accommodations.html" data-i18n="nav.accommodation">Accommodation</a>
+        <a href="transport.html" data-i18n="nav.transport">Transport</a>
+        <a href="community.html" data-i18n="nav.community">Community</a>
+      </div>
+      <div class="nav-actions"></div>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a>
+      <a href="assistant.html" data-i18n="nav.assistant">AI Assistant</a>
+      <a href="jobs.html" data-i18n="nav.jobs">Jobs</a>
+      <a href="accommodations.html" data-i18n="nav.accommodation">Accommodation</a>
+      <a href="transport.html" data-i18n="nav.transport">Transport</a>
+      <a href="community.html" data-i18n="nav.community">Community</a>
+      <div class="mobile-actions"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero" style="padding-bottom:1.5rem">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="container">
+        <div class="animate-fadeIn">
+          <span class="badge badge-electric" data-i18n="nav.accommodation">Accommodation</span>
+          <h1 style="margin-top:1rem">Find a place to live</h1>
+          <p style="margin-top:0.5rem;color:var(--text-secondary)">Verified listings from universities, residences and partners. Sample listings are clearly labelled.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:1.5rem">
+      <div class="container">
+        <div class="filter-bar">
+          <input type="text" id="acc-filter-city" class="form-input" placeholder="City…">
+          <select id="acc-filter-type" class="form-input">
+            <option value="">All types</option>
+            <option value="dorm">Dormitory</option>
+            <option value="shared">Shared apartment</option>
+            <option value="studio">Studio</option>
+            <option value="homestay">Homestay</option>
+          </select>
+          <input type="number" id="acc-filter-max" class="form-input" placeholder="Max price / month" min="0" style="max-width:170px">
+          <button class="btn btn-primary btn-sm" id="acc-apply-btn">Filter</button>
+        </div>
+
+        <div id="acc-status" style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem">Loading…</div>
+        <div class="acc-grid" id="acc-grid"></div>
+
+        <div id="acc-empty" style="display:none;text-align:center;padding:2.5rem 1rem;color:var(--text-muted)">
+          <p>No verified accommodation listings are currently available for this filter.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p style="color:var(--text-muted);font-size:0.85rem">© 2025 ReloCompass — Relocation guidance for international students and job seekers.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>  <script src="js/auth.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Auth guard — these features are part of the logged-in experience
+    (function () {
+      if (!window.Auth || !Auth.isLoggedIn()) {
+        window.location.replace('login.html');
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      const esc = (s) => { const d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;'); };
+      const grid = document.getElementById('acc-grid');
+      const statusEl = document.getElementById('acc-status');
+      const emptyEl = document.getElementById('acc-empty');
+      const user = Auth.getUser();
+      const loggedIn = Auth.isLoggedIn();
+      let savedIds = new Set();
+
+      const TYPE_LABELS = { dorm: 'Dormitory', shared: 'Shared apartment', studio: 'Studio', homestay: 'Homestay' };
+
+      async function loadSaved() {
+        if (!loggedIn) return;
+        try {
+          const res = await Auth.apiRequest('/saved/accommodations');
+          if (res.ok) savedIds = new Set((await res.json()).map(a => a.id));
+        } catch { /* offline */ }
+      }
+
+      async function toggleSave(id, btn) {
+        if (!loggedIn) { window.location.href = 'login.html'; return; }
+        const saved = savedIds.has(id);
+        try {
+          const res = await Auth.apiRequest('/saved/accommodations/' + id, { method: saved ? 'DELETE' : 'POST' });
+          if (res.ok) {
+            if (saved) savedIds.delete(id); else savedIds.add(id);
+            btn.classList.toggle('on', !saved);
+            btn.textContent = !saved ? '★ Saved' : '☆ Save';
+          }
+        } catch { /* offline */ }
+      }
+
+      function render(accs) {
+        grid.innerHTML = accs.map((a) => `
+          <article class="acc-card">
+            <h3>${esc(a.title)}${a.is_sample ? ' <span class="badge badge-sample" style="font-size:0.6rem;vertical-align:middle">SAMPLE</span>' : ''}</h3>
+            <p class="acc-meta">${TYPE_LABELS[a.acc_type] || esc(a.acc_type || 'Housing')} · ${esc(a.city || '')}${a.country ? (a.city ? ', ' : '') + esc(a.country) : ''}</p>
+            ${a.price ? `<p class="acc-price">${a.price} ${esc(a.currency || '')}<span style="font-weight:400;color:var(--text-muted);font-size:0.8rem"> / month</span></p>` : ''}
+            ${a.description ? `<p style="font-size:0.875rem;color:var(--text-secondary)">${esc(a.description)}</p>` : ''}
+            <button class="save-btn ${savedIds.has(a.id) ? 'on' : ''}" data-id="${a.id}">${savedIds.has(a.id) ? '★ Saved' : '☆ Save'}</button>
+          </article>`).join('');
+        grid.querySelectorAll('.save-btn').forEach(btn => {
+          btn.addEventListener('click', () => toggleSave(Number(btn.dataset.id), btn));
+        });
+      }
+
+      async function load() {
+        const params = new URLSearchParams();
+        const city = document.getElementById('acc-filter-city').value.trim();
+        const type = document.getElementById('acc-filter-type').value;
+        if (city) params.set('city', city);
+        if (type) params.set('acc_type', type);
+        statusEl.textContent = 'Loading…';
+        emptyEl.style.display = 'none';
+        try {
+          const res = await fetch(API_CONFIG.API_URL + '/accommodations/?' + params.toString());
+          if (!res.ok) throw new Error();
+          const accs = await res.json();
+          const maxPrice = Number(document.getElementById('acc-filter-max').value) || 0;
+          const visible = accs.filter((a) => !maxPrice || (a.price != null && a.price <= maxPrice));
+          statusEl.textContent = '';
+          if (!visible.length) { emptyEl.style.display = 'block'; grid.innerHTML = ''; return; }
+          render(visible);
+        } catch {
+          statusEl.textContent = 'Could not load accommodation listings. Please try again.';
+        }
+      }
+
+      document.getElementById('acc-apply-btn').addEventListener('click', load);
+
+      (async function init() {
+        await loadSaved();
+        load();
+      })();
+    })();
+  </script>
+</body>
+</html>
